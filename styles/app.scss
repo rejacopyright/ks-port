@@ -1,0 +1,15 @@
+@import 'colors';
+
+$enable-negative-margins: true;
+$enable-caret: false;
+$enable-gradients: false;
+$enable-shadows: false;
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900');
+@import '~bootstrap/scss/bootstrap';
+@import '~animate.css/animate.min.css';
+@import './font-awesome/css/all.min.css';
+@import './line-awesome/css/line-awesome.min.css';
+@import './slick/slick.scss';
+@import 'gotop';
+@import 'custom';
