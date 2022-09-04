@@ -19,6 +19,7 @@ const redirects = [
 ]
 
 const nextConfig = {
+  useFileSystemPublicRoutes: false,
   reactStrictMode: true,
   swcMinify: true,
   distDir: 'build',
