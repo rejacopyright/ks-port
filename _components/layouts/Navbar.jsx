@@ -12,7 +12,7 @@ const Index = () => {
   const [activeDropdown, setActiveDropdown] = useState(undefined)
   useEffect(() => {
     document.addEventListener('scroll', () => {
-      if (window.scrollY > 150) {
+      if (window.scrollY > 100) {
         setSticky(true)
       } else {
         setSticky(false)
@@ -37,12 +37,12 @@ const Index = () => {
       {!sticky && <Topbar expand={expand} />}
       <Navbar
         // bg={sticky ? 'primary' : 'transparent'}
-        className={`d-flex py-${expand}-0 px-3 px-${expand}-0`}
+        className={`d-flex py-${expand}-0 px-3 px-${expand}-4`}
         expand={expand}
       >
         <Navbar.Brand>
           <Link href='/'>
-            <div className={`d-flex d-${expand}-none`}>
+            <div className={`d-flex d-${expand}-nonexxx pointer`}>
               {sticky ? (
                 <Image
                   priority
@@ -65,8 +65,8 @@ const Index = () => {
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse>
-          <Nav className='mx-auto'>
-            <Link href='/'>
+          <Nav className='ms-auto'>
+            <Link href='/about'>
               <a className={`nav-link ${styles.text}`}>TENTANG KTI</a>
             </Link>
             <Link href='/business'>
@@ -83,7 +83,7 @@ const Index = () => {
             </Link>
             <Link href='/'>
               <div
-                className={`d-none d-${expand}-flex align-items-center justify-content-center mx-3 pointer`}
+                className={`d-none d-${expand}-flexxx align-items-center justify-content-center mx-3 pointer`}
               >
                 {sticky ? (
                   <Image
@@ -124,6 +124,7 @@ const Index = () => {
               onMouseLeave={() => {
                 setActiveDropdown(undefined)
               }}
+              className='d-none xxx'
             >
               <Dropdown.Toggle
                 variant='transparent'

@@ -13,7 +13,7 @@ const Index = () => {
     'Terms of Use',
   ]
   return (
-    <div className='py-2 bg-25 mt-n2'>
+    <div className='py-2 bg-25'>
       <div className='container'>
         <div className='row'>
           <div className='col-12 mt-4 mb-2'>

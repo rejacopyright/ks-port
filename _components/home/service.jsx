@@ -77,7 +77,7 @@ const Index = () => {
             }`}
           >
             <Link href='/service'>
-              <div className='position-absolute z-3 w-100 px-4 mt-1 flex-end fs-6 fw-500 text-primary pointer'>
+              <div className='w-100 mt-1 flex-end fs-6 fw-500 text-primary pointer'>
                 <span>Lihat Semua</span>
                 <i className='las la-arrow-right ms-2 fs-5' />
               </div>
