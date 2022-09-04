@@ -67,17 +67,23 @@ const Index = () => {
         <Navbar.Collapse>
           <Nav className='mx-auto'>
             <Link href='/'>
-              <a className={`nav-link ${styles.text}`}>TENTANG KAMI</a>
+              <a className={`nav-link ${styles.text}`}>TENTANG KTI</a>
             </Link>
-            <Link href='/about'>
-              <a className={`nav-link ${styles.text}`}>LAYANAN</a>
+            <Link href='/business'>
+              <a className={`nav-link ${styles.text}`}>BISNIS</a>
             </Link>
-            <Link href='/about'>
-              <a className={`nav-link ${styles.text}`}>FASILITAS</a>
+            <Link href='/customer'>
+              <a className={`nav-link ${styles.text}`}>PELANGGAN</a>
+            </Link>
+            <Link href='/gcg'>
+              <a className={`nav-link ${styles.text}`}>TATA KELOLA</a>
+            </Link>
+            <Link href='/news'>
+              <a className={`nav-link ${styles.text}`}>BERITA</a>
             </Link>
             <Link href='/'>
               <div
-                className={`d-none d-${expand}-flex align-items-center justify-content-center mx-3`}
+                className={`d-none d-${expand}-flex align-items-center justify-content-center mx-3 pointer`}
               >
                 {sticky ? (
                   <Image
@@ -97,14 +103,17 @@ const Index = () => {
                 )}
               </div>
             </Link>
-            <Link href='/profile'>
-              <a className={`nav-link ${styles.text}`}>MEDIA</a>
+            <Link href='/csr'>
+              <a className={`nav-link ${styles.text}`}>CSR</a>
             </Link>
-            <Link href='/profile'>
-              <a className={`nav-link ${styles.text}`}>KARIR</a>
+            <Link href='/vendor'>
+              <a className={`nav-link ${styles.text}`}>VENDOR</a>
             </Link>
-            <Link href='/profile'>
-              <a className={`nav-link ${styles.text}`}>TATA KELOLA</a>
+            <Link href='/employee'>
+              <a className={`nav-link ${styles.text}`}>HUMAN CAPITAL</a>
+            </Link>
+            <Link href='/contact'>
+              <a className={`nav-link ${styles.text}`}>KONTAK</a>
             </Link>
             <Dropdown
               navbar
