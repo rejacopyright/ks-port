@@ -41,7 +41,7 @@ const Index = () => {
         <div className='row'>
           <div className='col-12 text-center my-3 opacity-50'>
             <p className='text-white ls-1 mb-1'>© Copyright 2021 Krakatau International Port</p>
-            <p className='text-white ls-1'>All Rights Reserved | site by Webzoic</p>
+            <p className='text-white ls-1'>All Rights Reserved</p>
           </div>
         </div>
         <div className='row'>

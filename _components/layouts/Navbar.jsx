@@ -67,7 +67,7 @@ const Index = () => {
         <Navbar.Collapse>
           <Nav className='ms-auto'>
             <Link href='/about'>
-              <a className={`nav-link ${styles.text}`}>TENTANG KTI</a>
+              <a className={`nav-link ${styles.text}`}>TENTANG KSS</a>
             </Link>
             <Link href='/business'>
               <a className={`nav-link ${styles.text}`}>BISNIS</a>

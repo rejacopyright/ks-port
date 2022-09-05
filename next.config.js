@@ -19,7 +19,7 @@ const redirects = [
 ]
 
 const nextConfig = {
-  useFileSystemPublicRoutes: false,
+  // useFileSystemPublicRoutes: false,
   reactStrictMode: true,
   swcMinify: true,
   distDir: 'build',
@@ -27,7 +27,7 @@ const nextConfig = {
     includePaths: [path.join(__dirname, 'styles')],
   },
   trailingSlash: false,
-  experimental: { images: { allowFutureImage: true } },
+  experimental: { images: { allowFutureImage: true, unoptimized: false } },
   images: { dangerouslyAllowSVG: true },
   compiler: {
     // removeConsole: {
