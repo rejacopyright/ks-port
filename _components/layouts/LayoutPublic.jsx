@@ -5,12 +5,12 @@ import Footer from './Footer'
 
 const Layout = ({ children }) => {
   const router = useRouter()
-  console.log()
+  const noError = !['/_error', '/404', '/500'].includes(router?.pathname)
   return (
     <>
-      {router?.pathname !== '/404' && <Navbar />}
+      {noError && <Navbar />}
       {children}
-      {router?.pathname !== '/404' && (
+      {noError && (
         <>
           <Footer />
           <GoTop />

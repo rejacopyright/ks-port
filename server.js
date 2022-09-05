@@ -25,20 +25,10 @@ app.prepare().then(() => {
         await app.render(req, res, '/', query)
       } else if (pathname === '/about') {
         await app.render(req, res, '/about', query)
-      } else if (pathname === '/business') {
-        await app.render(req, res, '/business', query)
-      } else if (pathname === '/customer') {
-        await app.render(req, res, '/customer', query)
-      } else if (pathname === '/gcg') {
-        await app.render(req, res, '/gcg', query)
+      } else if (pathname === '/services') {
+        await app.render(req, res, '/services', query)
       } else if (pathname === '/news') {
         await app.render(req, res, '/news', query)
-      } else if (pathname === '/csr') {
-        await app.render(req, res, '/csr', query)
-      } else if (pathname === '/vendor') {
-        await app.render(req, res, '/vendor', query)
-      } else if (pathname === '/employee') {
-        await app.render(req, res, '/employee', query)
       } else if (pathname === '/contact') {
         await app.render(req, res, '/contact', query)
       } else {
@@ -51,6 +41,6 @@ app.prepare().then(() => {
     }
   }).listen(port, (err) => {
     if (err) throw err
-    console.log(`> Ready on https://${hostname}:${port}`)
+    console.info(`> Ready on https://${hostname}:${port}`)
   })
 })

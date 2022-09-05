@@ -20,7 +20,7 @@ const GoTop = () => {
   return (
     <>
       <div
-        className={`go-top bg-info text-white ${thePosition ? 'active' : ''}`}
+        className={`go-top bg-primary text-white ${thePosition ? 'active' : ''}`}
         onClick={scrollToTop}
       >
         <i className='las la-arrow-up' />

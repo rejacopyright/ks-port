@@ -13,7 +13,7 @@ const social = [
 
 const Index = ({ expand = defaultExpand, className = '', placement = 'auto' }) => {
   return (
-    <div className={`flex-center ${className}`} style={{ padding: '0.75rem 0' }}>
+    <div className={`flex-center ${className}`} style={{ padding: '0.25rem 0' }}>
       {social?.map(({ src, key, name }, index) => (
         <Tooltip key={index} title={name} placement={placement} className='fs-9 opacity-75'>
           <div

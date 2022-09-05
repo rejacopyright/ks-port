@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Banner from '@components/home/banner'
+import Banner from '@components/home/banner2'
 import About from '@components/home/about'
 import Service from '@components/home/service'
 import Customer from '@components/home/customer'

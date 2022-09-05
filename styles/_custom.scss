@@ -4,11 +4,6 @@ body {
   font-size: 0.8rem;
 }
 
-.container,
-.container-fluid {
-  min-height: 60vh;
-}
-
 @mixin center {
   display: flex !important;
   align-items: center !important;
@@ -63,7 +58,7 @@ input,
 .form-control,
 .form-select {
   &:focus {
-    border-color: #ddd !important;
+    border-color: #{$primary}+ 55 !important;
     box-shadow: unset !important;
   }
 }
@@ -83,6 +78,9 @@ input,
 @for $i from 1 through 10 {
   .fw-#{$i*100} {
     font-weight: #{$i * 100} !important;
+  }
+  .min-h-#{$i*10}vh {
+    min-height: #{$i * 10}vh !important;
   }
 }
 @for $i from 0 through 100 {
@@ -166,7 +164,7 @@ $hex: (
         $value2} !important;
     }
     .border-#{$key1 + $key2} {
-      border-color: #{'#' + $value1 + $value2 + $value1 + $value2 + $value1 + $value2};
+      border-color: #{'#' + $value1 + $value2 + $value1 + $value2 + $value1 + $value2} !important;
     }
     .text-#{$key1 + $key2} {
       color: #{'#' + $value1 + $value2 + $value1 + $value2 + $value1 + $value2} !important;
@@ -181,15 +179,16 @@ $hex: (
   margin-top: 0 !important;
 }
 .dropdown-item {
-  color: $gray-500;
-  font-weight: 500;
+  color: $gray-600;
+  font-weight: 400;
   &:hover,
   &:focus {
     color: $primary;
     background-color: $gray-100;
+    border-radius: 0.25rem;
     position: relative;
     &::after {
-      content: '';
+      // content: '';
       position: absolute;
       width: 3px;
       height: 100%;

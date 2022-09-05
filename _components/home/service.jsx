@@ -53,7 +53,7 @@ const Index = () => {
     ],
   }
   return (
-    <div className='py-5 bg-white mt-n2' ref={myRef}>
+    <div className='py-5 bg-white my-5' ref={myRef}>
       <div className='container'>
         <div className='row'>
           <div

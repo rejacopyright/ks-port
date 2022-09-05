@@ -10,11 +10,11 @@ const Layout = ({ children }) => {
   const user = useSelector(({ user }) => user)
   const router = useRouter()
   useEffect(() => {
-    // if (!router?.pathname?.startsWith('/admin') && user?.token) {
+    // if (!router?.asPath?.startsWith('/admin') && user?.token) {
     //   router.push('/admin')
     // }
   }, [router, user?.token])
-  const isAdminPath = router?.pathname?.startsWith('/admin')
+  const isAdminPath = router?.asPath?.startsWith('/admin')
   const isLoginTrue = isAdminPath && !user?.token
   return (
     <>

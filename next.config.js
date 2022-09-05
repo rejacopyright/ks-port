@@ -29,11 +29,9 @@ const nextConfig = {
   trailingSlash: false,
   experimental: { images: { allowFutureImage: true, unoptimized: false } },
   images: { dangerouslyAllowSVG: true },
-  compiler: {
-    // removeConsole: {
-    //   exclude: ['error', 'warning'],
-    // },
-  },
+  // compiler: {
+  //   removeConsole: true
+  // },
   async rewrites() {
     return rewrites
   },

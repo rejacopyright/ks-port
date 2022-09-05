@@ -9,9 +9,9 @@ const Index = () => {
   const [showLang, setSholLang] = useState(false)
   const [lang, setLang] = useState('id')
   return (
-    <div className='w-100 flex-end' style={{ background: 'rgba(0,0,0,0.25)' }}>
+    <div className='w-100 flex-end bg-white'>
       <Socmed placement='bottom' className='me-3' />
-      <div className='py-2 px-3 text-white'>
+      <div className='py-1 px-3 fw-500'>
         <Dropdown
           show={showLang}
           onMouseEnter={() => setSholLang(true)}
@@ -29,9 +29,7 @@ const Index = () => {
                 <Image quality={10} alt='img' layout='fill' objectFit='cover' src={enImage} />
               )}
             </div>
-            <span className='text-uppercase fs-7' style={{ marginTop: 3 }}>
-              {lang}
-            </span>
+            <div className='text-uppercase fs-7'>{lang}</div>
             <i className='las la-angle-down ms-1' />
           </Dropdown.Toggle>
           <Dropdown.Menu
