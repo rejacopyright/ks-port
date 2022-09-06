@@ -40,7 +40,7 @@ const Index = () => {
       <div style={{ marginBottom: height }} />
       <div
         ref={ref}
-        className={`fixed-top w-100 py-0 ${
+        className={`position-fixed top-0 w-100 py-0 ${
           sticky
             ? 'animate__animated animate__fadeInDown animate__faster shadow-lg-bold'
             : 'bg-primary'

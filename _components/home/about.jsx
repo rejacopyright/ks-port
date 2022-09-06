@@ -30,8 +30,8 @@ const Index = () => {
               />
             </div>
             <div
-              className={`col-lg-8 mt-3 animate__animated animate__faster ${
-                aboutShow ? 'animate__fadeInRight' : 'animate__fadeOutRight'
+              className={`col-lg-8 mt-3 animate__animated ${
+                aboutShow ? 'animate__fadeInRight' : 'animate__fadeOutUp'
               }`}
             >
               <div className='fs-6 m-0 text-dark mb-3'>About Krakatau Global Solution</div>
