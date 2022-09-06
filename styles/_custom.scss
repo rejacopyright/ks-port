@@ -42,6 +42,52 @@ body {
   opacity: 0 !important;
 }
 
+.btn {
+  border: unset;
+}
+.btn-light-primary {
+  color: $primary;
+  &:hover {
+    color: #fff !important;
+    background-color: $primary;
+  }
+}
+.btn-light-secondary {
+  color: $secondary;
+  &:hover {
+    color: #fff !important;
+    background-color: $secondary;
+  }
+}
+.btn-light-success {
+  color: $success;
+  &:hover {
+    color: #fff !important;
+    background-color: $success;
+  }
+}
+.btn-light-info {
+  color: $info;
+  &:hover {
+    color: #fff !important;
+    background-color: $info;
+  }
+}
+.btn-light-warning {
+  color: $warning;
+  &:hover {
+    color: #fff !important;
+    background-color: $warning;
+  }
+}
+.btn-light-danger {
+  color: $danger;
+  &:hover {
+    color: #fff !important;
+    background-color: $danger;
+  }
+}
+
 a {
   text-decoration: none !important;
 }

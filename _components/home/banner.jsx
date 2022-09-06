@@ -51,7 +51,7 @@ const Index = () => {
     <Slider {...settings}>
       {data?.map((m, index) => (
         <div key={index} className='vh-50 position-relative'>
-          <Image alt='img' quality={50} layout='fill' objectFit='cover' src={m} />
+          <Image priority alt='img' quality={50} layout='fill' objectFit='cover' src={m} />
           <div
             className='flex-center position-absolute w-100 h-100'
             style={{
