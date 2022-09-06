@@ -15,7 +15,10 @@ const Layout = ({ children }) => {
     // }
   }, [router, user?.token])
   const isAdminPath = router?.asPath?.startsWith('/admin')
-  const isLoginTrue = isAdminPath && !user?.token
+  const isLoginPath = router?.asPath?.startsWith('/login')
+  const isLoginTrue = (isLoginPath || isAdminPath) && !user?.token
+  const mustRedirectFromLogin = isLoginPath && user?.token
+  mustRedirectFromLogin && router.push('/admin')
   return (
     <>
       <Head>

@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import Accordion from 'react-bootstrap/Accordion'
 import { useAccordionButton } from 'react-bootstrap/AccordionButton'
 
-const itemClass = 'flex-start dropdown-item text-primary fw-500 p-2 pointer'
+const itemClass = 'flex-start dropdown-item text-dark fw-400 p-2 pointer'
 const CustomToggle = ({ children, eventKey, isActive, setActiveKey = () => '', icon = 'home' }) => {
   const decoratedOnClick = useAccordionButton(eventKey, () =>
     setActiveKey(isActive ? undefined : eventKey)
@@ -17,38 +18,42 @@ const CustomToggle = ({ children, eventKey, isActive, setActiveKey = () => '', i
   )
 }
 const Index = () => {
-  const [activeKey, setActiveKey] = useState(undefined)
+  const { asPath: path } = useRouter()
+  const [activeKey, setActiveKey] = useState(path)
+  const toggleMenuList = ['/admin/home']
   return (
     <div className='row'>
       <div className='col-12'>
-        <div className='bg-white bg-fe p-2 radius-10' style={{ minWidth: 200 }}>
-          <Accordion defaultActiveKey={activeKey}>
+        <div className='bg-white bg-fb p-2 radius-10' style={{ minWidth: 200 }}>
+          <Accordion
+            defaultActiveKey={toggleMenuList?.find((menu) => activeKey?.startsWith(menu)) || path}
+          >
             <Link href='/admin'>
-              <div className={itemClass}>
+              <div className={`${itemClass} ${path === '/admin' ? 'active' : ''}`}>
                 <i className='las la-chart-bar fs-6 me-2' />
                 Dashboard
               </div>
             </Link>
             <CustomToggle
               icon='pager'
-              eventKey={0}
-              isActive={activeKey === 0}
+              eventKey={'/admin/home'}
+              isActive={activeKey === '/admin/home'}
               setActiveKey={setActiveKey}
             >
               Home
             </CustomToggle>
-            <Accordion.Collapse eventKey={0}>
+            <Accordion.Collapse eventKey={'/admin/home'}>
               <div className='p-1 bg-fas radius-10'>
                 <Link href='/admin/home/banner'>
-                  <div className='flex-start dropdown-item p-2 pointer'>
+                  <div
+                    className={`flex-start dropdown-item p-2 pointer ${
+                      path?.startsWith('/admin/home/banner') ? 'active' : ''
+                    }`}
+                  >
                     <i className='las la-hashtag fs-6 me-1' />
                     Banner
                   </div>
                 </Link>
-                <div className='flex-start dropdown-item p-2 pointer'>
-                  <i className='las la-hashtag fs-6 me-1' />
-                  Customer
-                </div>
               </div>
             </Accordion.Collapse>
             <div className={itemClass}>

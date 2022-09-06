@@ -178,25 +178,31 @@ $hex: (
 .dropdown-menu[data-bs-popper] {
   margin-top: 0 !important;
 }
+.active-dropdown {
+  color: $primary !important;
+  background-color: $gray-100;
+  border-radius: 0.25rem;
+  position: relative;
+  &::after {
+    // content: '';
+    position: absolute;
+    width: 3px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: $primary;
+  }
+}
 .dropdown-item {
   color: $gray-600;
   font-weight: 400;
   &:hover,
   &:focus {
-    color: $primary;
-    background-color: $gray-100;
-    border-radius: 0.25rem;
-    position: relative;
-    &::after {
-      // content: '';
-      position: absolute;
-      width: 3px;
-      height: 100%;
-      left: 0;
-      top: 0;
-      background: $primary;
-    }
+    @extend .active-dropdown;
   }
+}
+.dropdown-item.active {
+  @extend .active-dropdown;
 }
 @media (min-width: 768px) {
   .navbar-nav .nav-link {

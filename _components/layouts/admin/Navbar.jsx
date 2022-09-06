@@ -40,7 +40,14 @@ const Index = ({ thisHeight = () => '' }) => {
               className='flex-center nav-link shadow-none border-0 radius-0 py-2'
             >
               <div className='position-relative same-35px radius-50 overflow-hidden'>
-                <Image quality={10} alt='img' layout='fill' objectFit='cover' src={avatar} />
+                <Image
+                  priority
+                  quality={10}
+                  alt='img'
+                  layout='fill'
+                  objectFit='cover'
+                  src={avatar}
+                />
               </div>
             </Dropdown.Toggle>
             <Dropdown.Menu className='border-0 fs-8 shadow radius-5 px-2' style={{ minWidth: 100 }}>
