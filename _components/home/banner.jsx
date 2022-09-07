@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Image from 'next/image'
-import banner1 from '@images/banner1.jpg'
+import banner1 from '@images/banner4.jpg'
 import banner2 from '@images/banner5.jpg'
 import banner3 from '@images/banner6.jpg'
 import Slider from 'react-slick'
