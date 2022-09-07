@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   return {
     props: {
       data: [
