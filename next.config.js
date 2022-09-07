@@ -27,8 +27,13 @@ const nextConfig = {
     includePaths: [path.join(__dirname, 'styles')],
   },
   trailingSlash: false,
-  experimental: { images: { allowFutureImage: true, unoptimized: false } },
-  images: { dangerouslyAllowSVG: true },
+  experimental: { images: { allowFutureImage: true, unoptimized: true } },
+  images: {
+    dangerouslyAllowSVG: true,
+    domains: ['assets.imgix.net'],
+    // loader: 'imgix',
+    // path: 'https://assets.imgix.net/hp/snowshoe.jpg?auto=compress&w=900&h=600&fit=crop',
+  },
   // compiler: {
   //   removeConsole: true
   // },
