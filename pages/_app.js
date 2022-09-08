@@ -5,13 +5,17 @@ import SSRProvider from 'react-bootstrap/SSRProvider'
 import LayoutProvider from '@components/layouts/LayoutProvider'
 import '@styles/app.scss'
 
+const DefaultLayout = ({ children }) => children
 function MyApp({ Component, pageProps }) {
+  const ContentMenu = Component.Layout || DefaultLayout
   return (
     <SSRProvider>
       <ReduxProvider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <LayoutProvider>
-            <Component {...pageProps} />
+            <ContentMenu>
+              <Component {...pageProps} />
+            </ContentMenu>
           </LayoutProvider>
         </PersistGate>
       </ReduxProvider>

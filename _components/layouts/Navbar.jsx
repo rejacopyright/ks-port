@@ -50,6 +50,7 @@ const Index = () => {
         {!sticky && <Topbar expand={expand} />}
         <Navbar
           // bg={sticky ? 'primary' : 'transparent'}
+          id='navbarUser'
           className={`d-flex py-${expand}-0 px-3 px-${expand}-4`}
           expand={expand}
         >

@@ -3,8 +3,8 @@ import Meta from '@components/seo/meta'
 const Index = () => {
   return (
     <>
-      <Meta title='Company Profile' description={undefined} />
-      <div className='fs-4 fw-500 mb-2'>Company Profile</div>
+      <Meta title='Management' description={undefined} />
+      <div className='fs-4 fw-500 mb-2'>Management</div>
       <div className=''>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magnam error culpa, dolorem
         eligendi sapiente est voluptatibus voluptates. Earum mollitia, a, deleniti suscipit impedit

@@ -226,7 +226,7 @@ $hex: (
 }
 .active-dropdown {
   color: $primary !important;
-  background-color: $gray-100;
+  background-color: $light-primary;
   border-radius: 0.25rem;
   position: relative;
   &::after {
@@ -240,7 +240,7 @@ $hex: (
   }
 }
 .dropdown-item {
-  color: $gray-600;
+  color: #000000;
   font-weight: 400;
   &:hover,
   &:focus {
