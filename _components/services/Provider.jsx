@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Banner from '@components/banner'
 import { Sticky } from '@helpers/hooks'
 
-const MenuBtn = ({ to = '/about', title = 'About', active = false }) => {
+const MenuBtn = ({ to = '/services', title = 'Services', active = false }) => {
   const [isHover, setIsHover] = useState(false)
   useEffect(() => {
     setIsHover(active)
@@ -34,7 +34,7 @@ const Title = () => {
   }, [asPath])
   return (
     <div className='flex-center'>
-      <div className='fs-3 fw-500'>ABOUT US</div>
+      <div className='fs-3 fw-500'>SERVICES</div>
       <div className='fs-8 fw-500 mx-2'>/</div>
       <div className='fs-5 fw-400'>{title}</div>
     </div>
@@ -50,33 +50,16 @@ const Index = ({ children }) => {
           <div className='col-md-4 col-lg-3 mb-4 mb-md-0'>
             <Sticky>
               <div className='d-flex d-md-block pt-2'>
-                {/* <div className='d-none d-md-block text-primary text-uppercase mb-2'>About Us</div> */}
                 <div className='row'>
-                  <MenuBtn to='/about' title='Company Profile' active={asPath === '/about'} />
                   <MenuBtn
-                    to='/about/history'
-                    title='History'
-                    active={asPath === '/about/history'}
+                    to='/services'
+                    title='General Services'
+                    active={asPath === '/services'}
                   />
                   <MenuBtn
-                    to='/about/vision'
-                    title='Vision, Mission & Values'
-                    active={asPath === '/about/vision'}
-                  />
-                  <MenuBtn
-                    to='/about/organization'
-                    title='Organization Structure'
-                    active={asPath === '/about/organization'}
-                  />
-                  <MenuBtn
-                    to='/about/certification'
-                    title='Certification'
-                    active={asPath === '/about/certification'}
-                  />
-                  <MenuBtn
-                    to='/about/management'
-                    title='Management'
-                    active={asPath === '/about/management'}
+                    to='/services/marine'
+                    title='Marine Services'
+                    active={asPath === '/services/marine'}
                   />
                 </div>
               </div>
