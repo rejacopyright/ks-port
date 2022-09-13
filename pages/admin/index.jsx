@@ -1,4 +1,11 @@
+import { useEffect } from 'react'
+import { me } from '@api/dashboard'
 const Index = () => {
+  useEffect(() => {
+    me().then(({ data }) => {
+      console.log(data)
+    })
+  }, [])
   return (
     <div className='row'>
       {Array(10)

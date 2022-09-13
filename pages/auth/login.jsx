@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { setUser } from '@redux'
 import Link from 'next/link'
+import { login } from '@api/auth'
 
 const Index = () => {
   const inputRef = useRef()
@@ -10,7 +11,15 @@ const Index = () => {
       password: { value: password },
     } = inputRef || {}
     if (username && password) {
-      setUser({ id: 1, username, password, token: 'token123' })
+      login({ username, password }).then(({ data }) => {
+        if (data?.success) {
+          const {
+            user,
+            token: { access_token: token },
+          } = data || {}
+          setUser({ ...user, token })
+        }
+      })
     }
   }
   return (
@@ -31,8 +40,9 @@ const Index = () => {
                   ref={(ref) => (inputRef.username = ref)}
                   type='text'
                   name='username'
+                  placeholder='Enter Username'
                   className='form-control form-control-sm form-control-solid py-2'
-                  defaultValue='Reja Jamil'
+                  // defaultValue='Reja Jamil'
                 />
               </div>
               <div className='col-12 mb-3'>
@@ -41,8 +51,9 @@ const Index = () => {
                   ref={(ref) => (inputRef.password = ref)}
                   type='password'
                   name='password'
+                  placeholder='Enter Password'
                   className='form-control form-control-sm form-control-solid py-2'
-                  defaultValue={Date.now()}
+                  // defaultValue={Date.now()}
                 />
               </div>
               <div className='col-12 mt-1 text-end'>
