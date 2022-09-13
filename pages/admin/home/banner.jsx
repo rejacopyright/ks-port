@@ -5,35 +5,31 @@ import { Modal } from '@components/modal'
 import { Button } from '@components/button'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
-import { getHomeBanner, addEditHomeBanner } from '@api/home'
-
-export const getStaticProps = async () => {
-  return {
-    props: {
-      data: [],
-    },
-  }
-}
+import { getHomeBanner, addEditHomeBanner, deleteHomeBanner } from '@api/home'
+import toast from '@components/alert/toast'
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required('Title is required'),
   description: Yup.string().required('Description is required'),
 })
 
-const Index = (props) => {
+const Index = () => {
   const inputFileRef = useRef()
-  const { data } = props || {}
+  const [data, setData] = useState([])
   const [src, srcSet] = useState(false)
   const [image, setImage] = useState()
   const [showModal, setShowModal] = useState(false)
   const [showModalImg, setShowModalImg] = useState(false)
+  const [showModalDelete, setShowModalDelete] = useState(false)
   const [saveLoading, setSaveLoading] = useState(false)
+  const [reload, setReload] = useState(false)
+  const [detail, setDetail] = useState({})
 
   useEffect(() => {
     getHomeBanner().then(({ data }) => {
-      console.log('data', data)
+      setData(data)
     })
-  }, [])
+  }, [reload])
 
   const onChangeImage = () => {
     const files = inputFileRef?.current?.files
@@ -61,31 +57,79 @@ const Index = (props) => {
     }
   }
   const handleSubmit = (e) => {
-    console.log({ ...e, file: image })
     setSaveLoading(true)
-    addEditHomeBanner({ ...e, file: image })
+    const params = Object.assign({}, e)
+    if (image !== detail?.file) {
+      params.file = image
+    }
+    addEditHomeBanner(params, detail?.id)
       .then(({ data }) => {
-        console.log(data)
+        if (data?.status === 200) {
+          setShowModal(false)
+          setDetail({})
+          setReload(!reload)
+          toast({ type: 'success', message: data?.message })
+        } else {
+          toast({ type: 'error', message: "something wen't wrong. Please try again." })
+        }
         setSaveLoading(false)
       })
       .catch(() => {
+        toast({ type: 'error', message: "something wen't wrong. Please try again." })
         setSaveLoading(false)
       })
+  }
+  const handleDelete = () => {
+    if (detail?.id) {
+      setSaveLoading(true)
+      deleteHomeBanner(detail?.id)
+        .then(({ data }) => {
+          if (data?.success) {
+            setShowModalDelete(false)
+            setDetail({})
+            setReload(!reload)
+          }
+          setSaveLoading(false)
+        })
+        .catch(() => {
+          setReload(!reload)
+        })
+    }
   }
   return (
     <>
       <div className='row'>
-        {data?.map(({ name, src }, index) => (
+        {data?.map((e, index) => (
           <div className='col-lg-4 col-md-6 my-3' key={index}>
             <div className='position-relative'>
               <div className='position-relative h-150px shadow-md-bold hover-xs radius-10 overflow-hidden p-2'>
-                <Image priority quality={30} alt='img' layout='fill' objectFit='cover' src={src} />
+                <Image
+                  priority
+                  quality={30}
+                  alt='img'
+                  layout='fill'
+                  objectFit='cover'
+                  src={e?.file}
+                />
                 <div className='absolute-center z-2 flex-center w-100 h-100 hover-anim dark'>
                   <div className='flex-center p-2 p-md-4'>
-                    <div className='btn btn-sm mx-1 flex-center btn-light-warning text-warning same-25px radius-50'>
+                    <div
+                      className='btn btn-sm mx-1 flex-center btn-light-warning text-warning same-25px radius-50'
+                      onClick={() => {
+                        setDetail(e)
+                        setImage(e?.file)
+                        setShowModal(true)
+                      }}
+                    >
                       <i className='las la-pencil-alt fs-6' />
                     </div>
-                    <div className='btn btn-sm mx-1 flex-center btn-light-danger text-danger same-25px radius-50'>
+                    <div
+                      className='btn btn-sm mx-1 flex-center btn-light-danger text-danger same-25px radius-50'
+                      onClick={() => {
+                        setDetail(e)
+                        setShowModalDelete(true)
+                      }}
+                    >
                       <i className='las la-trash-alt fs-6' />
                     </div>
                     <div className='btn btn-sm mx-1 flex-center btn-light-success text-success same-25px radius-50'>
@@ -97,7 +141,7 @@ const Index = (props) => {
                   className='position-absolute bottom-0 start-0 w-100 p-2 text-center fs-9 fw-500 text-white pointer mt-2'
                   style={{ background: '#00000055' }}
                 >
-                  {name}
+                  {e?.title}
                 </div>
               </div>
             </div>
@@ -113,7 +157,13 @@ const Index = (props) => {
               multiple={false}
               onChange={onChangeImage}
             />
-            <div className='btn btn-sm btn-primary text-white' onClick={() => setShowModal(true)}>
+            <div
+              className='btn btn-sm btn-primary text-white'
+              onClick={() => {
+                setDetail({})
+                setShowModal(true)
+              }}
+            >
               Add Banner
             </div>
           </div>
@@ -131,6 +181,7 @@ const Index = (props) => {
         modal={true}
         ratio={4 / 2}
       />
+      {/* Modal Add / Edit */}
       <Modal
         size='md'
         show={showModal}
@@ -138,14 +189,17 @@ const Index = (props) => {
         title={`Add Banner`}
         loading={false}
         footer={false}
-        onHide={() => setImage(undefined)}
+        onHide={() => {
+          setDetail({})
+          setImage(undefined)
+        }}
       >
         <div className='w-100'>
           <Formik
             enableReinitialize
             validateOnMount
             validationSchema={validationSchema}
-            initialValues={{ title: '', description: '' }}
+            initialValues={{ title: detail?.title || '', description: detail?.description || '' }}
             onSubmit={handleSubmit}
           >
             {({ errors, isValid }) => (
@@ -227,6 +281,22 @@ const Index = (props) => {
               </Form>
             )}
           </Formik>
+        </div>
+      </Modal>
+      {/* Modal Delete */}
+      <Modal
+        size='md'
+        theme='danger'
+        show={showModalDelete}
+        setShow={setShowModalDelete}
+        title={`Delete Banner`}
+        loading={saveLoading}
+        onSubmit={handleDelete}
+        buttonText='Delete'
+        onHide={() => setDetail({})}
+      >
+        <div className='w-100 text-center'>
+          Are you sure want to remove <span className='fw-600'>&quot;{detail?.title}&quot;</span> ?
         </div>
       </Modal>
     </>

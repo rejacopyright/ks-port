@@ -7,10 +7,17 @@ export const getHomeBanner = () => {
   })
 }
 
-export const addEditHomeBanner = (data) => {
+export const addEditHomeBanner = (data, id) => {
   return axios({
-    method: 'post',
-    url: 'admin/home/banner',
+    method: id ? 'put' : 'post',
+    url: id ? `admin/home/banner/${id}` : 'admin/home/banner',
     data,
+  })
+}
+
+export const deleteHomeBanner = (id) => {
+  return axios({
+    method: 'delete',
+    url: `admin/home/banner/${id}`,
   })
 }

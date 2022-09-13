@@ -32,18 +32,18 @@ const Index = () => {
     backdropFilter: `blur(${blur}px)`,
   })
   const styles = {
-    blur: sticky ? blurBg() : { backdropFilter: 'blur(5px)' },
+    blur: sticky ? blurBg() : { backdropFilter: 'blur(0px)' },
     text: `fs-8 py-${expand}-4 ${sticky ? 'text-primary fw-600' : 'text-white'}`,
   }
   return (
     <>
-      <div style={{ marginBottom: height }} />
+      <div style={{ marginBottom: height * 0 }} />
       <div
         ref={ref}
         className={`position-fixed top-0 w-100 py-0 ${
           sticky
             ? 'animate__animated animate__fadeInDown animate__faster shadow-lg-bold'
-            : 'bg-primary'
+            : 'bg-transparent'
         }`}
         style={{ zIndex: 9, ...styles.blur }}
       >

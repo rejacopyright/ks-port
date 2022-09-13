@@ -1,6 +1,7 @@
 import Meta from '@components/seo/meta'
 import Image from 'next/image'
 import Link from 'next/link'
+import Banner from '@components/banner'
 import banner from '@images/banner1.jpg'
 
 const Breadcrumb = () => {
@@ -29,6 +30,7 @@ const Index = () => {
   return (
     <>
       <Meta title='Kontak Kami' description={undefined} />
+      <Banner height='125' content={false} />
       <div className='container py-4'>
         <div className='row'>
           <div className='col-12 mb-3'>

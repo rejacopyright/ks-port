@@ -44,7 +44,7 @@ const Index = ({ children }) => {
   const { asPath } = useRouter()
   return (
     <>
-      <Banner height='100' content={Title} />
+      <Banner height='160' content={Title} />
       <div className='container py-5' style={{ minHeight: '60vh' }}>
         <div className='row'>
           <div className='col-auto col-lg-3 mb-4 mb-md-0'>

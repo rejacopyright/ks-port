@@ -8,6 +8,11 @@ body {
   display: flex !important;
   align-items: center !important;
 }
+.flex-bottom {
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+}
 .flex-center {
   @include center;
   justify-content: center !important;

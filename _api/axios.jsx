@@ -1,9 +1,10 @@
 import ax from 'axios'
 import qs from 'qs'
 import Cookies from 'js-cookie'
+import { api } from './config'
 
 const axios = ax.create({
-  baseURL: 'http://localhost/kss-api',
+  baseURL: api,
   withCredentials: false,
   headers: {
     Accept: 'application/json, text/plain, */*',

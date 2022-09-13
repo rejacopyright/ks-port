@@ -9,11 +9,13 @@ const Index = ({
   return (
     <div className={`position-relative h-${height}px`}>
       <Image priority alt='img' quality={100} layout='fill' objectFit='cover' src={src} />
-      {content && (
-        <div className='position-absolute flex-center w-100 h-100 text-white' style={style}>
-          {typeof content === 'function' ? content() : content}
-        </div>
-      )}
+      <div className='position-absolute flex-bottom pb-2 w-100 h-100 text-white' style={style}>
+        {content && (
+          <div className='animate__animated animate__wobble animate__faster'>
+            {typeof content === 'function' ? content() : content}
+          </div>
+        )}
+      </div>
     </div>
   )
 }

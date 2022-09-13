@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import Tooltip from '@components/alert/tooltip'
-import { expand as defaultExpand } from '@helpers/config'
 // IMAGES
 const social = [
   { key: 'instagram', name: 'Instagram', src: require('@images/brands/instagram.svg').default },
@@ -11,17 +10,22 @@ const social = [
   { key: 'linkedin', name: 'Linked-In', src: require('@images/brands/linkedin.svg').default },
 ]
 
-const Index = ({ expand = defaultExpand, className = '', placement = 'auto' }) => {
+const Index = ({ className = '', placement = 'auto' }) => {
   return (
     <div className={`flex-center ${className}`} style={{ padding: '0.25rem 0' }}>
       {social?.map(({ src, key, name }, index) => (
         <Tooltip key={index} title={name} placement={placement} className='fs-9 opacity-75'>
           <div
-            className={`position-relative pointer mx-1 mx-${expand}-2 ${
-              key === 'youtube' ? 'same-25px' : 'same-20px'
-            }`}
+            className={`same-30px mx-1 my-2 flex-center radius-50`}
+            style={{ background: 'rgba(255,255,255,0.75)' }}
           >
-            <Image quality={10} alt='img' layout='fill' objectFit='cover' src={src} />
+            <div
+              className={`position-relative pointer ${
+                key === 'youtube' ? 'same-25px' : 'same-20px'
+              }`}
+            >
+              <Image quality={10} alt='img' layout='fill' objectFit='cover' src={src} />
+            </div>
           </div>
         </Tooltip>
       ))}

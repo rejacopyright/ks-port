@@ -5,7 +5,7 @@ const Index = () => {
   return (
     <>
       <Meta title='Kontak Kami' description={undefined} />
-      <Banner />
+      <Banner height='150' content={<div className='fs-5'>Contact Us</div>} />
       <div className='container'>
         <div className='flex-center vh-60'>
           <div className='text-center'>

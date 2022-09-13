@@ -20,6 +20,7 @@ const Modal = ({
   isFullScreen = false,
   onHide,
   backdrop = true, // boolean or string 'static'
+  theme = 'primary',
 }) => {
   const [fullscreen, setFullscreen] = useState(false)
 
@@ -43,7 +44,7 @@ const Modal = ({
     >
       <MODAL.Header className='p-3 border-0'>
         <div className='row m-0 w-100 flex-center'>
-          {title && <div className='col fw-600 text-primary text-uppercase'>{title}</div>}
+          {title && <div className={`col fw-600 text-${theme} text-uppercase`}>{title}</div>}
           <div className='col-auto ms-auto me-n3'>
             {isFullScreen && (
               <div
@@ -78,7 +79,7 @@ const Modal = ({
           {buttonSave && (
             <Button
               text={buttonText}
-              theme='primary'
+              theme={theme}
               className='text-white'
               icon={buttonIcon}
               iconClass=''
