@@ -26,8 +26,10 @@ const Index = () => {
   const [detail, setDetail] = useState({})
 
   useEffect(() => {
-    getHomeBanner().then(({ data }) => {
-      setData(data)
+    getHomeBanner().then(({ data: { data } }) => {
+      if (data?.length) {
+        setData(data)
+      }
     })
   }, [reload])
 
@@ -68,6 +70,7 @@ const Index = () => {
           setShowModal(false)
           setDetail({})
           setReload(!reload)
+          setImage(undefined)
           toast({ type: 'success', message: data?.message })
         } else {
           toast({ type: 'error', message: "something wen't wrong. Please try again." })
@@ -87,6 +90,7 @@ const Index = () => {
           if (data?.success) {
             setShowModalDelete(false)
             setDetail({})
+            setImage(undefined)
             setReload(!reload)
           }
           setSaveLoading(false)

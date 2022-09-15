@@ -8,6 +8,9 @@
             "@components/*": [
                 "_components/*"
             ],
+            "@helpers": [
+                "_helpers"
+            ],
             "@helpers/*": [
                 "_helpers/*"
             ],
@@ -32,7 +35,7 @@
         },
     },
     "exclude": [
-        "node_modules",
+        "node_modules/*",
         "_components/pintura/pintura.js"
     ]
 }

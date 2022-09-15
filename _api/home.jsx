@@ -3,7 +3,7 @@ import axios from './axios'
 export const getHomeBanner = () => {
   return axios({
     method: 'get',
-    url: 'admin/home/banner',
+    url: 'home/banner',
   })
 }
 

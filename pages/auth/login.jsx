@@ -16,13 +16,18 @@ const Index = () => {
   const handleSubmit = (values) => {
     setLoadingBtn(true)
     const { username, password } = values || {}
-    login({ username, password }).then(({ data }) => {
+    login({ username, password }).then(async ({ data }) => {
       if (data?.success) {
         const {
           user,
           token: { access_token: token },
         } = data || {}
-        setUser({ ...user, token })
+        await setUser({ ...user, token })
+        setTimeout(() => {
+          if (typeof window !== 'undefined') {
+            window?.location?.reload()
+          }
+        }, 100)
       } else {
         toast({ type: 'error', message: data?.message })
       }

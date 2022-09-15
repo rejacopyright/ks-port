@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import banner1 from '@images/banner5.jpg'
-import banner2 from '@images/banner6.jpg'
-import banner3 from '@images/banner4.jpg'
 import Slider from 'react-slick'
+import { useEffect } from 'react'
+import { getHomeBanner } from '@api/home'
 
 const ActionBtn = () => {
   return (
@@ -31,6 +31,21 @@ const ActionBtn = () => {
 }
 const Index = () => {
   const [activeImg, setActiveImg] = useState(0)
+  const [data, setData] = useState([
+    {
+      title: 'PT KRAKATAU SAMUDERA SOLUTION',
+      description:
+        'Krakatau Samudera Solution is the largest international hub and bulk port in Indonesia, with an installed capacity of 25 million tons per year, integrated with logistics facilities',
+      file: banner1,
+    },
+  ])
+  useEffect(() => {
+    getHomeBanner().then(({ data: { data } }) => {
+      if (data?.length > 0) {
+        setData(data)
+      }
+    })
+  }, [])
   const settings = {
     autoplay: true,
     pauseOnHover: true,
@@ -49,15 +64,14 @@ const Index = () => {
   }
   const styles = {
     background:
-      'linear-gradient(180deg, rgba(0,51,105,0.75) 0%, rgba(0,51,105,0.75) 50%, rgba(255,255,255,0) 100%)',
+      'linear-gradient(180deg, rgba(0,51,105,0.75) 0%, rgba(0,51,105,0.5) 100%, rgba(255,255,255,0) 100%)',
   }
-  const data = [banner1, banner2, banner3]
   return (
     <Slider {...settings}>
-      {data?.map((m, index) => (
+      {data?.map(({ title, description, file }, index) => (
         <div key={index} className='px-3-xxx py-3-xxx position-relative'>
           <div className='position-relative vh-100 radius-10-xxx overflow-hidden'>
-            <Image alt='img' quality={50} layout='fill' objectFit='cover' src={m} />
+            <Image alt='img' quality={50} layout='fill' objectFit='cover' src={file} />
             <div
               className='flex-center position-absolute w-100 h-100'
               style={{
@@ -68,11 +82,10 @@ const Index = () => {
               {activeImg === index && (
                 <div className='w-75 text-center'>
                   <div className='text-white h3 ls-1 lh-35px fw-bolder text-uppercase animate__animated animate__fadeInUp animate__faster mb-2'>
-                    Unlimited Solutions For Port & Marine Supporting Services
+                    {title}
                   </div>
                   <div className='text-white fs-6 animate__animated animate__fadeInUp'>
-                    Dengan kapasitas terpasang mencapai 25 Juta Ton per tahun yang terintegrasi
-                    dengan fasilitas logistik
+                    {description}
                   </div>
                   {false && <ActionBtn />}
                 </div>

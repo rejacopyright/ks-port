@@ -19,6 +19,7 @@ const Index = ({ thisHeight = () => '' }) => {
     <>
       <div
         ref={ref}
+        id='navbarAdmin'
         className='w-100 fixed-top flex-start bg-white border-bottom border-2 border-f5 px-3 px-md-4'
       >
         <Link href='/admin'>

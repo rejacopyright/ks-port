@@ -1028,6 +1028,14 @@ cosmiconfig@^7.0.0:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
+create-react-class@^15.5.2:
+  version "15.7.0"
+  resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.7.0.tgz#7499d7ca2e69bb51d13faf59bd04f0c65a1d6c1e"
+  integrity sha512-QZv4sFWG9S5RUvkTYWbflxeZX+JG7Cz0Tn33rQBJ+WFQTqTfUTjMjiv9tnfXazjsO5r0KhPs+AqCjyrQX6h2ng==
+  dependencies:
+    loose-envify "^1.3.1"
+    object-assign "^4.1.1"
+
 create-require@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/create-require/-/create-require-1.1.1.tgz#c1d7e8f1e5f6cfc9ff65f9cd352d37348756c333"
@@ -1655,6 +1663,11 @@ fresh@0.5.2, fresh@^0.5.2:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-0.5.2.tgz#3d8cadd90d976569fa835ab1f8e4b23a105605a7"
   integrity sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==
+
+froala-editor@4.0.14:
+  version "4.0.14"
+  resolved "https://registry.yarnpkg.com/froala-editor/-/froala-editor-4.0.14.tgz#b6bbe6fa89afd1e22310470edb39016b1deb8535"
+  integrity sha512-TMOaFszxfwP+R6JBRyovumncZipAPFWBHO3cMEPu994kgchTlTG2/YF4P0MRBgOCvpL0WLDKUpFzqG4oZ+xr0A==
 
 fs-extra@^10.0.0:
   version "10.1.0"
@@ -2317,7 +2330,7 @@ log-update@^4.0.0:
     slice-ansi "^4.0.0"
     wrap-ansi "^6.2.0"
 
-loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
+loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.3.1, loose-envify@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
@@ -2482,6 +2495,11 @@ mock-res@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/mock-res/-/mock-res-0.5.0.tgz#98368beb09df753f64f66d94e5536a97b36a2430"
   integrity sha512-KBTRmramDPSr1TwsTy54uzm50QUAdyLTy6CXcHwwPN9pMVH90S12rwbAvXf3Bghr2TNPEuLmz227ClR8SIwQNQ==
+
+moment@^2.29.4:
+  version "2.29.4"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.4.tgz#3dbe052889fe7c1b2ed966fcb3a77328964ef108"
+  integrity sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==
 
 ms@2.0.0:
   version "2.0.0"
@@ -2915,6 +2933,14 @@ react-fast-compare@^2.0.1:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
   integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
+
+react-froala-wysiwyg@^4.0.14:
+  version "4.0.14"
+  resolved "https://registry.yarnpkg.com/react-froala-wysiwyg/-/react-froala-wysiwyg-4.0.14.tgz#bc1cacde6cfa01e42116266157b0efcc2208cbe4"
+  integrity sha512-IVACbApKqbQsSNT9uQDS7rIxH5r6IsEimxBDZV62yXsxIp+HETNjo16wTlPajel11CM7swzd2iXIJXwlDD8j2w==
+  dependencies:
+    create-react-class "^15.5.2"
+    froala-editor "4.0.14"
 
 react-intersection-observer@^9.4.0:
   version "9.4.0"

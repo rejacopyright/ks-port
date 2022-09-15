@@ -20,7 +20,7 @@ const redirects = [
 
 const nextConfig = {
   // useFileSystemPublicRoutes: false,
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
   distDir: 'build',
   sassOptions: {

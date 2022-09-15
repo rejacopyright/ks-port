@@ -24,7 +24,7 @@ const Index = () => {
   return (
     <div className='row'>
       <div className='col-12'>
-        <div className='bg-white bg-fb p-2 radius-10' style={{ minWidth: 200 }}>
+        <div className='bg-white p-2 radius-10' style={{ minWidth: 200 }}>
           <Accordion
             defaultActiveKey={toggleMenuList?.find((menu) => activeKey?.startsWith(menu)) || path}
           >
@@ -34,6 +34,8 @@ const Index = () => {
                 Dashboard
               </div>
             </Link>
+
+            {/* HOME */}
             <CustomToggle
               icon='pager'
               eventKey={'/admin/home'}
@@ -43,7 +45,7 @@ const Index = () => {
               Home
             </CustomToggle>
             <Accordion.Collapse eventKey={'/admin/home'}>
-              <div className='p-1 bg-fas radius-10'>
+              <div className='p-1 bg-xxx radius-10'>
                 <Link href='/admin/home/banner'>
                   <div
                     className={`flex-start dropdown-item p-2 pointer ${
@@ -52,6 +54,40 @@ const Index = () => {
                   >
                     <i className='las la-hashtag fs-6 me-1' />
                     Banner
+                  </div>
+                </Link>
+              </div>
+            </Accordion.Collapse>
+
+            {/* NEWS */}
+            <CustomToggle
+              icon='globe'
+              eventKey={'/admin/news'}
+              isActive={activeKey === '/admin/news'}
+              setActiveKey={setActiveKey}
+            >
+              News
+            </CustomToggle>
+            <Accordion.Collapse eventKey={'/admin/news'}>
+              <div className='p-1 bg-xxx radius-10'>
+                <Link href='/admin/news/media'>
+                  <div
+                    className={`flex-start dropdown-item p-2 pointer ${
+                      path?.startsWith('/admin/news/media') ? 'active' : ''
+                    }`}
+                  >
+                    <i className='las la-hashtag fs-6 me-1' />
+                    Media
+                  </div>
+                </Link>
+                <Link href='/admin/news/carreer'>
+                  <div
+                    className={`flex-start dropdown-item p-2 pointer ${
+                      path?.startsWith('/admin/news/carreer') ? 'active' : ''
+                    }`}
+                  >
+                    <i className='las la-hashtag fs-6 me-1' />
+                    Carreer
                   </div>
                 </Link>
               </div>
