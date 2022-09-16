@@ -6,6 +6,7 @@ import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import { detailAbout, updateAbout } from '@api/about'
 import toast from '@components/alert/toast'
+import { CardLoader } from '@components/loader'
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required('Title is required'),
@@ -17,12 +18,19 @@ const Index = () => {
   const { scope } = query || {}
   const [saveLoading, setSaveLoading] = useState(false)
   const [detail, setDetail] = useState({})
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if (scope) {
-      detailAbout(scope).then(({ data }) => {
-        setDetail(data)
-      })
+      setLoading(true)
+      detailAbout(scope)
+        .then(({ data }) => {
+          setDetail(data)
+          setLoading(false)
+        })
+        .finally(() => {
+          setLoading(false)
+        })
     }
   }, [scope])
 
@@ -42,6 +50,9 @@ const Index = () => {
         toast({ type: 'error', message: "something wen't wrong. Please try again." })
         setSaveLoading(false)
       })
+  }
+  if (loading) {
+    return <CardLoader count={2} className='col-12 mb-4' />
   }
   return (
     <div className='row'>
