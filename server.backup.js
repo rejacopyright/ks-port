@@ -14,6 +14,6 @@ app.prepare().then(() => {
   server.all('*', (req, res) => handle(req, res))
 
   server.listen(port, () => {
-    console.log(`> Ready on http://localhost:${port}`)
+    console.info(`> Ready on http://localhost:${port}`)
   })
 })

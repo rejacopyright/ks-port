@@ -4,17 +4,28 @@ import Provider from '@components/about/Provider'
 import Meta from '@components/seo/meta'
 import { detailAbout } from '@api/about'
 import { htmlToString } from '@helpers'
+import { CardLoader } from '@components/loader'
 const Index = () => {
   const { query } = useRouter()
   const { scope } = query || {}
   const [detail, setDetail] = useState({})
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
+    setLoading(true)
     if (scope) {
-      detailAbout(scope).then(({ data }) => {
-        setDetail(data)
-      })
+      detailAbout(scope)
+        .then(({ data }) => {
+          setDetail(data)
+          setLoading(false)
+        })
+        .finally(() => {
+          setLoading(false)
+        })
     }
   }, [scope])
+  if (loading) {
+    return <CardLoader count={2} className='col-12 mb-4' />
+  }
   return (
     <>
       <Meta

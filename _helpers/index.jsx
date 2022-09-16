@@ -14,3 +14,9 @@ export const strToSlug = (str) => {
     ?.replace(/[\s_-]+/g, '-')
     ?.replace(/^-+|-+$/g, '')
 }
+
+export const randomString = () => {
+  const rand =
+    Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+  return rand
+}
