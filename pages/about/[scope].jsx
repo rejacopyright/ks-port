@@ -1,15 +1,20 @@
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import Provider from '@components/about/Provider'
 import Meta from '@components/seo/meta'
-import { getAbout } from '@api/about'
+import { detailAbout } from '@api/about'
 import { htmlToString } from '@helpers'
 const Index = () => {
+  const { query } = useRouter()
+  const { scope } = query || {}
   const [detail, setDetail] = useState({})
   useEffect(() => {
-    getAbout().then(({ data: { data } = {} }) => {
-      setDetail(data?.[0])
-    })
-  }, [])
+    if (scope) {
+      detailAbout(scope).then(({ data }) => {
+        setDetail(data)
+      })
+    }
+  }, [scope])
   return (
     <>
       <Meta

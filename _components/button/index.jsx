@@ -19,7 +19,7 @@ export const Button = ({
       type={type}
       disabled={disabled || loading}
       className={`btn btn-flex btn-${size} btn-${theme} ${circle ? 'radius-50' : ''} ${
-        dir !== 'right' ? 'px-4' : 'px-3'
+        dir !== 'right' ? 'ps-2 pe-3' : 'ps-3 pe-2'
       } ${className}`}
       onClick={onClick}
     >

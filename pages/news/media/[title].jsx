@@ -36,7 +36,6 @@ const Index = () => {
   useEffect(() => {
     if (id) {
       detailMedia(id).then(({ data }) => {
-        console.log(data)
         setDetail(data)
       })
     }

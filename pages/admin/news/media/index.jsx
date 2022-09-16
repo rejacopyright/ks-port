@@ -11,7 +11,7 @@ const Index = () => {
   const [data, setData] = useState([])
 
   useEffect(() => {
-    getMedia().then(({ data: { data } }) => {
+    getMedia().then(({ data: { data } = {} }) => {
       if (data?.length) {
         setData(data)
       }

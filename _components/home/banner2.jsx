@@ -40,7 +40,7 @@ const Index = () => {
     },
   ])
   useEffect(() => {
-    getHomeBanner().then(({ data: { data } }) => {
+    getHomeBanner().then(({ data: { data } = {} }) => {
       if (data?.length > 0) {
         setData(data)
       }

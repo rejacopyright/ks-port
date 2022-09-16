@@ -230,8 +230,8 @@ $hex: (
   margin-top: 0 !important;
 }
 .active-dropdown {
-  color: $primary !important;
-  background-color: $light-primary;
+  color: $white !important;
+  background-color: $primary;
   border-radius: 0.25rem;
   position: relative;
   &::after {

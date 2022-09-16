@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import Accordion from 'react-bootstrap/Accordion'
 import { useAccordionButton } from 'react-bootstrap/AccordionButton'
 
-const itemClass = 'flex-start dropdown-item text-dark fw-400 p-2 pointer'
+const itemClass = 'flex-start dropdown-item text-dark fw-500 p-2 pointer'
 const CustomToggle = ({ children, eventKey, isActive, setActiveKey = () => '', icon = 'home' }) => {
   const decoratedOnClick = useAccordionButton(eventKey, () =>
     setActiveKey(isActive ? undefined : eventKey)
@@ -20,7 +20,7 @@ const CustomToggle = ({ children, eventKey, isActive, setActiveKey = () => '', i
 const Index = () => {
   const { asPath: path } = useRouter()
   const [activeKey, setActiveKey] = useState(path)
-  const toggleMenuList = ['/admin/home']
+  const toggleMenuList = ['/admin/home', '/admin/about', '/admin/news']
   return (
     <div className='row'>
       <div className='col-12'>
@@ -48,12 +48,86 @@ const Index = () => {
               <div className='p-1 bg-xxx radius-10'>
                 <Link href='/admin/home/banner'>
                   <div
-                    className={`flex-start dropdown-item p-2 pointer ${
+                    className={`flex-start dropdown-item p-2 my-1 pointer ${
                       path?.startsWith('/admin/home/banner') ? 'active' : ''
                     }`}
                   >
                     <i className='las la-hashtag fs-6 me-1' />
                     Banner
+                  </div>
+                </Link>
+              </div>
+            </Accordion.Collapse>
+
+            {/* ABOUT */}
+            <CustomToggle
+              icon='info-circle'
+              eventKey={'/admin/about'}
+              isActive={activeKey === '/admin/about'}
+              setActiveKey={setActiveKey}
+            >
+              About
+            </CustomToggle>
+            <Accordion.Collapse eventKey={'/admin/about'}>
+              <div className='p-1 bg-xxx radius-10'>
+                <Link href='/admin/about/company'>
+                  <div
+                    className={`flex-start dropdown-item p-2 my-1 pointer ${
+                      path?.startsWith('/admin/about/company') ? 'active' : ''
+                    }`}
+                  >
+                    <i className='las la-hashtag fs-6 me-1' />
+                    Company Profile
+                  </div>
+                </Link>
+                <Link href='/admin/about/history'>
+                  <div
+                    className={`flex-start dropdown-item p-2 my-1 pointer ${
+                      path?.startsWith('/admin/about/history') ? 'active' : ''
+                    }`}
+                  >
+                    <i className='las la-hashtag fs-6 me-1' />
+                    History
+                  </div>
+                </Link>
+                <Link href='/admin/about/vision'>
+                  <div
+                    className={`flex-start dropdown-item p-2 my-1 pointer ${
+                      path?.startsWith('/admin/about/vision') ? 'active' : ''
+                    }`}
+                  >
+                    <i className='las la-hashtag fs-6 me-1' />
+                    Vision, Mission & Values
+                  </div>
+                </Link>
+                <Link href='/admin/about/organization'>
+                  <div
+                    className={`flex-start dropdown-item p-2 my-1 pointer ${
+                      path?.startsWith('/admin/about/organization') ? 'active' : ''
+                    }`}
+                  >
+                    <i className='las la-hashtag fs-6 me-1' />
+                    Organization Structure
+                  </div>
+                </Link>
+                <Link href='/admin/about/certification'>
+                  <div
+                    className={`flex-start dropdown-item p-2 my-1 pointer ${
+                      path?.startsWith('/admin/about/certification') ? 'active' : ''
+                    }`}
+                  >
+                    <i className='las la-hashtag fs-6 me-1' />
+                    Certification
+                  </div>
+                </Link>
+                <Link href='/admin/about/management'>
+                  <div
+                    className={`flex-start dropdown-item p-2 my-1 pointer ${
+                      path?.startsWith('/admin/about/management') ? 'active' : ''
+                    }`}
+                  >
+                    <i className='las la-hashtag fs-6 me-1' />
+                    Management
                   </div>
                 </Link>
               </div>
@@ -72,7 +146,7 @@ const Index = () => {
               <div className='p-1 bg-xxx radius-10'>
                 <Link href='/admin/news/media'>
                   <div
-                    className={`flex-start dropdown-item p-2 pointer ${
+                    className={`flex-start dropdown-item p-2 my-1 pointer ${
                       path?.startsWith('/admin/news/media') ? 'active' : ''
                     }`}
                   >
@@ -82,7 +156,7 @@ const Index = () => {
                 </Link>
                 <Link href='/admin/news/carreer'>
                   <div
-                    className={`flex-start dropdown-item p-2 pointer ${
+                    className={`flex-start dropdown-item p-2 my-1 pointer ${
                       path?.startsWith('/admin/news/carreer') ? 'active' : ''
                     }`}
                   >
@@ -91,13 +165,6 @@ const Index = () => {
                   </div>
                 </Link>
               </div>
-            </Accordion.Collapse>
-            <div className={itemClass}>
-              <i className='las la-info-circle fs-6 me-2' />
-              About Us
-            </div>
-            <Accordion.Collapse eventKey={1}>
-              <div className=''>Lagi</div>
             </Accordion.Collapse>
           </Accordion>
         </div>

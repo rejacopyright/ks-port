@@ -26,7 +26,7 @@ const Index = () => {
   const [detail, setDetail] = useState({})
 
   useEffect(() => {
-    getHomeBanner().then(({ data: { data } }) => {
+    getHomeBanner().then(({ data: { data } = {} }) => {
       if (data?.length) {
         setData(data)
       }

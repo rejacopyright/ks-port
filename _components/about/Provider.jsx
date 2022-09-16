@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Banner from '@components/banner'
 import { Sticky } from '@helpers/hooks'
+import { getAbout } from '@api/about'
 
 const MenuBtn = ({ to = '/about', title = 'About', active = false }) => {
   const [isHover, setIsHover] = useState(false)
@@ -26,12 +27,7 @@ const MenuBtn = ({ to = '/about', title = 'About', active = false }) => {
     </div>
   )
 }
-const Title = () => {
-  const { asPath } = useRouter()
-  const [title, setTitle] = useState()
-  useEffect(() => {
-    setTitle(document?.querySelector('title')?.innerText)
-  }, [asPath])
+const Title = ({ title }) => {
   return (
     <div className='flex-center'>
       <div className='fs-3 fw-500'>ABOUT US</div>
@@ -42,42 +38,38 @@ const Title = () => {
 }
 const Index = ({ children }) => {
   const { asPath } = useRouter()
+  const [menus, setMenus] = useState([])
+  const [title, setTitle] = useState('')
+  useEffect(() => {
+    getAbout().then(({ data: { data } = {} }) => {
+      setMenus(data)
+    })
+  }, [])
+  useEffect(() => {
+    const path = asPath?.split('/')?.slice(-1)?.[0]
+    const detail = menus?.find(({ scope }) => scope === path) || menus?.[0]
+    setTitle(detail?.title)
+  }, [asPath, menus])
   return (
     <>
-      <Banner height='160' content={Title} />
+      <Banner height='160' content={<Title title={title} />} />
       <div className='container py-5' style={{ minHeight: '60vh' }}>
         <div className='row'>
-          <div className='col-auto col-lg-3 mb-4 mb-md-0'>
+          <div className='col-auto col-md-4 col-lg-3 mb-4 mb-md-0'>
             <Sticky>
               <div className='d-flex d-md-block pt-2'>
                 {/* <div className='d-none d-md-block text-primary text-uppercase mb-2'>About Us</div> */}
                 <div className='row'>
-                  <MenuBtn to='/about' title='Company Profile' active={asPath === '/about'} />
-                  <MenuBtn
-                    to='/about/history'
-                    title='History'
-                    active={asPath === '/about/history'}
-                  />
-                  <MenuBtn
-                    to='/about/vision'
-                    title='Vision, Mission & Values'
-                    active={asPath === '/about/vision'}
-                  />
-                  <MenuBtn
-                    to='/about/organization'
-                    title='Organization Structure'
-                    active={asPath === '/about/organization'}
-                  />
-                  <MenuBtn
-                    to='/about/certification'
-                    title='Certification'
-                    active={asPath === '/about/certification'}
-                  />
-                  <MenuBtn
-                    to='/about/management'
-                    title='Management'
-                    active={asPath === '/about/management'}
-                  />
+                  {menus?.map(({ scope, title }, index) => (
+                    <MenuBtn
+                      key={index}
+                      to={`/about/${scope}`}
+                      title={title}
+                      active={
+                        asPath === `/about/${scope}` || (scope === 'company' && asPath === '/about')
+                      }
+                    />
+                  ))}
                 </div>
               </div>
             </Sticky>
