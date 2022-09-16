@@ -3,13 +3,24 @@ import Provider from '@components/about/Provider'
 import Meta from '@components/seo/meta'
 import { getAbout } from '@api/about'
 import { htmlToString } from '@helpers'
+import { CardLoader } from '@components/loader'
 const Index = () => {
   const [detail, setDetail] = useState({})
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
-    getAbout().then(({ data: { data } = {} }) => {
-      setDetail(data?.[0])
-    })
+    setLoading(true)
+    getAbout()
+      .then(({ data: { data } = {} }) => {
+        setDetail(data?.[0])
+        setLoading(false)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
   }, [])
+  if (loading) {
+    return <CardLoader count={2} className='col-12 mb-4' />
+  }
   return (
     <>
       <Meta
