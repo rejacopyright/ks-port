@@ -15,6 +15,7 @@ const Modal = ({
   loading = false,
   disabled = false,
   onSubmit,
+  header = true,
   footer = true,
   size = 'md',
   isFullScreen = false,
@@ -42,27 +43,29 @@ const Modal = ({
       show={show}
       onHide={onClose}
     >
-      <MODAL.Header className='p-3 border-0'>
-        <div className='row m-0 w-100 flex-center'>
-          {title && <div className={`col fw-600 text-${theme} text-uppercase`}>{title}</div>}
-          <div className='col-auto ms-auto me-n3'>
-            {isFullScreen && (
+      {header && (
+        <MODAL.Header className='p-3 border-0'>
+          <div className='row m-0 w-100 flex-center'>
+            {title && <div className={`col fw-600 text-${theme} text-uppercase`}>{title}</div>}
+            <div className='col-auto ms-auto me-n3'>
+              {isFullScreen && (
+                <div
+                  className='btn btn-icon btn-light-success same-25px rounded-circle me-2'
+                  onClick={() => setFullscreen(!fullscreen)}
+                >
+                  <i className={`las la-angle-double-${fullscreen ? 'down' : 'up'}`} />
+                </div>
+              )}
               <div
-                className='btn btn-icon btn-light-success same-25px rounded-circle me-2'
-                onClick={() => setFullscreen(!fullscreen)}
+                className='btn btn-sm flex-center btn-light-danger same-25px radius-50'
+                onClick={onClose}
               >
-                <i className={`las la-angle-double-${fullscreen ? 'down' : 'up'}`} />
+                <i className='las la-times' />
               </div>
-            )}
-            <div
-              className='btn btn-sm flex-center btn-light-danger same-25px radius-50'
-              onClick={onClose}
-            >
-              <i className='las la-times' />
             </div>
           </div>
-        </div>
-      </MODAL.Header>
+        </MODAL.Header>
+      )}
       <MODAL.Body className={bodyClass}>{children || body}</MODAL.Body>
       {footer && (
         <MODAL.Footer className='p-3 border-0'>

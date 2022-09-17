@@ -1,2 +1,1 @@
-import Media from './media'
-export default Media
+export { default } from './media'

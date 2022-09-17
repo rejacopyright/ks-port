@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Image from 'next/image'
 import { StickyAdmin } from '@helpers/hooks'
 import { InputIcon } from '@components/form'
-import { getMedia, deleteMedia } from '@api/news'
+import { getServices, deleteServices } from '@api/services'
 import defaultImage from '@images/placeholder-image.jpg'
-import { htmlToString, strToSlug } from '@helpers'
+import { htmlToString } from '@helpers'
 import { CardLoader } from '@components/loader'
 import { Modal } from '@components/modal'
 import toast from '@components/alert/toast'
 
 const Index = () => {
+  const { query: { type = 'general' } = {} } = useRouter()
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const [reload, setReload] = useState(false)
@@ -20,14 +22,14 @@ const Index = () => {
 
   useEffect(() => {
     setLoading(true)
-    getMedia()
+    getServices({ type })
       .then(({ data: { data } = {} }) => {
         setData(data)
       })
       .finally(() => {
         setLoading(false)
       })
-  }, [reload])
+  }, [type, reload])
 
   if (loading) {
     return (
@@ -40,7 +42,7 @@ const Index = () => {
   const handleDelete = () => {
     if (detail?.id) {
       setSaveLoading(true)
-      deleteMedia(detail?.id)
+      deleteServices(detail?.id)
         .then(({ data, response }) => {
           if (data?.success) {
             setShowModalDelete(false)
@@ -67,10 +69,10 @@ const Index = () => {
               <InputIcon left='search' />
             </div>
             <div className='col-auto ms-auto'>
-              <Link href='/admin/news/media/add'>
+              <Link href={`/admin/services/${type}/add`}>
                 <div className='btn fs-8 btn-primary text-white'>
                   <i className='las la-plus me-1' />
-                  Create News
+                  Create Services
                 </div>
               </Link>
             </div>
@@ -99,16 +101,7 @@ const Index = () => {
               </div>
               <div className='absolute-center-h bottom-0 mb-3'>
                 <div className='flex-center'>
-                  <a
-                    href={`/news/media/${strToSlug(title)}?id=${id}`}
-                    target='_blank'
-                    className='btn btn-sm btn-light-primary fs-8 text-nowrap me-2'
-                    rel='noreferrer'
-                  >
-                    View
-                    <i className='las la-external-link-alt fs-6 ms-1' />
-                  </a>
-                  <Link href={`/admin/news/media/edit/${id}`}>
+                  <Link href={`/admin/services/${type}/edit/${id}`}>
                     <div className='btn btn-sm btn-light-warning fs-8 text-nowrap'>
                       <i className='las la-pencil-alt me-1' />
                       Edit

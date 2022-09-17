@@ -6,8 +6,7 @@ import { detailAbout } from '@api/about'
 import { htmlToString } from '@helpers'
 import { CardLoader } from '@components/loader'
 const Index = () => {
-  const { query } = useRouter()
-  const { scope } = query || {}
+  const { query: { scope = 'company' } = {} } = useRouter()
   const [detail, setDetail] = useState({})
   const [loading, setLoading] = useState(false)
   useEffect(() => {

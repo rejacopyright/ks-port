@@ -1,20 +1,13 @@
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Slider from 'react-slick'
 import { useInView } from 'react-intersection-observer'
-const services = [
-  { name: 'Crew Change', src: require('@images/banner1.jpg').default },
-  { name: 'Ship Charter', src: require('@images/banner2.jpg').default },
-  { name: 'Ship Emergency Call', src: require('@images/banner3.jpg').default },
-  { name: 'Fuel Bunkering', src: require('@images/banner4.jpg').default },
-  { name: 'Shore Connection', src: require('@images/banner5.jpg').default },
-  { name: 'Ship Repair', src: require('@images/banner6.jpg').default },
-  { name: 'Waste Management', src: require('@images/banner7.jpg').default },
-  { name: 'Parking & Traffic Management', src: require('@images/banner1.jpg').default },
-  { name: 'Fleet Maintenance', src: require('@images/banner2.jpg').default },
-  { name: 'Facilities of Port & Office', src: require('@images/banner3.jpg').default },
-]
+import { getServices } from '@api/services'
+import defaultImage from '@images/placeholder-image.jpg'
+
 const Index = () => {
+  const [data, setData] = useState([])
   const { ref: myRef, inView: myElementIsVisible } = useInView({
     threshold: 0.25,
     initialInView: true,
@@ -28,20 +21,20 @@ const Index = () => {
     infinite: true,
     centerMode: true,
     speed: 300,
-    slidesToShow: 4,
+    slidesToShow: data?.length >= 4 ? 4 : data?.length,
     slidesToScroll: 1,
     initialSlide: 0,
     responsive: [
       {
         breakpoint: 1280,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: data?.length >= 3 ? 3 : data?.length,
         },
       },
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: data?.length >= 2 ? 2 : data?.length,
         },
       },
       {
@@ -52,6 +45,11 @@ const Index = () => {
       },
     ],
   }
+  useEffect(() => {
+    getServices({ type: 'general' }).then(({ data: { data } = {} }) => {
+      setData(data)
+    })
+  }, [])
   return (
     <div className='py-5 bg-white my-5' ref={myRef}>
       <div className='container'>
@@ -76,14 +74,14 @@ const Index = () => {
               myElementIsVisible ? 'animate__fadeInUp' : 'animate__fadeOutDown'
             }`}
           >
-            <Link href='/service'>
+            <Link href='/services'>
               <div className='w-100 mt-1 flex-end fs-6 fw-500 text-primary pointer'>
                 <span>Lihat Semua</span>
                 <i className='las la-arrow-right ms-2 fs-5' />
               </div>
             </Link>
             <Slider {...settings}>
-              {services?.map(({ name, src }, index) => (
+              {data?.map(({ title, file }, index) => (
                 <div key={index} className='px-3 py-5 position-relative'>
                   <div className='position-relative h-325px shadow-md-bold hover-xs radius-10 overflow-hidden p-2'>
                     <Image
@@ -92,18 +90,18 @@ const Index = () => {
                       alt='img'
                       layout='fill'
                       objectFit='cover'
-                      src={src}
+                      src={file || defaultImage}
                     />
                     <div className='absolute-center z-2 flex-center w-100 h-100 hover-anim dark'>
                       <div className='p-2 p-md-4'>
-                        <div className='fs-5 fw-500 ls-1 text-white mb-1 text-center'>{name}</div>
+                        <div className='fs-5 fw-500 ls-1 text-white mb-1 text-center'>{title}</div>
                       </div>
                     </div>
                     <div
                       className='position-absolute bottom-0 start-0 w-100 p-2 text-center fs-8 fw-500 text-white pointer mt-2'
                       style={{ background: '#00000033' }}
                     >
-                      {name}
+                      {title}
                     </div>
                   </div>
                 </div>

@@ -6,7 +6,7 @@ import { TextEditor } from '@components/form'
 import { Button } from '@components/button'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
-import { addEditMedia, detailMedia } from '@api/news'
+import { addEditServices, detailServices } from '@api/services'
 import toast from '@components/alert/toast'
 import { CardLoader } from '@components/loader'
 
@@ -31,7 +31,7 @@ const Index = () => {
     const id = query?.[1] || undefined
     if (id) {
       setLoading(true)
-      detailMedia(id)
+      detailServices(id)
         .then(({ data }) => {
           if (data?.id) {
             setDetail(data)
@@ -74,10 +74,11 @@ const Index = () => {
   const handleSubmit = (e) => {
     setSaveLoading(true)
     const params = Object.assign({}, e)
+    params.type = router?.query?.type
     if (image !== detail?.file) {
       params.file = image
     }
-    addEditMedia(params, detail?.id)
+    addEditServices(params, detail?.id)
       .then(({ data }) => {
         if (data?.status === 200) {
           setDetail({})
@@ -117,7 +118,7 @@ const Index = () => {
           src={src}
           preview={false}
           modal={true}
-          ratio={4 / 2}
+          ratio={1}
         />
       </div>
       <div className='col-12'>

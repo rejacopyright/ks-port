@@ -89,7 +89,7 @@ const Index = () => {
                 <div className='fw-400 mb-1'>{e?.title}</div>
                 <div className='fw-200 mb-2'>{e?.description}</div>
               </div>
-              <div className='px-3 pt-2 position-absolute bottom-0 w-100 flex-end mb-2 border-top'>
+              <div className='px-3 pt-2 position-absolute bottom-0 w-100 flex-center mb-2 border-top'>
                 <Button
                   text='Edit'
                   theme='light-warning'
