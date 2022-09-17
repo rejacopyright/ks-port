@@ -5,7 +5,7 @@ import Meta from '@components/seo/meta'
 import Image from 'next/image'
 import { getServices } from '@api/services'
 import defaultImage from '@images/placeholder-image.jpg'
-import { htmlToString } from '@helpers'
+import { htmlToString, toCapitalize } from '@helpers'
 import { Modal } from '@components/modal'
 
 const Index = () => {
@@ -20,8 +20,8 @@ const Index = () => {
   }, [type])
   return (
     <>
-      <Meta title='General Services' description={undefined} />
-      <div className='fs-4 fw-500 mb-2'>General Services</div>
+      <Meta title={`${toCapitalize(type)} Services`} description={undefined} />
+      <div className='fs-4 fw-500 mb-2'>{toCapitalize(type)} Services</div>
       <div className='row'>
         {data?.map((m, index) => (
           <div key={index} className='col-md-6 col-lg-4 mb-3'>
@@ -79,7 +79,7 @@ const Index = () => {
           </div>
           <div className='p-2 col-12 col-lg h-300px overflow-auto'>
             <div className='fs-6 fw-500 mb-2'>{detail?.title}</div>
-            <div className='fs-8' dangerouslySetInnerHTML={{ __html: detail?.description }} />
+            <div className='w-100' dangerouslySetInnerHTML={{ __html: detail?.description }} />
           </div>
         </div>
       </Modal>

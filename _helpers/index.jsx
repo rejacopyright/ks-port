@@ -15,6 +15,10 @@ export const strToSlug = (str) => {
     ?.replace(/^-+|-+$/g, '')
 }
 
+export const toCapitalize = (text) => {
+  return text.replace(/(?:^|\s)\S/g, (a) => a.toUpperCase())
+}
+
 export const randomString = () => {
   const rand =
     Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
