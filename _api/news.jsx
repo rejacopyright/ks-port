@@ -1,9 +1,10 @@
 import axios from './axios'
 
-export const getMedia = () => {
+export const getMedia = (params = {}) => {
   return axios({
     method: 'get',
     url: 'news/media',
+    params,
   })
 }
 
