@@ -7,50 +7,63 @@ import { getServices } from '@api/services'
 import defaultImage from '@images/placeholder-image.jpg'
 import { htmlToString, toCapitalize } from '@helpers'
 import { Modal } from '@components/modal'
+import { CardLoader } from '@components/loader'
 
 const Index = () => {
   const { query: { type = 'general' } = {} } = useRouter()
   const [data, setData] = useState([])
+  const [loading, setLoading] = useState(false)
   const [detail, setDetail] = useState({})
   const [showModalDetail, setShowModalDetail] = useState(false)
   useEffect(() => {
-    getServices({ type }).then(({ data: { data } = {} }) => {
-      setData(data)
-    })
+    setLoading(true)
+    getServices({ type })
+      .then(({ data: { data } = {} }) => {
+        setData(data)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
   }, [type])
   return (
     <>
       <Meta title={`${toCapitalize(type)} Services`} description={undefined} />
       <div className='fs-4 fw-500 mb-2'>{toCapitalize(type)} Services</div>
-      <div className='row'>
-        {data?.map((m, index) => (
-          <div key={index} className='col-md-6 col-lg-4 mb-3'>
-            <div
-              className='d-flex p-2 shadow-sm hover-md radius-10 pointer'
-              onClick={() => {
-                setDetail(m)
-                setShowModalDetail(true)
-              }}
-            >
-              <div className='position-relative same-65px me-2'>
-                <Image
-                  priority
-                  className='border radius-10'
-                  alt='img'
-                  quality={100}
-                  layout='fill'
-                  objectFit='cover'
-                  src={m?.file || defaultImage}
-                />
-              </div>
-              <div className='col'>
-                <div className='fw-500 fs-7 text-capitalize text-truncate-1'>{m?.title}</div>
-                <div className='fs-8 text-truncate-2 text-aa'>{htmlToString(m?.description)}</div>
+      {loading ? (
+        <div className='mt-3'>
+          <CardLoader className='col-md-6 col-lg-4 mb-3' />
+        </div>
+      ) : (
+        <div className='row'>
+          {data?.map((m, index) => (
+            <div key={index} className='col-md-6 col-lg-4 mb-3'>
+              <div
+                className='d-flex p-2 shadow-sm hover-md radius-10 pointer'
+                onClick={() => {
+                  setDetail(m)
+                  setShowModalDetail(true)
+                }}
+              >
+                <div className='position-relative same-65px me-2'>
+                  <Image
+                    priority
+                    className='border radius-10'
+                    alt='img'
+                    quality={100}
+                    layout='fill'
+                    objectFit='cover'
+                    src={m?.file || defaultImage}
+                  />
+                </div>
+                <div className='col'>
+                  <div className='fw-500 fs-7 text-capitalize text-truncate-1'>{m?.title}</div>
+                  <div className='fs-8 text-truncate-2 text-aa'>{htmlToString(m?.description)}</div>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
       {/* Modal Detail */}
       <Modal
