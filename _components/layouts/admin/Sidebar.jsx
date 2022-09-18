@@ -66,6 +66,16 @@ const Index = () => {
                     Assets
                   </div>
                 </Link>
+                <Link href='/admin/home/customer'>
+                  <div
+                    className={`flex-start dropdown-item p-2 my-1 pointer ${
+                      path?.startsWith('/admin/home/customer') ? 'active' : ''
+                    }`}
+                  >
+                    <i className='las la-hashtag fs-6 me-1' />
+                    Customer
+                  </div>
+                </Link>
               </div>
             </Accordion.Collapse>
 
