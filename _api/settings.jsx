@@ -14,3 +14,18 @@ export const updateSocial = (data) => {
     data,
   })
 }
+
+export const getContact = () => {
+  return axios({
+    method: 'get',
+    url: `settings/contact`,
+  })
+}
+
+export const updateContact = (data) => {
+  return axios({
+    method: 'put',
+    url: `admin/settings/contact`,
+    data,
+  })
+}

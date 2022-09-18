@@ -248,6 +248,16 @@ const Index = () => {
                     Social Media
                   </div>
                 </Link>
+                <Link href='/admin/settings/contact'>
+                  <div
+                    className={`flex-start dropdown-item p-2 my-1 pointer ${
+                      path?.startsWith('/admin/settings/contact') ? 'active' : ''
+                    }`}
+                  >
+                    <i className='las la-hashtag fs-6 me-1' />
+                    Contact
+                  </div>
+                </Link>
               </div>
             </Accordion.Collapse>
           </Accordion>
