@@ -4,29 +4,34 @@ import { randomString } from '@helpers'
 export const TextLoader = ({ count = 3, height = 25, className = '' }) => {
   return (
     <SkeletonTheme baseColor='#f5f5f5' highlightColor='#fafafa'>
-      {count > 0 &&
-        Array(count)
-          .fill(count)
-          .map(() => {
-            const random = Math.floor(Math.random() * 5) + 2 // random 20% to 50%
-            return (
-              <div className={`row ${className}`} key={randomString()}>
-                <div className='col'>
-                  <div className='col-12 m-0' style={{ lineHeight: height / 2 + 'px' }}>
-                    <Skeleton
-                      className='my-0'
-                      width={random * 10 + '%'}
-                      height={height / 3}
-                      count={1}
-                    />
-                  </div>
-                  <div className='col-12 m-0' style={{ lineHeight: height / 2 + 'px' }}>
-                    <Skeleton className='my-0' height={height} count={1} />
+      {count > 0 && (
+        <div className='row'>
+          {Array(count)
+            .fill(count)
+            .map(() => {
+              const random = Math.floor(Math.random() * 5) + 2 // random 20% to 50%
+              return (
+                <div className={className} key={randomString()}>
+                  <div className='row'>
+                    <div className='col'>
+                      <div className='col-12 m-0' style={{ lineHeight: height / 2 + 'px' }}>
+                        <Skeleton
+                          className='my-0'
+                          width={random * 10 + '%'}
+                          height={height / 3}
+                          count={1}
+                        />
+                      </div>
+                      <div className='col-12 m-0' style={{ lineHeight: height / 2 + 'px' }}>
+                        <Skeleton className='my-0' height={height} count={1} />
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )
-          })}
+              )
+            })}
+        </div>
+      )}
     </SkeletonTheme>
   )
 }

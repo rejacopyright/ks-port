@@ -20,7 +20,13 @@ const CustomToggle = ({ children, eventKey, isActive, setActiveKey = () => '', i
 const Index = () => {
   const { asPath: path } = useRouter()
   const [activeKey, setActiveKey] = useState(path)
-  const toggleMenuList = ['/admin/home', '/admin/about', '/admin/news', '/admin/services']
+  const toggleMenuList = [
+    '/admin/home',
+    '/admin/about',
+    '/admin/news',
+    '/admin/services',
+    '/admin/settings',
+  ]
   return (
     <div className='row'>
       <div className='col-12'>
@@ -216,6 +222,30 @@ const Index = () => {
                   >
                     <i className='las la-hashtag fs-6 me-1' />
                     Marine
+                  </div>
+                </Link>
+              </div>
+            </Accordion.Collapse>
+
+            {/* SETTINGS */}
+            <CustomToggle
+              icon='cog'
+              eventKey={'/admin/settings'}
+              isActive={activeKey === '/admin/settings'}
+              setActiveKey={setActiveKey}
+            >
+              Settings
+            </CustomToggle>
+            <Accordion.Collapse eventKey={'/admin/settings'}>
+              <div className='p-1 bg-xxx radius-10'>
+                <Link href='/admin/settings/social'>
+                  <div
+                    className={`flex-start dropdown-item p-2 my-1 pointer ${
+                      path?.startsWith('/admin/settings/social') ? 'active' : ''
+                    }`}
+                  >
+                    <i className='las la-hashtag fs-6 me-1' />
+                    Social Media
                   </div>
                 </Link>
               </div>
