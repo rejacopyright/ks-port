@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import GoTop from './GoTop'
+import Whatsapp from './Whatsapp'
 import Navbar from './Navbar'
 import Footer from './Footer'
 
@@ -13,6 +14,7 @@ const Layout = ({ children }) => {
       {noError && (
         <>
           <Footer />
+          <Whatsapp />
           <GoTop />
         </>
       )}
