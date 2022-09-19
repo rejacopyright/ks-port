@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { getContact } from '@api/settings'
 
-const GoTop = () => {
+const Index = () => {
   const [thePosition, setThePosition] = useState(false)
   const [animate, setAnimate] = useState(false)
   const [detail, setDetail] = useState({})
@@ -16,6 +16,7 @@ const GoTop = () => {
     })
 
     getContact().then(({ data }) => {
+      console.log(data)
       setDetail(data)
     })
   }, [])
@@ -43,4 +44,4 @@ const GoTop = () => {
   )
 }
 
-export default GoTop
+export default Index

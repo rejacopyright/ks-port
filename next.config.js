@@ -19,10 +19,10 @@ const redirects = [
 ]
 
 const nextConfig = {
-  // useFileSystemPublicRoutes: false,
+  useFileSystemPublicRoutes: false,
   reactStrictMode: false,
   swcMinify: true,
-  distDir: 'build',
+  // distDir: 'build',
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
@@ -30,7 +30,7 @@ const nextConfig = {
   experimental: { images: { allowFutureImage: true, unoptimized: true } },
   images: {
     dangerouslyAllowSVG: true,
-    domains: ['assets.imgix.net'],
+    domains: ['assets.imgix.net', 'krakatausamuderasolusi.co.id', 'localhost'],
     // loader: 'imgix',
     // path: 'https://assets.imgix.net/hp/snowshoe.jpg?auto=compress&w=900&h=600&fit=crop',
   },
