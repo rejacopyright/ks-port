@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Banner from '@components/banner'
-import { detailMedia } from '@api/news'
+import { detailCarreer } from '@api/news'
 import moment from 'moment'
 import { CardLoader, TextLoader } from '@components/loader'
 
@@ -18,8 +18,8 @@ const Breadcrumb = () => {
           </Link>
         </li>
         <li className='breadcrumb-item'>
-          <Link href='/news/media'>
-            <a>Media</a>
+          <Link href='/news/carreer'>
+            <a>Carreer</a>
           </Link>
         </li>
         <li className='breadcrumb-item active' aria-current='page'>
@@ -38,7 +38,7 @@ const Index = () => {
   useEffect(() => {
     if (id) {
       setLoading(true)
-      detailMedia(id)
+      detailCarreer(id)
         .then(({ data }) => {
           setDetail(data)
         })
@@ -67,18 +67,6 @@ const Index = () => {
             {detail ? (
               <div className='row'>
                 <div className='col-12 mb-5'>
-                  {!!detail?.file && (
-                    <div className='position-relative h-300px bg-white overflow-hidden radius-10 shadow-lg-bold mb-3'>
-                      <Image
-                        priority
-                        quality={30}
-                        alt='img'
-                        layout='fill'
-                        objectFit='cover'
-                        src={detail?.file}
-                      />
-                    </div>
-                  )}
                   <div className='flex-end'>
                     <i className='las la-user me-1 fs-6 text-primary' />
                     <div className='text-primary'>Uploaded at</div>

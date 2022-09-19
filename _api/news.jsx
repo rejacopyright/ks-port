@@ -29,3 +29,33 @@ export const deleteMedia = (id) => {
     url: `admin/news/media/${id}`,
   })
 }
+
+export const getCarreer = (params = {}) => {
+  return axios({
+    method: 'get',
+    url: 'news/carreer',
+    params,
+  })
+}
+
+export const detailCarreer = (id) => {
+  return axios({
+    method: 'get',
+    url: `news/carreer/${id}`,
+  })
+}
+
+export const addEditCarreer = (data, id) => {
+  return axios({
+    method: id ? 'put' : 'post',
+    url: id ? `admin/news/carreer/${id}` : 'admin/news/carreer',
+    data,
+  })
+}
+
+export const deleteCarreer = (id) => {
+  return axios({
+    method: 'delete',
+    url: `admin/news/carreer/${id}`,
+  })
+}
