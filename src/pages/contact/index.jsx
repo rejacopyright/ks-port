@@ -41,6 +41,7 @@ const Index = () => {
             )}
             <div className='mt-5'>
               <iframe
+                title='location'
                 className='col-12'
                 width='600'
                 height='300'

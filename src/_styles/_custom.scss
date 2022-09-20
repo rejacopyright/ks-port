@@ -54,7 +54,7 @@ body {
   color: $primary;
   &:hover {
     color: #fff !important;
-    background-color: $primary;
+    background-color: $primary !important;
   }
 }
 .btn-light-secondary {

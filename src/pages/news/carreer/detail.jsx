@@ -1,24 +1,21 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import Banner from '@components/banner'
 import { detailCarreer } from '@api/news'
 import moment from 'moment'
 import { CardLoader, TextLoader } from '@components/loader'
+import qs from 'qs'
 
 const Breadcrumb = () => {
   return (
     <nav aria-label='breadcrumb'>
       <ol className='breadcrumb'>
         <li className='breadcrumb-item'>
-          <Link to='/news'>
-            <a>News</a>
-          </Link>
+          <Link to='/news'>News</Link>
         </li>
         <li className='breadcrumb-item'>
-          <Link to='/news/carreer'>
-            <a>Carreer</a>
-          </Link>
+          <Link to='/news/carreer'>Carreer</Link>
         </li>
         <li className='breadcrumb-item active' aria-current='page'>
           Detail
@@ -29,14 +26,14 @@ const Breadcrumb = () => {
 }
 
 const Index = () => {
-  const { query } = useNavigate()
-  const { id } = query || {}
+  const { search } = useLocation()
+  const params = qs.parse(search, { ignoreQueryPrefix: true })
   const [detail, setDetail] = useState(undefined)
   const [loading, setLoading] = useState(false)
   useEffect(() => {
-    if (id) {
+    if (params?.id) {
       setLoading(true)
-      detailCarreer(id)
+      detailCarreer(params?.id)
         .then(({ data }) => {
           setDetail(data)
         })
@@ -44,7 +41,7 @@ const Index = () => {
           setLoading(false)
         })
     }
-  }, [id])
+  }, [params?.id])
   return (
     <>
       <Banner height='125' content={false} />

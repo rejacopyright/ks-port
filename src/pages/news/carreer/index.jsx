@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import Provider from '@components/news/Provider'
 import { getCarreer } from '@api/news'
 import { htmlToString, strToSlug } from '@helpers'
 import { CardLoader } from '@components/loader'
@@ -48,5 +47,4 @@ const Index = () => {
     </>
   )
 }
-Index.Layout = Provider
 export default Index

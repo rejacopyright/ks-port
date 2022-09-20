@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Banner from '@components/banner'
 import { Sticky } from '@helpers/hooks'
@@ -27,11 +27,19 @@ const MenuBtn = ({ to = '/news', title = 'News', active = false }) => {
   )
 }
 const Title = () => {
-  const { asPath } = useNavigate()
+  const { pathname } = useLocation()
   const [title, setTitle] = useState()
   useEffect(() => {
-    setTitle(document?.querySelector('title')?.innerText)
-  }, [asPath])
+    let docTitle = 'Media'
+    if (pathname === '/news' || pathname?.startsWith('/news/media')) {
+      docTitle = 'Media'
+      document.title = 'News'
+    } else if (pathname?.startsWith('/news/carreer')) {
+      docTitle = 'Carreer'
+      document.title = 'Carreer'
+    }
+    setTitle(docTitle)
+  }, [pathname])
   return (
     <div className='flex-center'>
       <div className='fs-3 fw-500'>NEWS</div>
@@ -40,8 +48,8 @@ const Title = () => {
     </div>
   )
 }
-const Index = ({ children }) => {
-  const { asPath } = useNavigate()
+const Index = () => {
+  const { pathname } = useLocation()
   return (
     <>
       <Banner height='160' content={Title} />
@@ -54,14 +62,20 @@ const Index = ({ children }) => {
                   <MenuBtn
                     to='/news'
                     title='Media'
-                    active={['/news', '/news/media']?.includes(asPath)}
+                    active={['/news', '/news/media']?.includes(pathname)}
                   />
-                  <MenuBtn to='/news/carreer' title='Carreer' active={asPath === '/news/carreer'} />
+                  <MenuBtn
+                    to='/news/carreer'
+                    title='Carreer'
+                    active={pathname === '/news/carreer'}
+                  />
                 </div>
               </div>
             </Sticky>
           </div>
-          <div className='col-md col-lg-9'>{children}</div>
+          <div className='col-md col-lg-9'>
+            <Outlet />
+          </div>
         </div>
       </div>
     </>

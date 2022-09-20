@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import Provider from '@components/news/Provider'
 import { getMedia } from '@api/news'
 import defaultImage from '@images/placeholder-image.jpg'
 import { htmlToString, strToSlug } from '@helpers'
@@ -55,5 +54,4 @@ const Index = () => {
     </>
   )
 }
-Index.Layout = Provider
 export default Index
