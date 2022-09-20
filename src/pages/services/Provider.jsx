@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Banner from '@components/banner'
 import { Sticky } from '@helpers/hooks'
@@ -27,11 +27,18 @@ const MenuBtn = ({ to = '/services', title = 'Services', active = false }) => {
   )
 }
 const Title = () => {
-  const { asPath } = useNavigate()
-  const [title, setTitle] = useState()
+  const { scope } = useParams()
+  const [title, setTitle] = useState('')
   useEffect(() => {
-    setTitle(document?.querySelector('title')?.innerText)
-  }, [asPath])
+    let docTitle = 'General Services'
+    if (scope === 'general' || !scope) {
+      docTitle = 'General Services'
+    } else if (scope === 'marine') {
+      docTitle = 'Marine Services'
+    }
+    setTitle(docTitle)
+    document.title = `Service | ${docTitle}`
+  }, [scope])
   return (
     <div className='flex-center'>
       <div className='fs-3 fw-500'>SERVICES</div>
@@ -41,7 +48,7 @@ const Title = () => {
   )
 }
 const Index = ({ children }) => {
-  const { asPath } = useNavigate()
+  const { scope } = useParams()
   return (
     <>
       <Banner height='160' content={Title} />
@@ -54,12 +61,12 @@ const Index = ({ children }) => {
                   <MenuBtn
                     to='/services'
                     title='General Services'
-                    active={asPath === '/services'}
+                    active={scope === 'general' || !scope}
                   />
                   <MenuBtn
                     to='/services/marine'
                     title='Marine Services'
-                    active={asPath === '/services/marine'}
+                    active={scope === 'marine'}
                   />
                 </div>
               </div>

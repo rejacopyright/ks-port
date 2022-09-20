@@ -7,14 +7,9 @@ const router = [
     children: [{ path: ':scope', element: createElement(lazy(() => import('@pages/about'))) }],
   },
   {
-    path: 'services',
-    index: true,
+    path: 'services/*',
     element: createElement(lazy(() => import('@pages/services'))),
-  },
-  {
-    path: 'news',
-    index: true,
-    element: createElement(lazy(() => import('@pages/news'))),
+    children: [{ path: ':scope', element: createElement(lazy(() => import('@pages/services'))) }],
   },
 ]
 export default router

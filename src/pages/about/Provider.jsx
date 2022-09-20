@@ -55,6 +55,7 @@ const Index = ({ children }) => {
   useEffect(() => {
     const detail = menus?.find(({ scope }) => scope === path) || menus?.[0]
     setTitle(detail?.title)
+    document.title = detail?.title || 'About'
   }, [path, menus])
   return (
     <>
