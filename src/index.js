@@ -1,17 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { Provider as ReduxProvider } from 'react-redux'
+import { store, persistor } from '@redux'
+import { PersistGate } from 'redux-persist/integration/react'
+// import { ToastContainer } from 'react-toastify'
+import { BrowserRouter, useRoutes } from 'react-router-dom'
+import { createRoot } from 'react-dom/client'
+import 'react-toastify/dist/ReactToastify.css'
+import '@styles/app.scss'
+import routes from './routes'
+import reportWebVitals from './reportWebVitals'
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const App = () => useRoutes(routes)
+
+const root = createRoot(document.getElementById('root'))
+
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+  <BrowserRouter>
+    <ReduxProvider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        {/* <Suspense> */}
+        <App />
+        {/* </Suspense> */}
+      </PersistGate>
+    </ReduxProvider>
+  </BrowserRouter>
+  // <ToastContainer />
+)
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+reportWebVitals()
