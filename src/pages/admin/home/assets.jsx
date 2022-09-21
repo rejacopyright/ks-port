@@ -6,6 +6,7 @@ import { Button } from '@components/button'
 import * as Yup from 'yup'
 import toast from '@components/alert/toast'
 import { getHomeAssets, addEditHomeAssets, deleteHomeAssets } from '@api/home'
+import { CardLoader, SimpleLoader } from '@components/loader'
 
 const validationSchema = Yup.object().shape({
   count: Yup.string().required('Title is required'),
@@ -22,13 +23,19 @@ const Index = () => {
   const [showModal, setShowModal] = useState(false)
   const [showModalDelete, setShowModalDelete] = useState(false)
   const [saveLoading, setSaveLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    getHomeAssets().then(({ data: { data } = {} }) => {
-      if (data?.length) {
-        setData(data)
-      }
-    })
+    setLoading(true)
+    getHomeAssets()
+      .then(({ data: { data } = {} }) => {
+        if (data?.length) {
+          setData(data)
+        }
+      })
+      .finally(() => {
+        setLoading(false)
+      })
   }, [reload])
   const handleSubmit = (values) => {
     setSaveLoading(true)
@@ -65,6 +72,14 @@ const Index = () => {
           setReload(!reload)
         })
     }
+  }
+  if (loading) {
+    return (
+      <div className='row mt-3'>
+        <SimpleLoader count={1} height={35} className='col-12 w-150px ms-auto mb-4' />
+        <CardLoader count={6} className='col-md-4 col-sm-6 mb-3' />
+      </div>
+    )
   }
   return (
     <>

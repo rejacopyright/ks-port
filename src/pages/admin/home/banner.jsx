@@ -6,6 +6,7 @@ import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import { getHomeBanner, addEditHomeBanner, deleteHomeBanner } from '@api/home'
 import toast from '@components/alert/toast'
+import { CardLoader } from '@components/loader'
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required('Title is required'),
@@ -23,13 +24,19 @@ const Index = () => {
   const [saveLoading, setSaveLoading] = useState(false)
   const [reload, setReload] = useState(false)
   const [detail, setDetail] = useState({})
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    getHomeBanner().then(({ data: { data } = {} }) => {
-      if (data?.length) {
-        setData(data)
-      }
-    })
+    setLoading(true)
+    getHomeBanner()
+      .then(({ data: { data } = {} }) => {
+        if (data?.length) {
+          setData(data)
+        }
+      })
+      .finally(() => {
+        setLoading(false)
+      })
   }, [reload])
 
   const onChangeImage = () => {
@@ -98,6 +105,13 @@ const Index = () => {
           setReload(!reload)
         })
     }
+  }
+  if (loading) {
+    return (
+      <div className='row'>
+        <CardLoader count={2} className='col-lg-4 col-md-6 my-3' />
+      </div>
+    )
   }
   return (
     <>

@@ -122,39 +122,42 @@ export const CardLoader = ({ count = 3, height = 100, className = 'col-12', icon
 export const IconLoader = ({ count = 1, size = 25, className = '', circle = false }) => {
   return (
     <SkeletonTheme baseColor='#f5f5f5' highlightColor='#fafafa'>
-      {count > 0 &&
-        Array(count)
-          .fill(count)
-          .map(() => (
-            <div className={className} key={randomString()}>
-              <div className='row'>
-                <div className='col-12 m-0 radius-10' style={{ lineHeight: size / 2 + 'px' }}>
-                  <Skeleton
-                    className='my-0 radius-10'
-                    width={size}
-                    height={size}
-                    count={1}
-                    circle={circle}
-                  />
+      {count > 0 && (
+        <div className='row'>
+          {Array(count)
+            .fill(count)
+            .map(() => (
+              <div className={className} key={randomString()}>
+                <div className='row'>
+                  <div className='col-12 m-0 radius-10' style={{ lineHeight: size / 2 + 'px' }}>
+                    <Skeleton
+                      className='my-0 radius-10'
+                      width={size}
+                      height={size}
+                      count={1}
+                      circle={circle}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+        </div>
+      )}
     </SkeletonTheme>
   )
 }
 
 export const ViewLoader = ({ height = 25, heightLabel = 20 }) => {
-  const LoopingSkeleton = () => {
-    return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(() => {
-      return (
+  const LoopingSkeleton = () => (
+    <div className='row'>
+      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(() => (
         <div className='col-6 mt-3' key={randomString()}>
           <Skeleton height={heightLabel} style={{ width: '30%' }} />
           <Skeleton height={height} style={{ width: '50%' }} />
         </div>
-      )
-    })
-  }
+      ))}
+    </div>
+  )
 
   return (
     <SkeletonTheme baseColor='#f5f5f5' highlightColor='#fafafa'>
@@ -169,29 +172,33 @@ export const SimpleLoader = ({
   width = '',
   circle = false,
   className = '',
+  radius,
 }) => {
   return (
     <SkeletonTheme baseColor='#f5f5f5' highlightColor='#fafafa'>
-      {count > 0 &&
-        Array(count)
-          .fill(count)
-          .map(() => {
-            return (
-              <div
-                className={className}
-                key={randomString()}
-                style={{ lineHeight: height / 2 + 'px' }}
-              >
-                <Skeleton
-                  className='my-0'
-                  height={height}
-                  width={width}
-                  count={1}
-                  circle={circle}
-                />
-              </div>
-            )
-          })}
+      {count > 0 && (
+        <div className='row'>
+          {Array(count)
+            .fill(count)
+            .map(() => {
+              return (
+                <div
+                  className={className}
+                  key={randomString()}
+                  style={{ lineHeight: height / 2 + 'px' }}
+                >
+                  <Skeleton
+                    className={`my-0 ${radius ? `radius-${radius}` : ''}`}
+                    height={height}
+                    width={width}
+                    count={1}
+                    circle={circle}
+                  />
+                </div>
+              )
+            })}
+        </div>
+      )}
     </SkeletonTheme>
   )
 }

@@ -3,6 +3,7 @@ const router = [
   {
     path: 'admin/*',
     children: [
+      // HOME
       {
         path: 'home/*',
         children: [
@@ -22,6 +23,12 @@ const router = [
             element: createElement(lazy(() => import('@pages/admin/home/customer'))),
           },
         ],
+      },
+      // ABOUT
+      {
+        path: 'about/:scope',
+        index: true,
+        element: createElement(lazy(() => import('@pages/admin/about/edit'))),
       },
     ],
   },

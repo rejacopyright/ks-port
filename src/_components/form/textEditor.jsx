@@ -1,6 +1,6 @@
 import { forwardRef, memo } from 'react'
 import 'froala-editor/css/froala_style.min.css'
-import '@styles/froala.scss'
+import '@styles/_froala.scss'
 import 'froala-editor/js/plugins.pkgd.min.js'
 
 import FroalaEditor from 'react-froala-wysiwyg'

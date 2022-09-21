@@ -10,7 +10,7 @@ const Layout = () => {
       <Navbar expand={expand} thisHeight={setNavHeight} />
       <div className='container'>
         <div className='row'>
-          <div className={`col-auto d-none d-${expand}-block`}>
+          <div className={`col-md-4 col-lg-3 d-none d-${expand}-block`}>
             <div className='sticky-top py-3' style={{ top: navHeight }}>
               <Sidebar />
             </div>

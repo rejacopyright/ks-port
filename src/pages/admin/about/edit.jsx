@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { TextEditor } from '@components/form'
 import { Button } from '@components/button'
 import { Formik, Form, Field } from 'formik'
@@ -14,8 +14,7 @@ const validationSchema = Yup.object().shape({
 })
 
 const Index = () => {
-  const { query } = useNavigate()
-  const { scope } = query || {}
+  const { scope } = useParams()
   const [saveLoading, setSaveLoading] = useState(false)
   const [detail, setDetail] = useState({})
   const [loading, setLoading] = useState(false)

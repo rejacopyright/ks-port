@@ -7,6 +7,7 @@ import * as Yup from 'yup'
 import { getHomeCustomer, addEditHomeCustomer, deleteHomeCustomer } from '@api/home'
 import toast from '@components/alert/toast'
 import defaultImage from '@images/placeholder-image.jpg'
+import { SimpleLoader } from '@components/loader'
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required('Title is required'),
@@ -23,13 +24,19 @@ const Index = () => {
   const [saveLoading, setSaveLoading] = useState(false)
   const [reload, setReload] = useState(false)
   const [detail, setDetail] = useState({})
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    getHomeCustomer({ limit: 20 }).then(({ data: { data } = {} }) => {
-      if (data?.length) {
-        setData(data)
-      }
-    })
+    setLoading(true)
+    getHomeCustomer({ limit: 20 })
+      .then(({ data: { data } = {} }) => {
+        if (data?.length) {
+          setData(data)
+        }
+      })
+      .finally(() => {
+        setLoading(false)
+      })
   }, [reload])
 
   const onChangeImage = () => {
@@ -98,6 +105,13 @@ const Index = () => {
           setReload(!reload)
         })
     }
+  }
+  if (loading) {
+    return (
+      <div className='row'>
+        <SimpleLoader count={12} height={100} radius={10} className='w-125px col-auto mb-2' />
+      </div>
+    )
   }
   return (
     <>
