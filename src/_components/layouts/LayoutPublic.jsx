@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import GoTop from './GoTop'
 import Whatsapp from './Whatsapp'
 import Navbar from './Navbar'
@@ -8,7 +9,9 @@ const Layout = () => {
   return (
     <>
       <Navbar />
-      <Outlet />
+      <Suspense>
+        <Outlet />
+      </Suspense>
       <Footer />
       <Whatsapp />
       <GoTop />

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import Navbar from './admin/Navbar'
 import Sidebar from './admin/Sidebar'
 import { expandAdmin as expand } from '@helpers/config'
@@ -16,7 +16,9 @@ const Layout = () => {
             </div>
           </div>
           <div className={`col-md-8 col-lg-9 py-2 py-${expand}-3`}>
-            <Outlet />
+            <Suspense>
+              <Outlet />
+            </Suspense>
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import LayoutAdmin from './LayoutAdmin'
 import LayoutPublic from './LayoutPublic'
 import Login from '@pages/auth/login'
-import { Outlet } from 'react-router-dom'
+// import { Outlet } from 'react-router-dom'
 
 const Layout = () => {
   const user = useSelector(({ user }) => user)
@@ -13,21 +13,7 @@ const Layout = () => {
   const isLoginTrue = (isLoginPath || isAdminPath) && !user?.token
   const mustRedirectFromLogin = isLoginPath && user?.token
   mustRedirectFromLogin && router.push('/admin')
-  return (
-    <>
-      {isLoginTrue ? (
-        <Login />
-      ) : isAdminPath ? (
-        <LayoutAdmin>
-          <Outlet />
-        </LayoutAdmin>
-      ) : (
-        <LayoutPublic>
-          <Outlet />
-        </LayoutPublic>
-      )}
-    </>
-  )
+  return <>{isLoginTrue ? <Login /> : isAdminPath ? <LayoutAdmin /> : <LayoutPublic />}</>
 }
 
 export default Layout
