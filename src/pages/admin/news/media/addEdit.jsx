@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import Editor from '@components/pintura'
 import { TextEditor } from '@components/form'
 import { Button } from '@components/button'
@@ -15,7 +15,8 @@ const validationSchema = Yup.object().shape({
 })
 
 const Index = () => {
-  const router = useNavigate()
+  const navigate = useNavigate()
+  const { id } = useParams()
   const inputFileRef = useRef()
   const [src, srcSet] = useState(false)
   const [image, setImage] = useState(undefined)
@@ -26,8 +27,6 @@ const Index = () => {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    const query = router?.query?.addEdit
-    const id = query?.[1] || undefined
     if (id) {
       setLoading(true)
       detailMedia(id)
@@ -43,7 +42,7 @@ const Index = () => {
           setLoading(false)
         })
     }
-  }, [router?.query?.addEdit])
+  }, [id])
 
   const onChangeImage = () => {
     const files = inputFileRef?.current?.files
@@ -83,7 +82,7 @@ const Index = () => {
           setReload(!reload)
           setImage(undefined)
           toast({ type: 'success', message: data?.message })
-          router.back()
+          navigate(-1)
         } else {
           toast({ type: 'error', message: "something wen't wrong. Please try again." })
         }
@@ -135,7 +134,7 @@ const Index = () => {
                     className={`position-relative w-250px h-125px mx-auto flex-center radius-10 overflow-hidden ${
                       !image ? 'bg-light-primary border border-primary border-dashed' : ''
                     }`}
-                    style={!!image ? { background: `url(${image}) center / cover no-repeat` } : {}}
+                    style={image ? { background: `url(${image}) center / cover no-repeat` } : {}}
                   >
                     <input
                       ref={inputFileRef}
@@ -211,7 +210,7 @@ const Index = () => {
                     dir='left'
                     loading={false}
                     disabled={false}
-                    onClick={router.back}
+                    onClick={() => navigate(-1)}
                   />
                   <Button
                     type='submit'

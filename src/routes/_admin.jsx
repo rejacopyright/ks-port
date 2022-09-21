@@ -30,6 +30,42 @@ const router = [
         index: true,
         element: createElement(lazy(() => import('@pages/admin/about/edit'))),
       },
+      // NEWS
+      {
+        path: 'news/*',
+        children: [
+          {
+            path: 'media',
+            index: true,
+            element: createElement(lazy(() => import('@pages/admin/news/media'))),
+          },
+          {
+            path: 'media/add',
+            index: true,
+            element: createElement(lazy(() => import('@pages/admin/news/media/addEdit'))),
+          },
+          {
+            path: 'media/edit/:id',
+            index: true,
+            element: createElement(lazy(() => import('@pages/admin/news/media/addEdit'))),
+          },
+          {
+            path: 'carreer',
+            index: true,
+            element: createElement(lazy(() => import('@pages/admin/news/carreer'))),
+          },
+          {
+            path: 'carreer/add',
+            index: true,
+            element: createElement(lazy(() => import('@pages/admin/news/carreer/addEdit'))),
+          },
+          {
+            path: 'carreer/edit/:id',
+            index: true,
+            element: createElement(lazy(() => import('@pages/admin/news/carreer/addEdit'))),
+          },
+        ],
+      },
     ],
   },
 ]

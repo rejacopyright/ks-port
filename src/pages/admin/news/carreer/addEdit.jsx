@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { TextEditor } from '@components/form'
 import { Button } from '@components/button'
 import { Formik, Form, Field } from 'formik'
@@ -14,15 +14,14 @@ const validationSchema = Yup.object().shape({
 })
 
 const Index = () => {
-  const router = useNavigate()
+  const navigate = useNavigate()
+  const { id } = useParams()
   const [saveLoading, setSaveLoading] = useState(false)
   const [reload, setReload] = useState(false)
   const [detail, setDetail] = useState({})
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    const query = router?.query?.addEdit
-    const id = query?.[1] || undefined
     if (id) {
       setLoading(true)
       detailCarreer(id)
@@ -35,7 +34,7 @@ const Index = () => {
           setLoading(false)
         })
     }
-  }, [router?.query?.addEdit])
+  }, [id])
 
   const handleSubmit = (e) => {
     setSaveLoading(true)
@@ -46,7 +45,7 @@ const Index = () => {
           setDetail({})
           setReload(!reload)
           toast({ type: 'success', message: data?.message })
-          router.back()
+          navigate(-1)
         } else {
           toast({ type: 'error', message: "something wen't wrong. Please try again." })
         }
@@ -117,7 +116,7 @@ const Index = () => {
                     dir='left'
                     loading={false}
                     disabled={false}
-                    onClick={router.back}
+                    onClick={() => navigate(-1)}
                   />
                   <Button
                     type='submit'
