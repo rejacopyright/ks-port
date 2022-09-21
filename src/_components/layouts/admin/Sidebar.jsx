@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import Accordion from 'react-bootstrap/Accordion'
 import { useAccordionButton } from 'react-bootstrap/AccordionButton'
 
@@ -18,7 +18,7 @@ const CustomToggle = ({ children, eventKey, isActive, setActiveKey = () => '', i
   )
 }
 const Index = () => {
-  const { asPath: path } = useNavigate()
+  const { pathname: path } = useLocation()
   const [activeKey, setActiveKey] = useState(path)
   const toggleMenuList = [
     '/admin/home',

@@ -7,6 +7,7 @@ const Index = () => {
   const [detail, setDetail] = useState({})
   const [loading, setLoading] = useState(false)
   useEffect(() => {
+    document.title = 'Contact Us'
     setLoading(true)
     getContact()
       .then(({ data }) => {

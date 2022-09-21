@@ -25,7 +25,7 @@ const Index = ({ thisHeight = () => '' }) => {
           <div
             className='position-relative h-50px w-100px pointer'
             style={{
-              background: `url(${require('@images/logo.png')}) center / cover no-repeat`,
+              background: `url(${require('@images/logo.png')}) center / contain no-repeat`,
             }}
           />
         </Link>
