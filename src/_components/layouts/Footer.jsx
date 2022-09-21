@@ -4,12 +4,12 @@ import Socmed from '@components/button/socmed'
 
 const Index = () => {
   const data = [
-    'Career',
-    'Subsidiaries & Affiliate',
-    'How to Order',
-    'Contact Us',
-    'Online Service',
-    'Terms of Use',
+    { name: 'Career', path: '/news/carreer' },
+    { name: 'About Us', path: '/about' },
+    { name: 'Certification', path: '/about/certification' },
+    { name: 'Contact Us', path: '/contact' },
+    { name: 'Services', path: '/services' },
+    { name: 'Terms of Use', path: '/terms-of-use' },
   ]
   return (
     <div className='py-2 bg-25'>
@@ -26,13 +26,13 @@ const Index = () => {
         <div className='row'>
           <div className='col-12 col-md-8 offset-md-2 mb-5'>
             <div className='row'>
-              {data?.map((m, index) => (
+              {data?.map(({ name, path }, index) => (
                 <div key={index} className='col-sm-6 col-lg-4 text-center mb-2'>
                   <Link
-                    to='/'
+                    to={path}
                     className='fs-7 text-link text-white text-hover-underline underline-offset-5'
                   >
-                    {m}
+                    {name}
                   </Link>
                 </div>
               ))}
@@ -41,7 +41,7 @@ const Index = () => {
         </div>
         <div className='row'>
           <div className='col-12 text-center my-3 opacity-50'>
-            <p className='text-white ls-1 mb-1'>© Copyright 2021 Krakatau International Port</p>
+            <p className='text-white ls-1 mb-1'>© Copyright 2021 Krakatau Global Solutions</p>
             <p className='text-white ls-1'>All Rights Reserved</p>
           </div>
         </div>

@@ -46,5 +46,10 @@ const router = [
     index: true,
     element: createElement(lazy(() => import('@pages/contact'))),
   },
+  {
+    path: 'terms-of-use',
+    index: true,
+    element: createElement(lazy(() => import('@pages/other/termOfUse'))),
+  },
 ]
 export default router
