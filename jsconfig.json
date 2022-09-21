@@ -3,8 +3,7 @@
         "baseUrl": "src",
         "sourceMap": false
     },
-    "exclude": [
-        "node_modules/*",
-        "_components/pintura/pintura.js"
+    "include": [
+        "src"
     ]
 }

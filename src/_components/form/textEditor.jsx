@@ -1,21 +1,11 @@
-import dynamic from 'next/dynamic'
 import { forwardRef, memo } from 'react'
+import 'froala-editor/css/froala_style.min.css'
+import '@styles/froala.scss'
+import 'froala-editor/js/plugins.pkgd.min.js'
 
-const FroalaEditor = dynamic(
-  () =>
-    import('froala-editor/js/plugins.pkgd.min.js').then(() => {
-      // import('froala-editor/js/third_party/image_tui.min.js')
-      import('froala-editor/js/languages/id.js')
-      if (typeof window !== 'undefined') {
-        return require('react-froala-wysiwyg')
-      } else {
-        return null
-      }
-    }),
-  {
-    ssr: false,
-  }
-)
+import FroalaEditor from 'react-froala-wysiwyg'
+// import 'froala-editor/js/third_party/image_tui.min.js'
+// import 'froala-editor/js/languages/id.js'
 
 const removeWatermark = () => {
   const el = document.querySelector('a[href*="froala"]')

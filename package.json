@@ -11,6 +11,7 @@
     "animate.css": "^4.1.1",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.1",
+    "craco": "^0.0.3",
     "formik": "^2.2.9",
     "js-cookie": "^3.0.1",
     "moment": "^2.29.4",
@@ -49,6 +50,10 @@
       "react-app/jest"
     ]
   },
+  "browser": {
+    "crypto": false,
+    "stream": false
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -71,5 +76,17 @@
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "sass": "^1.54.9"
-  }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix --no-ignore"
+    ]
+  },
+  "eslintIgnore": [
+    "dist/*",
+    "build/*",
+    "node_modules/*",
+    "src/_assets/*"
+  ]
 }

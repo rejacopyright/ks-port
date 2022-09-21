@@ -1,11 +1,9 @@
 import { useEffect, useMemo, useState, useRef, Fragment } from 'react'
-import emot from './emoji'
+import * as pin from '@assets/plugins/pintura'
+import '@assets/plugins/pintura/style.scss'
+import emot from '@components/pintura/emoji'
 
 async function Editor(props) {
-  let pin = undefined
-  if (typeof window !== 'undefined') {
-    pin = require('./pintura')
-  }
   !props.modal && props.target && (props.target.innerHTML = '')
   const cropPresets = () => [
     [
@@ -31,7 +29,7 @@ async function Editor(props) {
     ['Hand', emot.hand],
   ]
   const locale = {
-    ...pin?.getEditorDefaults().locale,
+    ...pin.getEditorDefaults().locale,
     cropLabelSelectPreset: 'Presets',
   }
   const config = {
@@ -44,7 +42,7 @@ async function Editor(props) {
     cropEnableButtonToggleCropLimit: false,
     cropEnableZoomTowardsWheelPosition: false,
     cropEnableZoomInput: true,
-    imageCropAspectRatio: props.ratio || 1,
+    imageCropAspectRatio: 1,
     locale: locale,
     imageCropLimitToImage: true,
     previewUpscale: true,
@@ -61,8 +59,8 @@ async function Editor(props) {
       'redact',
     ],
     stickers: stickerPresets(),
-    imageWriter: pin?.createDefaultImageWriter({
-      quality: 0.5,
+    imageWriter: pin.createDefaultImageWriter({
+      // quality: 0.1,
       mimeType: 'image/jpeg',
       // renameFile: file => 'oke.jpg',
       targetSize: {
@@ -110,8 +108,8 @@ async function Editor(props) {
     },
   }
   const editor = (await props.modal)
-    ? pin?.openDefaultEditor(config)
-    : pin?.appendDefaultEditor(props.target, config)
+    ? pin.openDefaultEditor(config)
+    : pin.appendDefaultEditor(props.target, config)
   return editor
 }
 function download(props) {
@@ -140,7 +138,6 @@ function Index(props) {
     modal: props.modal,
     browse: false,
     event: props.event,
-    ratio: props.ratio || 1,
     onFinish: (r) => {
       props.onFinish && props.onFinish({ ...r, blob: URL.createObjectURL(r.dest) })
       cropSet(r.imageState.crop)
@@ -172,7 +169,6 @@ function Index(props) {
       e.input = input
       e.modal = props.modal
       e.browse = props.browse && uploadBtn
-      e.ratio = props.ratio || 1
       return e
     })
   }, [props])
@@ -221,17 +217,18 @@ function Index(props) {
       </div>
       <div ref={picedit} style={{ height: height + 'px' }} />
       <input type='file' ref={input} className='d-none' onChange={inputChange} />
-      {props?.preview && blob?.name && (
-        <div className='position-fixed start-0 bottom-0 z-99 p-md-3 col-md-4 desktop' id='preview'>
+      {props.preview && blob.name && (
+        <div className='fixed l-0 b-0 z-99 p-md-3 col-md-4 desktop' id='preview'>
           <div
-            className='oh shadow-bold radius-10 bg-white position-relative flex-center w-100'
-            style={{
-              height: crop?.height > crop?.width ? height / 1.5 + 'px' : 'auto',
-              background: `url(${
-                blob?.name && URL.createObjectURL(blob)
-              }) center / cover no-repeat`,
-            }}
+            className='oh shadow-bold radius-10 bg-white relative center'
+            style={{ height: crop.height > crop.width ? height / 1.5 + 'px' : 'auto' }}
           >
+            <img
+              className={crop.height > crop.width ? 'h-100' : 'w-100'}
+              src={blob.name && URL.createObjectURL(blob)}
+              alt=''
+              id='preview-img'
+            />
             <div className='absolute l-0 t-0 m-2'>
               <div
                 className='btn btn-sm bg-dark pr-3 radius-50 shadow-bold pointer text-white'

@@ -207,9 +207,7 @@ const Index = () => {
                   <div className='col-12 mb-3'>
                     <div
                       className='position-relative same-125px mx-auto flex-center border border-primary border-dashed radius-10 overflow-hidden'
-                      style={
-                        !!image ? { background: `url(${image}) center / cover no-repeat` } : {}
-                      }
+                      style={image ? { background: `url(${image}) center / cover no-repeat` } : {}}
                     >
                       <div className='absolute-center'>
                         <div

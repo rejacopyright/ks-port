@@ -61,35 +61,35 @@ body {
   color: $secondary;
   &:hover {
     color: #fff !important;
-    background-color: $secondary;
+    background-color: $secondary !important;
   }
 }
 .btn-light-success {
   color: $success;
   &:hover {
     color: #fff !important;
-    background-color: $success;
+    background-color: $success !important;
   }
 }
 .btn-light-info {
   color: $info;
   &:hover {
     color: #fff !important;
-    background-color: $info;
+    background-color: $info !important;
   }
 }
 .btn-light-warning {
   color: $warning;
   &:hover {
     color: #fff !important;
-    background-color: $warning;
+    background-color: $warning !important;
   }
 }
 .btn-light-danger {
   color: $danger;
   &:hover {
     color: #fff !important;
-    background-color: $danger;
+    background-color: $danger !important;
   }
 }
 

@@ -1,14 +1,11 @@
 {
-  "env": {
-    "browser": true,
-    "node": true
-  },
   "extends": [
-    "eslint:recommended",
     "react-app",
+    "eslint:recommended",
     "prettier"
   ],
   "plugins": [
+    "react",
     "unused-imports",
     "prettier"
   ],
