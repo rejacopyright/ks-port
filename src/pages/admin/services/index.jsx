@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { StickyAdmin } from '@helpers/hooks'
 import { InputIcon } from '@components/form'
@@ -11,7 +11,7 @@ import { Modal } from '@components/modal'
 import toast from '@components/alert/toast'
 
 const Index = () => {
-  const { query: { type = 'general' } = {} } = useNavigate()
+  const { type = 'general' } = useParams()
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const [reload, setReload] = useState(false)

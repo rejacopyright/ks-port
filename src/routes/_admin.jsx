@@ -66,6 +66,27 @@ const router = [
           },
         ],
       },
+      // SERVICES
+      {
+        path: 'services/*',
+        children: [
+          {
+            path: ':type',
+            index: true,
+            element: createElement(lazy(() => import('@pages/admin/services'))),
+          },
+          {
+            path: ':type/add',
+            index: true,
+            element: createElement(lazy(() => import('@pages/admin/services/addEdit'))),
+          },
+          {
+            path: ':type/edit/:id',
+            index: true,
+            element: createElement(lazy(() => import('@pages/admin/services/addEdit'))),
+          },
+        ],
+      },
     ],
   },
 ]

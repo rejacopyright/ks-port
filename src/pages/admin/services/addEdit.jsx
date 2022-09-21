@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Editor from '@components/pintura'
 import { TextEditor } from '@components/form'
 import { Button } from '@components/button'
@@ -15,7 +15,8 @@ const validationSchema = Yup.object().shape({
 })
 
 const Index = () => {
-  const router = useNavigate()
+  const navigate = useNavigate()
+  const { type, id } = useParams()
   const inputFileRef = useRef()
   const [src, srcSet] = useState(false)
   const [image, setImage] = useState(undefined)
@@ -26,8 +27,6 @@ const Index = () => {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    const query = router?.query?.addEdit
-    const id = query?.[1] || undefined
     if (id) {
       setLoading(true)
       detailServices(id)
@@ -43,7 +42,7 @@ const Index = () => {
           setLoading(false)
         })
     }
-  }, [router?.query?.addEdit])
+  }, [id])
 
   const onChangeImage = () => {
     const files = inputFileRef?.current?.files
@@ -73,7 +72,7 @@ const Index = () => {
   const handleSubmit = (e) => {
     setSaveLoading(true)
     const params = Object.assign({}, e)
-    params.type = router?.query?.type
+    params.type = type
     if (image !== detail?.file) {
       params.file = image
     }
@@ -84,7 +83,7 @@ const Index = () => {
           setReload(!reload)
           setImage(undefined)
           toast({ type: 'success', message: data?.message })
-          router.back()
+          navigate(-1)
         } else {
           toast({ type: 'error', message: "something wen't wrong. Please try again." })
         }
@@ -137,9 +136,9 @@ const Index = () => {
                       !image ? 'bg-light-primary border border-primary border-dashed' : ''
                     }`}
                     style={
-                      !!image
+                      image
                         ? {
-                            background: `url(${file || defaultImage}) center / cover no-repeat`,
+                            background: `url(${image}) center / cover no-repeat`,
                           }
                         : {}
                     }
@@ -218,7 +217,7 @@ const Index = () => {
                     dir='left'
                     loading={false}
                     disabled={false}
-                    onClick={router.back}
+                    onClick={() => navigate(-1)}
                   />
                   <Button
                     type='submit'
