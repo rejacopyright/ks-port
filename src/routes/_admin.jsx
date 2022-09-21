@@ -87,6 +87,22 @@ const router = [
           },
         ],
       },
+      // SETTINGS
+      {
+        path: 'settings/*',
+        children: [
+          {
+            path: 'contact',
+            index: true,
+            element: createElement(lazy(() => import('@pages/admin/settings/contact'))),
+          },
+          {
+            path: 'social',
+            index: true,
+            element: createElement(lazy(() => import('@pages/admin/settings/social'))),
+          },
+        ],
+      },
     ],
   },
 ]

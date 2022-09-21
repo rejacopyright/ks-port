@@ -69,7 +69,9 @@ const Index = () => {
                       <div
                         className='position-relative same-15px'
                         style={{
-                          background: `url(${require('@images/brands/gmail.svg')}) center / cover no-repeat`,
+                          background: `url(${
+                            require('@images/brands/gmail.svg').default
+                          }) center / cover no-repeat`,
                         }}
                       />
                     </div>
@@ -89,7 +91,9 @@ const Index = () => {
                       <div
                         className='position-relative same-15px'
                         style={{
-                          background: `url(${require('@images/brands/facebook.svg')}) center / cover no-repeat`,
+                          background: `url(${
+                            require('@images/brands/facebook.svg').default
+                          }) center / cover no-repeat`,
                         }}
                       />
                     </div>
@@ -109,7 +113,9 @@ const Index = () => {
                       <div
                         className='position-relative same-15px'
                         style={{
-                          background: `url(${require('@images/brands/twitter.svg')}) center / cover no-repeat`,
+                          background: `url(${
+                            require('@images/brands/twitter.svg').default
+                          }) center / cover no-repeat`,
                         }}
                       />
                     </div>
@@ -129,7 +135,9 @@ const Index = () => {
                       <div
                         className='position-relative same-15px'
                         style={{
-                          background: `url(${require('@images/brands/instagram.svg')}) center / cover no-repeat`,
+                          background: `url(${
+                            require('@images/brands/instagram.svg').default
+                          }) center / cover no-repeat`,
                         }}
                       />
                     </div>
@@ -149,7 +157,9 @@ const Index = () => {
                       <div
                         className='position-relative same-15px'
                         style={{
-                          background: `url(${require('@images/brands/youtube.svg')}) center / cover no-repeat`,
+                          background: `url(${
+                            require('@images/brands/youtube.svg').default
+                          }) center / cover no-repeat`,
                         }}
                       />
                     </div>
@@ -169,7 +179,9 @@ const Index = () => {
                       <div
                         className='position-relative same-15px'
                         style={{
-                          background: `url(${require('@images/brands/linkedin.svg')}) center / cover no-repeat`,
+                          background: `url(${
+                            require('@images/brands/linkedin.svg').default
+                          }) center / cover no-repeat`,
                         }}
                       />
                     </div>
