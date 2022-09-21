@@ -127,6 +127,7 @@ const Index = () => {
                     <div className='radius-10 overflow-hidden shadow'>
                       <div className='row'>
                         <iframe
+                          title='company'
                           className='w-100'
                           width='600'
                           height='175'
