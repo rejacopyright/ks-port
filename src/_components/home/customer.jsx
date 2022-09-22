@@ -31,8 +31,9 @@ const Index = () => {
           >
             <div className='h4 m-0 text-primary mb-2'>OUR CUSTOMER</div>
             <div className='fs-7 m-0 text-dark mb-3'>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti, consectetur
-              voluptatum quis nam quas ipsum exercitationem iste eligendi quae quisquam!
+              We empower our customers to transform their industries.
+              <br />
+              We are trusted by the customers from various business industries.
             </div>
           </div>
         </div>

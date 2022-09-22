@@ -38,7 +38,8 @@ const Index = () => {
     <div className='container-fluid vh-90 flex-center w-100'>
       <Formik
         enableReinitialize
-        validateOnMount
+        // validateOnMount
+        validateOnChange={false}
         validationSchema={validationSchema}
         initialValues={{ username: '', password: '' }}
         onSubmit={handleSubmit}

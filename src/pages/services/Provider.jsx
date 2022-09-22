@@ -54,7 +54,7 @@ const Index = ({ children }) => {
       <Banner height='160' content={Title} />
       <div className='container py-5' style={{ minHeight: '60vh' }}>
         <div className='row'>
-          <div className='col-auto col-lg-3 mb-4 mb-md-0'>
+          <div className='col-auto col-md-3 mb-4 mb-md-0'>
             <Sticky>
               <div className='d-flex d-md-block pt-2'>
                 <div className='row'>
@@ -72,7 +72,7 @@ const Index = ({ children }) => {
               </div>
             </Sticky>
           </div>
-          <div className='col-md col-lg-9'>{children}</div>
+          <div className='col-md col-md-9'>{children}</div>
         </div>
       </div>
     </>

@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import banner1 from '@images/banner5.jpg'
+import banner from '@images/banner.jpg'
 import Slider from 'react-slick'
 import { useEffect } from 'react'
 import { getHomeBanner } from '@api/home'
+import ProgressBar from 'react-bootstrap/ProgressBar'
 
 const ActionBtn = () => {
   return (
@@ -30,20 +31,37 @@ const ActionBtn = () => {
 }
 const Index = () => {
   const [activeImg, setActiveImg] = useState(0)
+  const [loading, setLoading] = useState(false)
+  const [percent, setPercent] = useState(10)
   const [data, setData] = useState([
     {
       title: 'PT KRAKATAU SAMUDERA SOLUTION',
       description:
         'Krakatau Samudera Solution is the largest international hub and bulk port in Indonesia, with an installed capacity of 25 million tons per year, integrated with logistics facilities',
-      file: banner1,
+      // file: banner,
     },
   ])
   useEffect(() => {
-    getHomeBanner().then(({ data: { data } = {} }) => {
-      if (data?.length > 0) {
-        setData(data)
-      }
-    })
+    setLoading(true)
+    const time = setInterval(() => {
+      setPercent((prev) => prev + 1)
+    }, 300)
+    getHomeBanner()
+      .then(({ data: { data } = {} }) => {
+        if (data?.length > 0) {
+          setData(data)
+        }
+      })
+      .finally(() => {
+        setPercent(100)
+        clearInterval(time)
+        setTimeout(() => {
+          setLoading(false)
+        }, 200)
+      })
+    return () => {
+      clearInterval(time)
+    }
   }, [])
   const settings = {
     autoplay: true,
@@ -64,6 +82,27 @@ const Index = () => {
   const styles = {
     background:
       'linear-gradient(180deg, rgba(0,51,105,0.75) 0%, rgba(0,51,105,0.5) 100%, rgba(255,255,255,0) 100%)',
+  }
+  if (loading) {
+    return (
+      <div
+        className='vh-100 position-relative flex-center'
+        style={{ background: `url(${banner}) center / cover no-repeat` }}
+      >
+        <div
+          className='flex-center position-absolute w-100 h-100'
+          style={{
+            zIndex: 1,
+            background: 'rgba(0,0,0,0.5)',
+          }}
+        >
+          <div className='w-50'>
+            <ProgressBar className='h-5px' animated now={percent} label='' />
+            <div className='text-center text-white mt-1 fs-8'>Loading in progress...</div>
+          </div>
+        </div>
+      </div>
+    )
   }
   return (
     <Slider {...settings}>

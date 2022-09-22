@@ -57,10 +57,10 @@ const Index = () => {
             <Link to='/'>
               <div className={`d-flex d-${expand}-nonexxx pointer`}>
                 {sticky ? (
-                  <img className='h-25px w-auto' alt='img' src={require(`@images/logo.png`)} />
+                  <img className='h-40px w-auto' alt='img' src={require(`@images/logo.png`)} />
                 ) : (
                   <img
-                    className='h-25px w-auto'
+                    className='h-40px w-auto'
                     alt='img'
                     src={require(`@images/logo-white.png`)}
                   />

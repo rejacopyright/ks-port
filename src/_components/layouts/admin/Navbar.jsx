@@ -23,7 +23,7 @@ const Index = ({ thisHeight = () => '' }) => {
       >
         <Link to='/admin'>
           <div
-            className='position-relative h-50px w-100px pointer'
+            className='position-relative h-50px w-135px pointer'
             style={{
               background: `url(${require('@images/logo.png')}) center / contain no-repeat`,
             }}
