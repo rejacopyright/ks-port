@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import LayoutAdmin from './LayoutAdmin'
@@ -13,6 +14,11 @@ const Layout = () => {
   const isLoginTrue = (isLoginPath || isAdminPath) && !user?.token
   const mustRedirectFromLogin = isLoginPath && user?.token
   mustRedirectFromLogin && router.push('/admin')
+  useEffect(() => {
+    console.clear()
+    const el = document.querySelector('a[href*="https://pqina.nl"]')
+    el && el.remove()
+  }, [router?.pathname])
   return <>{isLoginTrue ? <Login /> : isAdminPath ? <LayoutAdmin /> : <LayoutPublic />}</>
 }
 
