@@ -22,6 +22,7 @@ const Modal = ({
   onHide,
   backdrop = true, // boolean or string 'static'
   theme = 'primary',
+  center = true,
 }) => {
   const [fullscreen, setFullscreen] = useState(false)
 
@@ -36,7 +37,7 @@ const Modal = ({
   return (
     <MODAL
       dialogClassName={`modal-${size}`}
-      centered
+      centered={center}
       fullscreen={fullscreen}
       scrollable
       backdrop={backdrop}

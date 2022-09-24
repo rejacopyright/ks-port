@@ -36,11 +36,11 @@ axios.interceptors.request.use(
     }
     return req
   },
-  (error) => error
+  (error) => Promise.reject(error)
 )
 axios.interceptors.response.use(
   (res) => res,
-  (error) => error
+  (error) => Promise.reject(error)
 )
 
 export default axios

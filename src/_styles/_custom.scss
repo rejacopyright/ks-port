@@ -760,3 +760,14 @@ $placements: (
     box-shadow: 0 0 0 0 rgb(255, 255, 255, 0), 0 0 0 30px rgb(255, 255, 255, 0);
   }
 }
+
+// TABLE
+.table-middle > :not(caption) > * > * {
+  vertical-align: middle !important;
+}
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+  background-color: $gray-100;
+}
+.table > :not(caption) > * > * {
+  box-shadow: unset !important;
+}

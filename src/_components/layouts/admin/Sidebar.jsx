@@ -26,6 +26,7 @@ const Index = () => {
     '/admin/news',
     '/admin/services',
     '/admin/settings',
+    '/admin/users',
   ]
   return (
     <div className='row'>
@@ -260,6 +261,13 @@ const Index = () => {
                 </Link>
               </div>
             </Accordion.Collapse>
+            {/* USERS */}
+            <Link to='/admin/users'>
+              <div className={`${itemClass} ${path === '/admin/users' ? 'active' : ''}`}>
+                <i className='las la-user fs-6 me-2' />
+                Users
+              </div>
+            </Link>
           </Accordion>
         </div>
       </div>

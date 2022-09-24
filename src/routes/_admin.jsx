@@ -3,6 +3,11 @@ const router = [
   {
     path: 'admin/*',
     children: [
+      // DASHBOARD
+      {
+        index: true,
+        element: createElement(lazy(() => import('@pages/admin/dashboard'))),
+      },
       // HOME
       {
         path: 'home/*',
@@ -102,6 +107,18 @@ const router = [
             element: createElement(lazy(() => import('@pages/admin/settings/social'))),
           },
         ],
+      },
+      // USERS
+      {
+        path: 'users',
+        index: true,
+        element: createElement(lazy(() => import('@pages/admin/users'))),
+      },
+      // 404
+      {
+        path: '*',
+        index: true,
+        element: createElement(lazy(() => import('@pages/pageAdminNotFound'))),
       },
     ],
   },

@@ -1,11 +1,19 @@
 import { useLayoutEffect, useRef, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { logout } from '@redux'
+import { setUser, logout } from '@redux'
 import Dropdown from 'react-bootstrap/Dropdown'
+import ModalAddEdit from '@pages/admin/users/AddEdit'
+import { detailUser } from '@api/users'
 // IMAGES
-import avatar from '@images/user.png'
+import defaultAvatar from '@images/avatar.png'
+
 const Index = ({ thisHeight = () => '' }) => {
+  const user = useSelector(({ user }) => user)
+  const { avatar, name, username, id } = user || {}
+
   const ref = useRef()
+  const [showModalAddEdit, setShowModalAddEdit] = useState(false)
   const [height, setHeight] = useState(0)
   useLayoutEffect(() => {
     if (ref?.current) {
@@ -14,6 +22,13 @@ const Index = ({ thisHeight = () => '' }) => {
       thisHeight(currentHeight)
     }
   }, [thisHeight])
+  const onSubmit = () => {
+    detailUser(id).then(({ data }) => {
+      if (data?.id) {
+        setUser({ ...user, ...data })
+      }
+    })
+  }
   return (
     <>
       <div
@@ -36,24 +51,38 @@ const Index = ({ thisHeight = () => '' }) => {
               className='flex-center nav-link shadow-none border-0 radius-0 py-2'
             >
               <div
-                className='position-relative same-35px radius-50 overflow-hidden'
-                style={{ background: `url(${avatar}) center / cover no-repeat` }}
+                className='position-relative same-35px radius-50 overflow-hidden border border-1'
+                style={{ background: `url(${avatar || defaultAvatar}) center / cover no-repeat` }}
               />
             </Dropdown.Toggle>
             <Dropdown.Menu className='border-0 fs-8 shadow radius-5 px-2' style={{ minWidth: 100 }}>
+              <div className='m-2'>
+                <div
+                  className='position-relative same-100px mx-auto radius-50 overflow-hidden border border-1'
+                  style={{ background: `url(${avatar || defaultAvatar}) center / cover no-repeat` }}
+                />
+              </div>
+              <div className='text-center'>
+                <div className='text-primary fs-9'>{username}</div>
+                <div className='fw-400 fs-8'>{name}</div>
+              </div>
+              <Dropdown.Divider />
               <Link to='/'>
-                <div className='dropdown-item flex-start pointer'>
+                <div className='dropdown-item px-1 flex-start pointer'>
+                  <i className='las la-home me-2' />
                   <span>Homepage</span>
                 </div>
               </Link>
-              <div className='dropdown-item flex-start pointer'>
-                <span>View Profile</span>
-              </div>
-              <div className='dropdown-item flex-start pointer'>
+              <div
+                className='dropdown-item px-1 flex-start pointer'
+                onClick={() => setShowModalAddEdit(true)}
+              >
+                <i className='las la-pencil-alt me-2' />
                 <span>Edit Profile</span>
               </div>
               <Dropdown.Divider />
-              <div className='dropdown-item flex-start pointer' onClick={logout}>
+              <div className='dropdown-item px-1 flex-start pointer' onClick={logout}>
+                <i className='las la-lock me-2' />
                 <span>Logout</span>
               </div>
             </Dropdown.Menu>
@@ -61,6 +90,13 @@ const Index = ({ thisHeight = () => '' }) => {
         </div>
       </div>
       <div style={{ marginBottom: height }} />
+      {/* MODAL ADD EDIT */}
+      <ModalAddEdit
+        showModal={showModalAddEdit}
+        setShowModal={setShowModalAddEdit}
+        detail={user}
+        setDetail={onSubmit}
+      />
     </>
   )
 }

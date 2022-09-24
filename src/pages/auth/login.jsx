@@ -39,7 +39,7 @@ const Index = () => {
       <Formik
         enableReinitialize
         // validateOnMount
-        validateOnChange={false}
+        validateOnChange
         validationSchema={validationSchema}
         initialValues={{ username: '', password: '' }}
         onSubmit={handleSubmit}
