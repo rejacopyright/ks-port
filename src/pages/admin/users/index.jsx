@@ -109,7 +109,7 @@ const Index = () => {
                     <th className='fw-600'>Name</th>
                     <th className='fw-600'>Username</th>
                     <th className='fw-600'>Email</th>
-                    {role_id === 1 && <th className='fw-600' />}
+                    {parseInt(role_id) === 1 && <th className='fw-600' />}
                   </tr>
                 </thead>
                 <tbody>
@@ -128,7 +128,7 @@ const Index = () => {
                       <td className=''>{m?.name}</td>
                       <td className=''>{m?.username}</td>
                       <td className=''>{m?.email}</td>
-                      {role_id === 1 && (
+                      {parseInt(role_id) === 1 && (
                         <td className='text-end'>
                           <div className='flex-end'>
                             <Tooltip title='Edit' placement='top' className='fs-9 opacity-75'>
