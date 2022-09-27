@@ -6,3 +6,10 @@ export const me = () => {
     url: 'admin/me',
   })
 }
+
+export const getAnalytics = () => {
+  return axios({
+    method: 'get',
+    url: 'admin/dashboard/analytics',
+  })
+}

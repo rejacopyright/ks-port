@@ -81,7 +81,7 @@ const Index = () => {
   }
   const styles = {
     background:
-      'linear-gradient(180deg, rgba(0,51,105,0.75) 0%, rgba(0,51,105,0.5) 100%, rgba(255,255,255,0) 100%)',
+      'linear-gradient(180deg, rgba(0,51,105,0.5) 0%, rgba(0,51,105,0.25) 100%, rgba(255,255,255,0) 100%)',
   }
   if (loading) {
     return (

@@ -41,7 +41,7 @@ const Index = () => {
         </div>
         <div className='row'>
           <div className='col-12 text-center my-3 opacity-50'>
-            <p className='text-white ls-1 mb-1'>© Copyright 2021 Krakatau Global Solutions</p>
+            <p className='text-white ls-1 mb-1'>© Copyright 2022 Krakatau Samudera Solusi</p>
             <p className='text-white ls-1'>All Rights Reserved</p>
           </div>
         </div>

@@ -1,24 +1,28 @@
 import { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import LayoutAdmin from './LayoutAdmin'
 import LayoutPublic from './LayoutPublic'
 import Login from '@pages/auth/login'
+import ReactGA from 'react-ga'
+ReactGA.initialize('G-CM7LV21SRK')
 // import { Outlet } from 'react-router-dom'
 
 const Layout = () => {
   const user = useSelector(({ user }) => user)
-  const router = useLocation()
-  const isAdminPath = router?.pathname?.startsWith('/admin')
-  const isLoginPath = router?.pathname?.startsWith('/login')
+  const location = useLocation()
+  const navigate = useNavigate()
+  const isAdminPath = location?.pathname?.startsWith('/admin')
+  const isLoginPath = location?.pathname?.startsWith('/login')
   const isLoginTrue = (isLoginPath || isAdminPath) && !user?.token
   const mustRedirectFromLogin = isLoginPath && user?.token
-  mustRedirectFromLogin && router.push('/admin')
+  mustRedirectFromLogin && navigate('/admin')
   useEffect(() => {
-    console.clear()
+    ReactGA.pageview(location?.pathname)
+    // console.clear()
     const el = document.querySelector('a[href*="https://pqina.nl"]')
     el && el.remove()
-  }, [router?.pathname])
+  }, [location?.pathname])
   return <>{isLoginTrue ? <Login /> : isAdminPath ? <LayoutAdmin /> : <LayoutPublic />}</>
 }
 
