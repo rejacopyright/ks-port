@@ -407,22 +407,22 @@ $placements: (
 }
 
 .shadow-xs-bold {
-  @include shadow(0 0.05rem 0.05rem rgba(75, 75, 90, 0.25));
+  @include shadow(0 0.05rem 0.05rem rgba(75, 75, 90, 0.15));
 }
 .shadow-sm-bold {
-  @include shadow(0 0.25rem 0.25rem rgba(75, 75, 90, 0.25));
+  @include shadow(0 0.25rem 0.25rem rgba(75, 75, 90, 0.15));
 }
 .shadow-bold {
-  @include shadow(0 0.25rem 2rem rgba(0, 0, 0, 0.25));
+  @include shadow(0 0.25rem 2rem rgba(0, 0, 0, 0.15));
 }
 .shadow-md-bold {
-  @include shadow(0 1rem 2rem rgba(0, 0, 0, 0.25));
+  @include shadow(0 1rem 2rem rgba(0, 0, 0, 0.15));
 }
 .shadow-lg-bold {
-  @include shadow(0 1rem 5rem rgba(0, 0, 0, 0.25));
+  @include shadow(0 1rem 5rem rgba(0, 0, 0, 0.15));
 }
 .shadow-xl-bold {
-  @include shadow(0 1rem 10rem rgba(0, 0, 0, 0.25));
+  @include shadow(0 1rem 10rem rgba(0, 0, 0, 0.15));
 }
 
 .shadow-primary {
