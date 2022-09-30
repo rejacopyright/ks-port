@@ -1,6 +1,27 @@
 import { lazy, createElement } from 'react'
 const router = [
   { index: true, element: createElement(lazy(() => import('@pages/home'))) },
+  { path: 'login', index: true, element: createElement(lazy(() => import('@pages/auth/login'))) },
+  {
+    path: 'forgot-password',
+    index: true,
+    element: createElement(lazy(() => import('@pages/auth/forgotPassword'))),
+  },
+  {
+    path: 'check-password',
+    index: true,
+    element: createElement(lazy(() => import('@pages/auth/checkPassword'))),
+  },
+  {
+    path: 'reset-password',
+    index: true,
+    element: createElement(lazy(() => import('@pages/auth/resetPassword'))),
+  },
+  {
+    path: 'success-password',
+    index: true,
+    element: createElement(lazy(() => import('@pages/auth/successPassword'))),
+  },
   {
     path: 'about/*',
     element: createElement(lazy(() => import('@pages/about'))),

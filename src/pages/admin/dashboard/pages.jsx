@@ -14,8 +14,10 @@ const Index = ({ data = [] }) => {
         <tbody>
           {data?.map(({ url, pageViews }, index) => (
             <tr key={index}>
-              <td className='text-dark fs-9'>{url}</td>
-              <td className='text-dark fs-9 text-center'>{pageViews}</td>
+              <td className='text-dark fs-9'>
+                <div className='word-break text-truncate-1'>{url}</div>
+              </td>
+              <td className='text-dark w-50px fs-9 text-center'>{pageViews}</td>
             </tr>
           ))}
         </tbody>

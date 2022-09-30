@@ -35,7 +35,7 @@ const Index = () => {
     })
   }
   return (
-    <div className='container-fluid vh-90 flex-center w-100'>
+    <div className='container-fluid vh-100 flex-center w-100 bg-fa'>
       <Formik
         enableReinitialize
         // validateOnMount
@@ -45,18 +45,29 @@ const Index = () => {
         onSubmit={handleSubmit}
       >
         {({ errors, isValid }) => (
-          <Form>
+          <Form className='w-100'>
             <div className='row'>
-              <div className='col-12 col-md-6 offset-md-3'>
-                <div className='bg-fas p-3 rounded'>
-                  <div className='row'>
-                    <div className='col-12 text-center mb-3'>
-                      <div className='border-bottom border-f2 pb-2'>
-                        <div className='fs-3 fw-600 text-primary'>LOGIN</div>
-                        <div className='fs-8 fw-600s'>Lorem ipsum dolor sit amet.</div>
+              <div className='col-12 col-md-8 mx-auto'>
+                <div className='d-flex radius-5 overflow-hidden'>
+                  <div
+                    className='d-none d-md-block col-md-6'
+                    style={{
+                      background: `#fff url(${require('@images/stock/bg-1.jpg')}) center / cover no-repeat`,
+                    }}
+                  >
+                    <div className='flex-center text-white vh-70'>
+                      <div className='text-center'>
+                        <div className='fw-600 fs-5'>KRAKATAU SAMUDERA SOLUSI</div>
+                        <div className='fw-300 fs-7'>Login for admin to manage web contents.</div>
                       </div>
                     </div>
-                    <div className='col-12 mb-3'>
+                  </div>
+                  <div className='col-12 col-sm-8 col-md-6 mx-auto bg-white p-4 position-relative'>
+                    <div className='fs-3 fw-600 text-primary text-center mt-5'>LOGIN</div>
+                    <div className='fs-8 text-center mb-5'>
+                      Login for admin to manage web contents.
+                    </div>
+                    <div className='mb-3'>
                       <label className='d-block mb-1'>Username</label>
                       <Field
                         type='text'
@@ -69,7 +80,7 @@ const Index = () => {
                         <div className='fs-9 mt-1 text-danger'>{errors?.username}</div>
                       )}
                     </div>
-                    <div className='col-12 mb-3'>
+                    <div className='mb-3'>
                       <label className='d-block mb-1'>Password</label>
                       <Field
                         type='password'
@@ -82,18 +93,20 @@ const Index = () => {
                         <div className='fs-9 mt-1 text-danger'>{errors?.password}</div>
                       )}
                     </div>
-                    <div className='col-12 mt-1 text-end'>
-                      <div className='border-top border-f2 pt-3'>
+                    <div className='row pt-3'>
+                      <div className='col mb-3 text-nowrap'>
                         <Link to='/'>
-                          <div className='btn btn-sm border-0 px-3'>
+                          <div className='btn btn-sm border-0 px-3 py-2'>
                             <i className='las la-arrow-left me-2 text-cc' />
                             <span className='text-cc'>Back To Homepage</span>
                           </div>
                         </Link>
+                      </div>
+                      <div className='col mb-3 text-nowrap'>
                         <button
                           type='submit'
                           disabled={!isValid}
-                          className='btn btn-sm btn-primary text-white px-3'
+                          className='btn btn-sm w-100 btn-primary text-white px-3 py-2'
                         >
                           {loadingBtn ? (
                             <span className='indicator-progress d-block'>
@@ -107,6 +120,20 @@ const Index = () => {
                             </>
                           )}
                         </button>
+                      </div>
+                    </div>
+                    <div className='absolute-center-h w-100 p-3 bottom-0'>
+                      <div className='text-center fs-8'>
+                        <div className='mb-1'>Doesn't remember your password ?</div>
+                        <div className='mb-2'>
+                          <span className='me-2'>Click</span>
+                          <Link
+                            to='/forgot-password'
+                            className='fw-500 text-primary fs-7 pointer text-hover-underline underline-offset-3'
+                          >
+                            "Forgot Password"
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </div>
