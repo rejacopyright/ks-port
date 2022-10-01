@@ -1,23 +1,31 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { getMedia } from '@api/news'
 import defaultImage from '@images/placeholder-image.jpg'
 import { htmlToString, strToSlug } from '@helpers'
 import { CardLoader } from '@components/loader'
+import Pagination from '@components/tools/pagination'
+import qs from 'qs'
 
 const Index = () => {
+  const { pathname, search } = useLocation()
+  const navigate = useNavigate()
+  const query = qs.parse(search, { ignoreQueryPrefix: true })
+  const { page = 1 } = query
   const [data, setData] = useState([])
+  const [meta, setMeta] = useState({ total: 0, limit: 0 })
   const [loading, setLoading] = useState(false)
   useEffect(() => {
     setLoading(true)
-    getMedia()
-      .then(({ data: { data } = {} }) => {
+    getMedia({ page, limit: 6 })
+      .then(({ data: { data, total, per_page: limit } = {} }) => {
         setData(data || [])
+        setMeta({ total, limit })
       })
       .finally(() => {
         setLoading(false)
       })
-  }, [])
+  }, [page])
   return (
     <>
       {loading ? (
@@ -51,6 +59,21 @@ const Index = () => {
           ))}
         </div>
       )}
+      <div className='row'>
+        <div className='col-12'>
+          <Pagination
+            className='mt-3 mb-5'
+            limit={meta?.limit}
+            showLimit={false}
+            total={meta?.total}
+            page={page}
+            onChangePage={(e) => {
+              navigate({ pathname, search: `?page=${e}` })
+              setMeta((prev) => ({ ...prev, page: e }))
+            }}
+          />
+        </div>
+      </div>
     </>
   )
 }

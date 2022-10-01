@@ -5,7 +5,9 @@ import LayoutAdmin from './LayoutAdmin'
 import LayoutPublic from './LayoutPublic'
 import Login from '@pages/auth/login'
 import ReactGA from 'react-ga'
-ReactGA.initialize('G-CM7LV21SRK')
+ReactGA.initialize('UA-243099276-1', {
+  debug: window?.process?.env?.NODE_ENV === 'development',
+})
 // import { Outlet } from 'react-router-dom'
 
 const Layout = () => {

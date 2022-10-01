@@ -4,7 +4,8 @@ import '@assets/plugins/pintura/style.scss'
 import emot from '@components/pintura/emoji'
 
 async function Editor(props) {
-  !props.modal && props.target && (props.target.innerHTML = '')
+  !props?.modal && props?.target && (props.target.innerHTML = '')
+  console.log(props?.ratio)
   const cropPresets = () => [
     [
       'Crop',
@@ -33,7 +34,7 @@ async function Editor(props) {
     cropLabelSelectPreset: 'Presets',
   }
   const config = {
-    src: props.file,
+    src: props?.file,
     layoutDirectionPreference: 'vertical',
     cropSelectPresetOptions: cropPresets(),
     cropImageSelectionCornerStyle: 'hook',
@@ -42,7 +43,7 @@ async function Editor(props) {
     cropEnableButtonToggleCropLimit: false,
     cropEnableZoomTowardsWheelPosition: false,
     cropEnableZoomInput: true,
-    imageCropAspectRatio: 1,
+    imageCropAspectRatio: props?.ratio || 1,
     locale: locale,
     imageCropLimitToImage: true,
     previewUpscale: true,
@@ -70,7 +71,7 @@ async function Editor(props) {
       },
     }),
     handleEvent: (e, res) => {
-      props.event && props.event({ ...res, event: e })
+      props?.event && props?.event({ ...res, event: e })
       if (
         e === 'loadstart' ||
         e === 'load' ||
@@ -87,36 +88,36 @@ async function Editor(props) {
         }
       }
       if (e === 'loadstart') {
-        props.input && (props.input.current.value = '')
+        props?.input && (props.input.current.value = '')
         props?.browse?.current && (props.browse.current.style.display = 'none')
       }
       if (e === 'process') {
-        props.onFinish && props.onFinish(res)
+        props?.onFinish && props?.onFinish(res)
       }
       if (e === 'hide') {
-        props.onHide && props.onHide(res)
+        props?.onHide && props?.onHide(res)
       }
     },
     willRenderCanvas: (shapes, state) => {
-      props.event && props.event({ shapes, state, event: 'willRenderCanvas' })
+      props?.event && props?.event({ shapes, state, event: 'willRenderCanvas' })
       props?.browse?.current && (props.browse.current.style.display = 'block')
       return shapes
     },
     willRenderToolbar: (toolbar, env) => {
-      props.event && props.event({ toolbar, env, event: 'willRenderToolbar' })
+      props?.event && props?.event({ toolbar, env, event: 'willRenderToolbar' })
       return toolbar
     },
   }
-  const editor = (await props.modal)
+  const editor = (await props?.modal)
     ? pin.openDefaultEditor(config)
-    : pin.appendDefaultEditor(props.target, config)
+    : pin.appendDefaultEditor(props?.target, config)
   return editor
 }
 function download(props) {
   const link = document.createElement('a')
   link.style.display = 'none'
-  link.href = URL.createObjectURL(props.blob)
-  link.download = props.filename || 'download.jpg'
+  link.href = URL.createObjectURL(props?.blob)
+  link.download = props?.filename || 'download.jpg'
   document.body.appendChild(link)
   link.click()
   setTimeout(() => {
@@ -133,13 +134,14 @@ function Index(props) {
   const [crop, cropSet] = useState({})
   const [editorConfig, editorConfigSet] = useState({
     target: null,
-    file: props.src,
+    file: props?.src,
     input: null,
-    modal: props.modal,
+    modal: props?.modal,
     browse: false,
-    event: props.event,
+    event: props?.event,
+    ratio: props?.ratio || 1,
     onFinish: (r) => {
-      props.onFinish && props.onFinish({ ...r, blob: URL.createObjectURL(r.dest) })
+      props?.onFinish && props?.onFinish({ ...r, blob: URL.createObjectURL(r.dest) })
       cropSet(r.imageState.crop)
       blobSet(r.dest)
       editorConfigSet((e) => {
@@ -148,7 +150,7 @@ function Index(props) {
       })
     },
     onHide: () => {
-      props.onClose && props.onClose()
+      props?.onClose && props?.onClose()
       editorConfigSet((e) => {
         e.modal = false
         return e
@@ -162,29 +164,29 @@ function Index(props) {
   }, [])
 
   useEffect(() => {
-    !props.modal && heightSet(props.height || parseInt(window.innerHeight * 0.9))
+    !props?.modal && heightSet(props?.height || parseInt(window.innerHeight * 0.9))
     editorConfigSet((e) => {
       e.target = picedit.current
-      e.file = props.src
+      e.file = props?.src
       e.input = input
-      e.modal = props.modal
-      e.browse = props.browse && uploadBtn
+      e.modal = props?.modal
+      e.browse = props?.browse && uploadBtn
       return e
     })
   }, [props])
 
   useEffect(() => {
-    if (props.show && props.src) {
+    if (props?.show && props?.src) {
       setTimeout(() => {
         Editor(editorConfig)
       }, 100)
     }
-  }, [props.show, props.src, editorConfig])
+  }, [props?.show, props?.src, editorConfig])
 
   function inputChange(e) {
     blobSet({})
     const file = e.target.files[0]
-    props.onInputChange && props.onInputChange(file)
+    props?.onInputChange && props?.onInputChange(file)
     if (file) {
       editorConfigSet((e) => {
         e.file = file
@@ -217,7 +219,7 @@ function Index(props) {
       </div>
       <div ref={picedit} style={{ height: height + 'px' }} />
       <input type='file' ref={input} className='d-none' onChange={inputChange} />
-      {props.preview && blob.name && (
+      {props?.preview && blob.name && (
         <div className='fixed l-0 b-0 z-99 p-md-3 col-md-4 desktop' id='preview'>
           <div
             className='oh shadow-bold radius-10 bg-white relative center'
