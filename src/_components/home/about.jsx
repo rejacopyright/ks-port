@@ -49,8 +49,8 @@ const Index = () => {
   }
   return (
     <>
-      <div className='py-5 bg-white my-5'>
-        <div className='container'>
+      <div className='py-5 bg-white my-5 w-100 overflow-hidden'>
+        <div className='container w-100 overflow-hidden'>
           <div className='row flex-start' ref={aboutRef}>
             <div
               className={`col-lg-4 animate__animated ${

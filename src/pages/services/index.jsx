@@ -79,7 +79,10 @@ const Index = () => {
           />
           <div className='p-2 col-12 col-lg h-300px overflow-auto'>
             <div className='fs-6 fw-500 mb-2'>{detail?.title}</div>
-            <div className='w-100' dangerouslySetInnerHTML={{ __html: detail?.description }} />
+            <div
+              className='w-100 overflow-auto'
+              dangerouslySetInnerHTML={{ __html: detail?.description }}
+            />
           </div>
         </div>
       </Modal>

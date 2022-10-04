@@ -27,7 +27,10 @@ const Index = () => {
       ) : (
         <>
           <div className='fs-4 fw-500 mb-2'>{detail?.title || 'Company Profile'}</div>
-          <div className='w-100' dangerouslySetInnerHTML={{ __html: detail?.description }} />
+          <div
+            className='w-100 overflow-auto'
+            dangerouslySetInnerHTML={{ __html: detail?.description }}
+          />
         </>
       )}
     </Provider>

@@ -26,7 +26,10 @@ const Index = () => {
         ) : (
           <div className='text-center'>
             <div className='fs-3 fw-500 mb-3'>Contact Us</div>
-            <div className='w-100' dangerouslySetInnerHTML={{ __html: detail?.contact }} />
+            <div
+              className='w-100 overflow-auto'
+              dangerouslySetInnerHTML={{ __html: detail?.contact }}
+            />
             {detail?.whatsapp && (
               <div className='my-3'>
                 <a

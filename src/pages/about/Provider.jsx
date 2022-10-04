@@ -60,7 +60,7 @@ const Index = ({ children }) => {
   return (
     <>
       <Banner height='160' content={<Title title={title} />} />
-      <div className='container py-5' style={{ minHeight: '60vh' }}>
+      <div className='container py-5 w-100' style={{ minHeight: '60vh' }}>
         <div className='row'>
           <div className='col-auto col-md-3 mb-4 mb-md-0'>
             <Sticky>

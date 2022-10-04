@@ -3,7 +3,7 @@ const Index = () => {
   return (
     <>
       <Banner height='160' />
-      <div className='container py-5'>
+      <div className='container py-5 w-100'>
         <div className='row'>
           <div className='col-12'>
             <h1>Terms and Conditions</h1>

@@ -74,7 +74,7 @@ const Index = () => {
                 <div className='col-12'>
                   <div className='fs-4 fw-500 mb-3 text-capitalize'>{detail?.title}</div>
                   <div
-                    className='w-100'
+                    className='w-100 overflow-auto'
                     dangerouslySetInnerHTML={{ __html: detail?.description }}
                   />
                 </div>
