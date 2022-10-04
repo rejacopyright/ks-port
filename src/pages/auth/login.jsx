@@ -63,7 +63,7 @@ const Index = () => {
                     </div>
                   </div>
                   <div className='col-12 col-sm-8 col-md-6 mx-auto bg-white p-4 position-relative'>
-                    <div className='fs-3 fw-600 text-primary text-center mt-5'>LOGIN</div>
+                    <div className='fs-3 fw-600 text-primary text-center mt-3'>LOGIN</div>
                     <div className='fs-8 text-center mb-5'>
                       Login for admin to manage web contents.
                     </div>
@@ -122,18 +122,16 @@ const Index = () => {
                         </button>
                       </div>
                     </div>
-                    <div className='absolute-center-h w-100 p-3 bottom-0'>
-                      <div className='text-center fs-8'>
-                        <div className='mb-1'>Doesn't remember your password ?</div>
-                        <div className='mb-2'>
-                          <span className='me-2'>Click</span>
-                          <Link
-                            to='/forgot-password'
-                            className='fw-500 text-primary fs-7 pointer text-hover-underline underline-offset-3'
-                          >
-                            "Forgot Password"
-                          </Link>
-                        </div>
+                    <div className='text-center fs-8 mt-5'>
+                      <div className='mb-1'>Doesn't remember your password ?</div>
+                      <div className='mb-2'>
+                        <span className='me-2'>Click</span>
+                        <Link
+                          to='/forgot-password'
+                          className='fw-500 text-primary fs-7 pointer text-hover-underline underline-offset-3'
+                        >
+                          "Forgot Password"
+                        </Link>
                       </div>
                     </div>
                   </div>
