@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 import Accordion from 'react-bootstrap/Accordion'
@@ -20,9 +20,14 @@ const CustomToggle = ({ children, eventKey, isActive, setActiveKey = () => '', i
 const Index = () => {
   const { pathname: path } = useLocation()
   const [activeKey, setActiveKey] = useState(path)
+  useEffect(() => {
+    setActiveKey(path)
+  }, [path])
   const toggleMenuList = [
     '/admin/home',
     '/admin/about',
+    '/admin/about/commissioners',
+    '/admin/about/directors',
     '/admin/news',
     '/admin/services',
     '/admin/settings',
@@ -90,7 +95,7 @@ const Index = () => {
             <CustomToggle
               icon='info-circle'
               eventKey={'/admin/about'}
-              isActive={activeKey === '/admin/about'}
+              isActive={activeKey?.startsWith('/admin/about')}
               setActiveKey={setActiveKey}
             >
               About
@@ -147,16 +152,46 @@ const Index = () => {
                     Certification
                   </div>
                 </Link>
-                <Link to='/admin/about/management'>
-                  <div
-                    className={`flex-start dropdown-item p-2 my-1 pointer ${
-                      path?.startsWith('/admin/about/management') ? 'active' : ''
-                    }`}
+
+                {/* MANAGEMENT */}
+                <Accordion
+                  defaultActiveKey={
+                    toggleMenuList?.includes(activeKey) ? '/admin/about/management' : path
+                  }
+                >
+                  <CustomToggle
+                    icon='dot-circle'
+                    eventKey={'/admin/about/management'}
+                    isActive={activeKey?.startsWith('/admin/about/management')}
+                    setActiveKey={setActiveKey}
                   >
-                    <i className='las la-hashtag fs-6 me-1' />
                     Management
-                  </div>
-                </Link>
+                  </CustomToggle>
+                  <Accordion.Collapse eventKey={'/admin/about/management'}>
+                    <div className='p-1 bg-xxx radius-10'>
+                      <Link to='/admin/about/commissioners'>
+                        <div
+                          className={`flex-start dropdown-item p-2 my-1 pointer ${
+                            path?.startsWith('/admin/about/commissioners') ? 'active' : ''
+                          }`}
+                        >
+                          <i className='las la-minus fs-6 me-1' />
+                          Commissioners
+                        </div>
+                      </Link>
+                      <Link to='/admin/about/directors'>
+                        <div
+                          className={`flex-start dropdown-item p-2 my-1 pointer ${
+                            path?.startsWith('/admin/about/directors') ? 'active' : ''
+                          }`}
+                        >
+                          <i className='las la-minus fs-6 me-1' />
+                          Directors
+                        </div>
+                      </Link>
+                    </div>
+                  </Accordion.Collapse>
+                </Accordion>
               </div>
             </Accordion.Collapse>
 

@@ -5,7 +5,6 @@ import emot from '@components/pintura/emoji'
 
 async function Editor(props) {
   !props?.modal && props?.target && (props.target.innerHTML = '')
-  console.log(props?.ratio)
   const cropPresets = () => [
     [
       'Crop',

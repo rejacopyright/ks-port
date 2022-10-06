@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useLayoutEffect } from 'react'
+import { useEffect, useState, useRef, useLayoutEffect, Fragment } from 'react'
 import { expand } from '@helpers/config'
 import { Link } from 'react-router-dom'
 import Nav from 'react-bootstrap/Nav'
@@ -10,6 +10,7 @@ import { getAbout } from '@api/about'
 const Index = () => {
   const [sticky, setSticky] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState(undefined)
+  const [activeSubDropdown, setActiveSubDropdown] = useState(undefined)
   const ref = useRef()
   const [height, setHeight] = useState(0)
   const [aboutMenus, setAboutMenus] = useState([])
@@ -29,7 +30,14 @@ const Index = () => {
       }
     })
     getAbout().then(({ data: { data } = {} }) => {
-      setAboutMenus(data?.map(({ scope: path, title }) => ({ path, title })))
+      setAboutMenus(
+        data?.map(({ scope: path, title, parent, children: child }) => ({
+          path,
+          title,
+          parent,
+          child,
+        }))
+      )
     })
   }, [])
   const blurBg = (opacity = 0.85, blur = 20) => ({
@@ -103,15 +111,55 @@ const Index = () => {
                     <i className='las la-angle-down ms-1' style={{ marginBottom: '2px' }} />
                   </Dropdown.Toggle>
                   <Dropdown.Menu className='border-0 fs-8 shadow-lg-bold animate__animated animate__fadeInDown animate-100 radius-0'>
-                    {aboutMenus?.map(({ path, title }, index) => (
-                      <Link
-                        key={index}
-                        to={`/about/${path}`}
-                        className='dropdown-item radius-0 fw-500 py-2'
-                      >
-                        {title}
-                      </Link>
-                    ))}
+                    {aboutMenus
+                      ?.filter(({ parent }) => !parent)
+                      ?.map(({ path, title, child }, index) => (
+                        <Fragment key={index}>
+                          {child?.length > 0 ? (
+                            <Dropdown
+                              autoClose={'outside'}
+                              drop='end'
+                              show={activeSubDropdown === path}
+                              onMouseEnter={() => {
+                                setActiveSubDropdown(path)
+                              }}
+                              onMouseLeave={() => {
+                                setActiveSubDropdown(undefined)
+                              }}
+                            >
+                              <Dropdown.Toggle
+                                variant='primary'
+                                id={path}
+                                className={`flex-start dropdown-item text-start w-100 shadow-none py-2 px-3 fs-8 fw-500 border-0 radius-0 m-0`}
+                              >
+                                <div className='text-darks w-100'>{title}</div>
+                                <i
+                                  className='las la-angle-right ms-1'
+                                  style={{ marginBottom: '2px' }}
+                                />
+                              </Dropdown.Toggle>
+                              <Dropdown.Menu className='border-0 fs-8 shadow-lg-bold animate__animated animate__fadeInDown animate-100 radius-0 m-0'>
+                                {child?.map(({ id, scope, title }) => (
+                                  <Link
+                                    key={id}
+                                    to={`/about/${scope}`}
+                                    className='dropdown-item radius-0 fw-500 py-2'
+                                  >
+                                    {title}
+                                  </Link>
+                                ))}
+                              </Dropdown.Menu>
+                            </Dropdown>
+                          ) : (
+                            <Link
+                              to={`/about/${path}`}
+                              className='dropdown-item radius-0 fw-500 py-2'
+                            >
+                              {title}
+                            </Link>
+                          )}
+                        </Fragment>
+                      ))}
                   </Dropdown.Menu>
                 </Dropdown>
               ) : (

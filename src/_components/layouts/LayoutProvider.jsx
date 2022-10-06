@@ -21,7 +21,7 @@ const Layout = () => {
   mustRedirectFromLogin && navigate('/admin')
   useEffect(() => {
     ReactGA.pageview(location?.pathname)
-    // console.clear()
+    console.clear()
     const el = document.querySelector('a[href*="https://pqina.nl"]')
     el && el.remove()
   }, [location?.pathname])
