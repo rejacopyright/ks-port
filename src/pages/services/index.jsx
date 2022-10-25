@@ -42,12 +42,12 @@ const Index = () => {
                 }}
               >
                 <div
-                  className='position-relative same-65px me-2'
+                  className='position-relative same-65px me-2 rounded'
                   style={{
                     background: `url(${m?.file || defaultImage}) center / cover no-repeat`,
                   }}
                 />
-                <div className='col'>
+                <div className='col overflow-hidden'>
                   <div className='fw-500 fs-7 text-capitalize text-truncate-1'>{m?.title}</div>
                   <div className='fs-8 text-truncate-2 text-aa'>{htmlToString(m?.description)}</div>
                 </div>
