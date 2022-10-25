@@ -91,6 +91,14 @@ const Index = () => {
               </div>
             </Accordion.Collapse>
 
+            {/* BANNER */}
+            <Link to='/admin/banner'>
+              <div className={`${itemClass} ${path === '/admin/banner' ? 'active' : ''}`}>
+                <i className='las la-image fs-6 me-2' />
+                Banner
+              </div>
+            </Link>
+
             {/* ABOUT */}
             <CustomToggle
               icon='info-circle'

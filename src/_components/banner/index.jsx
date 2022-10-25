@@ -8,7 +8,7 @@ const Index = ({
   return (
     <div
       className={`position-relative h-${height}px`}
-      style={{ background: `url(${src}) center / cover no-repeat` }}
+      style={{ background: `url(${src || defaultBanner}) center / cover no-repeat` }}
     >
       <div className='position-absolute flex-bottom pb-2 w-100 h-100 text-white' style={style}>
         {content && (

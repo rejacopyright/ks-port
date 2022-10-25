@@ -2,10 +2,17 @@ import { useEffect, useState } from 'react'
 import Banner from '@components/banner'
 import { getContact } from '@api/settings'
 import { CardLoader } from '@components/loader'
+import { detailBanner } from '@api/banner'
 
 const Index = () => {
   const [detail, setDetail] = useState({})
   const [loading, setLoading] = useState(false)
+  const [banner, setBanner] = useState(undefined)
+  useEffect(() => {
+    detailBanner('contact').then(({ data }) => {
+      setBanner(data?.file)
+    })
+  }, [])
   useEffect(() => {
     document.title = 'Contact Us'
     setLoading(true)
@@ -19,7 +26,7 @@ const Index = () => {
   }, [])
   return (
     <>
-      <Banner height='150' content={<div className='fs-5'>Contact Us</div>} />
+      <Banner height='150' content={<div className='fs-5'>Contact Us</div>} src={banner} />
       <div className='container my-5'>
         {loading ? (
           <CardLoader count={2} className='col-12 my-3' />

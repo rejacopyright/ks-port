@@ -29,6 +29,12 @@ const router = [
           },
         ],
       },
+      // BANNER
+      {
+        path: 'banner',
+        index: true,
+        element: createElement(lazy(() => import('@pages/admin/banner'))),
+      },
       // ABOUT
       {
         path: 'about/:scope',

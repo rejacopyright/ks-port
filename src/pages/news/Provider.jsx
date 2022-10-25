@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Banner from '@components/banner'
 import { Sticky } from '@helpers/hooks'
+import { detailBanner } from '@api/banner'
 
 const MenuBtn = ({ to = '/news', title = 'News', active = false }) => {
   const [isHover, setIsHover] = useState(false)
@@ -50,9 +51,15 @@ const Title = () => {
 }
 const Index = () => {
   const { pathname } = useLocation()
+  const [banner, setBanner] = useState(undefined)
+  useEffect(() => {
+    detailBanner('news').then(({ data }) => {
+      setBanner(data?.file)
+    })
+  }, [])
   return (
     <>
-      <Banner height='160' content={Title} />
+      <Banner height='160' content={Title} src={banner} />
       <div className='container py-5 w-100' style={{ minHeight: '60vh' }}>
         <div className='row'>
           <div className='col-auto col-md-3 mb-4 mb-md-0'>

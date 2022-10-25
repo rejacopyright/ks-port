@@ -6,6 +6,7 @@ import { useAccordionButton } from 'react-bootstrap/AccordionButton'
 import Banner from '@components/banner'
 import { Sticky } from '@helpers/hooks'
 import { getAbout } from '@api/about'
+import { detailBanner } from '@api/banner'
 import { SimpleLoader } from '@components/loader'
 
 const CustomToggle = ({ children, eventKey, active, activeKey, setActiveKey }) => {
@@ -111,6 +112,12 @@ const Index = ({ children }) => {
   const [menus, setMenus] = useState([])
   const [title, setTitle] = useState('')
   const [loading, setLoading] = useState(false)
+  const [banner, setBanner] = useState(undefined)
+  useEffect(() => {
+    detailBanner('about').then(({ data }) => {
+      setBanner(data?.file)
+    })
+  }, [])
   useEffect(() => {
     setLoading(true)
     getAbout()
@@ -128,7 +135,7 @@ const Index = ({ children }) => {
   }, [path, menus])
   return (
     <>
-      <Banner height='160' content={<Title title={title} />} />
+      <Banner height='160' content={<Title title={title} />} src={banner} />
       <div className='container py-5 w-100' style={{ minHeight: '60vh' }}>
         <div className='row'>
           <div className='col-auto col-md-3 mb-4 mb-md-0'>
