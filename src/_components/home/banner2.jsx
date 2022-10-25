@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import banner from '@images/banner.jpg'
+// import banner from '@images/banner.jpg'
 import Slider from 'react-slick'
 import { useEffect } from 'react'
 import { getHomeBanner } from '@api/home'
@@ -45,7 +45,7 @@ const Index = () => {
     setLoading(true)
     const time = setInterval(() => {
       setPercent((prev) => prev + 1)
-    }, 300)
+    }, 100)
     getHomeBanner()
       .then(({ data: { data } = {} }) => {
         if (data?.length > 0) {
@@ -86,19 +86,20 @@ const Index = () => {
   if (loading) {
     return (
       <div
-        className='vh-100 position-relative flex-center'
-        style={{ background: `url(${banner}) center / cover no-repeat` }}
+        className='vh-100 position-relative bg-white'
+        // style={{ background: `url(${banner}) center / cover no-repeat`, filter: 'blur(100px)' }}
       >
+        <div className='position-absolute h-110px w-100 bg-primary' />
         <div
           className='flex-center position-absolute w-100 h-100'
           style={{
             zIndex: 1,
-            background: 'rgba(0,0,0,0.5)',
+            // background: 'rgba(0,0,0,0.5)',
           }}
         >
           <div className='w-50'>
             <ProgressBar className='h-5px' animated now={percent} label='' />
-            <div className='text-center text-white mt-1 fs-8'>Loading in progress...</div>
+            <div className='text-center text-dark mt-1 fs-8'>Loading in progress...</div>
           </div>
         </div>
       </div>
