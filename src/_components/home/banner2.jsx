@@ -4,6 +4,7 @@ import Slider from 'react-slick'
 import { useEffect } from 'react'
 import { getHomeBanner } from '@api/home'
 import ProgressBar from 'react-bootstrap/ProgressBar'
+import { appName } from '@helpers/config'
 
 const ActionBtn = () => {
   return (
@@ -35,9 +36,8 @@ const Index = () => {
   const [percent, setPercent] = useState(10)
   const [data, setData] = useState([
     {
-      title: 'PT KRAKATAU SAMUDERA SOLUTION',
-      description:
-        'Krakatau Samudera Solution is the largest international hub and bulk port in Indonesia, with an installed capacity of 25 million tons per year, integrated with logistics facilities',
+      title: `PT ${appName}`,
+      description: `${appName} is the largest international hub and bulk port in Indonesia, with an installed capacity of 25 million tons per year, integrated with logistics facilities`,
       // file: banner,
     },
   ])

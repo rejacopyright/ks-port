@@ -7,6 +7,7 @@ import { detailAbout } from '@api/about'
 import { getHomeAssets } from '@api/home'
 import { CardLoader } from '@components/loader'
 import { htmlToString } from '@helpers'
+import { appName } from '@helpers/config'
 
 const Index = () => {
   const { ref: aboutRef, inView: aboutShow } = useInView({
@@ -64,8 +65,8 @@ const Index = () => {
                 aboutShow ? 'animate__fadeInRight' : 'animate__fadeOutUp'
               }`}
             >
-              <div className='fs-6 m-0 text-dark mb-3'>About Krakatau Global Solution</div>
-              <div className='h4 m-0 fw-600 text-primary mb-2'>PT KRAKATAU SAMUDERA SOLUTION</div>
+              <div className='fs-6 m-0 text-dark mb-3 text-capitalize'>About {appName}</div>
+              <div className='h4 m-0 fw-600 text-primary mb-2 text-uppercase'>PT {appName}</div>
               <div className='fs-7 m-0 text-dark mb-4 text-truncate-3'>
                 {htmlToString(detail?.description)}
               </div>

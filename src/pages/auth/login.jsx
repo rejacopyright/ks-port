@@ -5,6 +5,7 @@ import { login } from '@api/auth'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import toast from '@components/alert/toast'
+import { appName } from '@helpers/config'
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
@@ -57,7 +58,7 @@ const Index = () => {
                   >
                     <div className='flex-center text-white vh-70'>
                       <div className='text-center'>
-                        <div className='fw-600 fs-5'>KRAKATAU SAMUDERA SOLUSI</div>
+                        <div className='fw-600 fs-5 text-uppercase'>{appName}</div>
                         <div className='fw-300 fs-7'>Login for admin to manage web contents.</div>
                       </div>
                     </div>
