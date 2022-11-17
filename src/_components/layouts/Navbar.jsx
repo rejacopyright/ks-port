@@ -112,7 +112,7 @@ const Index = () => {
                   </Dropdown.Toggle>
                   <Dropdown.Menu className='border-0 fs-8 shadow-lg-bold animate__animated animate__fadeInDown animate-100 radius-0'>
                     {aboutMenus
-                      ?.filter(({ parent }) => !parent)
+                      ?.filter(({ parent, path }) => !parent && path !== 'organization')
                       ?.map(({ path, title, child }, index) => (
                         <Fragment key={index}>
                           {child?.length > 0 ? (

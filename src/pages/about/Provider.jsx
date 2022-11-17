@@ -147,7 +147,7 @@ const Index = ({ children }) => {
                 ) : (
                   <div className='row'>
                     {menus
-                      ?.filter(({ parent }) => !parent)
+                      ?.filter(({ parent, scope }) => !parent && scope !== 'organization')
                       ?.map(({ scope, title, children: child }, index) => (
                         <MenuBtn
                           key={index}

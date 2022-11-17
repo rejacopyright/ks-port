@@ -140,7 +140,7 @@ const Index = () => {
                     Vision, Mission & Values
                   </div>
                 </Link>
-                <Link to='/admin/about/organization'>
+                {/* <Link to='/admin/about/organization'>
                   <div
                     className={`flex-start dropdown-item p-2 my-1 pointer ${
                       path?.startsWith('/admin/about/organization') ? 'active' : ''
@@ -149,7 +149,7 @@ const Index = () => {
                     <i className='las la-hashtag fs-6 me-1' />
                     Organization Structure
                   </div>
-                </Link>
+                </Link> */}
                 <Link to='/admin/about/certification'>
                   <div
                     className={`flex-start dropdown-item p-2 my-1 pointer ${
