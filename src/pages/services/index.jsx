@@ -25,13 +25,13 @@ const Index = () => {
   }, [scope])
   return (
     <Provider>
-      <div className='fs-4 fw-500 mb-2'>{toCapitalize(scope)} Services</div>
+      {false && <div className='fs-4 fw-500 mb-2'>{toCapitalize(scope)} Services</div>}
       {loading ? (
         <div className='mt-3'>
           <CardLoader className='col-md-6 col-lg-4 mb-3' />
         </div>
       ) : (
-        <div className='row'>
+        <div className='row mt-2'>
           {data?.map((m, index) => (
             <div key={index} className='col-md-6 col-lg-4 mb-3'>
               <div

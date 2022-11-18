@@ -26,7 +26,7 @@ const Index = () => {
   }, [])
   return (
     <>
-      <Banner height='150' content={<div className='fs-5'>Contact Us</div>} src={banner} />
+      <Banner height='150' content={<div className='fs-5'></div>} src={banner} />
       <div className='container my-5'>
         {loading ? (
           <CardLoader count={2} className='col-12 my-3' />

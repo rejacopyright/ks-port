@@ -98,12 +98,12 @@ const MenuBtn = ({ to = '/about', title = 'About', active = false, child, scope 
     </div>
   )
 }
-const Title = ({ title }) => {
+const Title = ({ _title }) => {
   return (
     <div className='flex-center'>
       <div className='fs-3 fw-500'>ABOUT US</div>
-      <div className='fs-8 fw-500 mx-2'>/</div>
-      <div className='fs-5 fw-400'>{title}</div>
+      {/* <div className='fs-8 fw-500 mx-2'>/</div>
+      <div className='fs-5 fw-400'>{title}</div> */}
     </div>
   )
 }

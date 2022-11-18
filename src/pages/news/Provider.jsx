@@ -44,8 +44,8 @@ const Title = () => {
   return (
     <div className='flex-center'>
       <div className='fs-3 fw-500'>NEWS</div>
-      <div className='fs-8 fw-500 mx-2'>/</div>
-      <div className='fs-5 fw-400'>{title}</div>
+      {/* <div className='fs-8 fw-500 mx-2'>/</div> */}
+      {false && <div className='fs-5 fw-400'>{title}</div>}
     </div>
   )
 }
