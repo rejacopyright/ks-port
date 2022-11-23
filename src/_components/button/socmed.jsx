@@ -31,24 +31,26 @@ const Index = ({ className = '', placement = 'auto' }) => {
   }, [])
   return (
     <div className={`flex-center ${className}`} style={{ padding: '0.25rem 0' }}>
-      {social?.map(({ src, key, name, url }, index) => (
-        <Tooltip key={index} title={name} placement={placement} className='fs-9 opacity-75'>
-          <a
-            href={url}
-            target='_blank'
-            className={`same-30px mx-1 my-2 flex-center radius-50`}
-            style={{ background: 'rgba(255,255,255,0.75)' }}
-            rel='noreferrer'
-          >
-            <div
-              className={`position-relative pointer ${
-                key === 'youtube' ? 'same-25px' : 'same-20px'
-              }`}
-              style={{ background: `url(${src}) center / cover no-repeat` }}
-            />
-          </a>
-        </Tooltip>
-      ))}
+      {social
+        ?.filter(({ url }) => url)
+        ?.map(({ src, key, name, url }, index) => (
+          <Tooltip key={index} title={name} placement={placement} className='fs-9 opacity-75'>
+            <a
+              href={url}
+              target='_blank'
+              className={`same-30px mx-1 my-2 flex-center radius-50`}
+              style={{ background: 'rgba(255,255,255,0.75)' }}
+              rel='noreferrer'
+            >
+              <div
+                className={`position-relative pointer ${
+                  key === 'youtube' ? 'same-25px' : 'same-20px'
+                }`}
+                style={{ background: `url(${src}) center / cover no-repeat` }}
+              />
+            </a>
+          </Tooltip>
+        ))}
     </div>
   )
 }
