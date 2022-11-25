@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import worldMap from '@images/worldmap.png'
-import aboutImg from '@images/stock/16.png'
+import aboutImg from '@images/home-about.png'
 import { useInView } from 'react-intersection-observer'
 import { detailAbout } from '@api/about'
 import { getHomeAssets } from '@api/home'
@@ -52,16 +52,24 @@ const Index = () => {
     <>
       <div className='py-5 bg-white my-5 w-100 overflow-hidden'>
         <div className='container w-100 overflow-hidden'>
-          <div className='row flex-start' ref={aboutRef}>
+          <div className='row flex-center' ref={aboutRef}>
             <div
               className={`col-lg-4 animate__animated ${
                 aboutShow ? 'animate__wobble' : 'animate__fadeOutLeft'
               }`}
             >
-              <img alt='img' className='w-100 h-auto opacity-75 mt-n5' src={aboutImg} />
+              <div
+                className='w-100 h-300px'
+                style={{
+                  background: `url(${aboutImg}) center / cover no-repeat`,
+                  // boxShadow: '0 0 50px 50px white inset',
+                  boxShadow: '0 0 20px 20px white inset',
+                }}
+              />
+              {/* <img alt='img' className='w-100 h-250px opacity-75 mt-n5' src={aboutImg} /> */}
             </div>
             <div
-              className={`col-lg-8 mt-3 animate__animated ${
+              className={`col-lg-8 my-3 animate__animated ${
                 aboutShow ? 'animate__fadeInRight' : 'animate__fadeOutUp'
               }`}
             >
