@@ -6,6 +6,7 @@ import defaultImage from '@images/placeholder-image.jpg'
 import { htmlToString, toCapitalize } from '@helpers'
 import { Modal } from '@components/modal'
 import { CardLoader } from '@components/loader'
+import '@styles/_froala.scss'
 
 const Index = () => {
   const { scope = 'general' } = useParams()

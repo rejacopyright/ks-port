@@ -6,6 +6,7 @@ import { detailCarreer } from '@api/news'
 import moment from 'moment'
 import { CardLoader, TextLoader } from '@components/loader'
 import qs from 'qs'
+import '@styles/_froala.scss'
 
 const Breadcrumb = () => {
   return (
@@ -63,10 +64,10 @@ const Index = () => {
                 <div className='col-12 mb-5'>
                   <div className='flex-end'>
                     <i className='las la-user me-1 fs-6 text-primary' />
-                    <div className='text-primary'>Uploaded at</div>
+                    <div className='text-primary'>Updated at</div>
                     <div className='text-aa mx-2'>-</div>
                     <div className='text-aa'>
-                      {moment(detail?.created_at || undefined)?.format('DD MMMM Y, H:mm A')}
+                      {moment(detail?.updated_at || undefined)?.format('DD MMMM Y, H:mm A')}
                     </div>
                     <i className='las la-clock ms-1 fs-7 text-aa' />
                   </div>

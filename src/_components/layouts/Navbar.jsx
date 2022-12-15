@@ -118,7 +118,7 @@ const Index = () => {
                           {child?.length > 0 ? (
                             <Dropdown
                               autoClose={'outside'}
-                              drop='end'
+                              drop='start'
                               show={activeSubDropdown === path}
                               onMouseEnter={() => {
                                 setActiveSubDropdown(path)

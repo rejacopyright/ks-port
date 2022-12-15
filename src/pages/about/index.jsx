@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { detailAbout } from '@api/about'
 import { CardLoader } from '@components/loader'
 import Provider from './Provider'
+import '@styles/_froala.scss'
 const Index = () => {
   const { scope = 'company' } = useParams()
   const [detail, setDetail] = useState({})
