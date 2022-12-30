@@ -120,7 +120,7 @@ const Index = () => {
                     Company Profile
                   </div>
                 </Link>
-                <Link to='/admin/about/history'>
+                {/* <Link to='/admin/about/history'>
                   <div
                     className={`flex-start dropdown-item p-2 my-1 pointer ${
                       path?.startsWith('/admin/about/history') ? 'active' : ''
@@ -129,7 +129,7 @@ const Index = () => {
                     <i className='las la-hashtag fs-6 me-1' />
                     History
                   </div>
-                </Link>
+                </Link> */}
                 <Link to='/admin/about/vision'>
                   <div
                     className={`flex-start dropdown-item p-2 my-1 pointer ${
@@ -150,7 +150,7 @@ const Index = () => {
                     Organization Structure
                   </div>
                 </Link> */}
-                <Link to='/admin/about/certification'>
+                {/* <Link to='/admin/about/certification'>
                   <div
                     className={`flex-start dropdown-item p-2 my-1 pointer ${
                       path?.startsWith('/admin/about/certification') ? 'active' : ''
@@ -159,7 +159,7 @@ const Index = () => {
                     <i className='las la-hashtag fs-6 me-1' />
                     Certification
                   </div>
-                </Link>
+                </Link> */}
 
                 {/* MANAGEMENT */}
                 <Accordion

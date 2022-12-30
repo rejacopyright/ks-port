@@ -31,12 +31,14 @@ const Index = () => {
     })
     getAbout().then(({ data: { data } = {} }) => {
       setAboutMenus(
-        data?.map(({ scope: path, title, parent, children: child }) => ({
-          path,
-          title,
-          parent,
-          child,
-        }))
+        data
+          ?.filter(({ active }) => active)
+          ?.map(({ scope: path, title, parent, children: child }) => ({
+            path,
+            title,
+            parent,
+            child,
+          }))
       )
     })
   }, [])
