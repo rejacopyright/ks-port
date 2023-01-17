@@ -158,6 +158,9 @@ input,
   .h-#{$i*5}px {
     height: #{$i * 5}px !important;
   }
+  .max-h-#{$i*5}px {
+    max-height: #{$i * 5}px !important;
+  }
   .same-#{$i*5}px {
     width: #{$i * 5}px !important;
     height: #{$i * 5}px !important;

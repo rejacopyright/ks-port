@@ -15,6 +15,21 @@ export const strToSlug = (str) => {
     ?.replace(/^-+|-+$/g, '')
 }
 
+export const encodeHTMLEntities = (text) => {
+  const textArea = document.createElement('textarea')
+  textArea.innerText = text || ''
+  let encodedOutput = textArea.innerHTML
+  const arr = encodedOutput?.split('<br>')
+  encodedOutput = arr?.join('\n')
+  return encodedOutput
+}
+
+export const decodeHTMLEntities = (text) => {
+  const textArea = document.createElement('textarea')
+  textArea.innerHTML = text || ''
+  return textArea?.value
+}
+
 export const toCapitalize = (text) => {
   return text.replace(/(?:^|\s)\S/g, (a) => a.toUpperCase())
 }

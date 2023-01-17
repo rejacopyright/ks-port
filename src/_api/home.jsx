@@ -1,5 +1,35 @@
 import axios from './axios'
 
+export const getHomePopup = () => {
+  return axios({
+    method: 'get',
+    url: 'home/popup',
+  })
+}
+
+export const addEditHomePopup = (data, id) => {
+  return axios({
+    method: id ? 'put' : 'post',
+    url: id ? `admin/home/popup/${id}` : 'admin/home/popup',
+    data,
+  })
+}
+
+export const statusHomePopup = (data, id) => {
+  return axios({
+    method: 'put',
+    url: `admin/home/popup/${id}/status`,
+    data,
+  })
+}
+
+export const deleteHomePopup = (id) => {
+  return axios({
+    method: 'delete',
+    url: `admin/home/popup/${id}`,
+  })
+}
+
 export const getHomeBanner = () => {
   return axios({
     method: 'get',

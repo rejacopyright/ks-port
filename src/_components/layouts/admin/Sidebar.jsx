@@ -58,6 +58,16 @@ const Index = () => {
             </CustomToggle>
             <Accordion.Collapse eventKey={'/admin/home'}>
               <div className='p-1 bg-xxx radius-10'>
+                <Link to='/admin/home/popup'>
+                  <div
+                    className={`flex-start dropdown-item p-2 my-1 pointer ${
+                      path?.startsWith('/admin/home/popup') ? 'active' : ''
+                    }`}
+                  >
+                    <i className='las la-hashtag fs-6 me-1' />
+                    Popup
+                  </div>
+                </Link>
                 <Link to='/admin/home/banner'>
                   <div
                     className={`flex-start dropdown-item p-2 my-1 pointer ${

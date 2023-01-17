@@ -122,7 +122,7 @@ const Index = ({ children }) => {
     setLoading(true)
     getAbout()
       .then(({ data: { data } = {} }) => {
-        setMenus(data)
+        setMenus(data?.filter(({ active }) => active))
       })
       .finally(() => {
         setLoading(false)

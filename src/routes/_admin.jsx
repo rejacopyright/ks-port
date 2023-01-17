@@ -13,6 +13,11 @@ const router = [
         path: 'home/*',
         children: [
           {
+            path: 'popup',
+            index: true,
+            element: createElement(lazy(() => import('@pages/admin/home/popup'))),
+          },
+          {
             path: 'assets',
             index: true,
             element: createElement(lazy(() => import('@pages/admin/home/assets'))),
