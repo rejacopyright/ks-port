@@ -7,9 +7,11 @@ import { getHomePopup } from '@api/home'
 export default function Index() {
   const [showModal, setShowModal] = useState(false)
   const [data, setData] = useState([])
+  const [title, setTitle] = useState('')
   useEffect(() => {
     getHomePopup().then(({ data: { data: res } = {} }) => {
       const result = res?.filter(({ status }) => status === 1)
+      setTitle(result?.[0]?.title)
       setData(result)
       setShowModal(result?.length > 0)
     })
@@ -28,6 +30,9 @@ export default function Index() {
     slidesToScroll: 1,
     initialSlide: 0,
     adaptiveHeight: false,
+    afterChange: (current) => {
+      setTitle(data?.[current]?.title || '')
+    },
   }
   return (
     <Modal
@@ -45,7 +50,9 @@ export default function Index() {
       <div className='row'>
         <div className='col-12'>
           <div className='flex-between p-3 bg-primary text-white'>
-            <h6 className='m-0'>Detail</h6>
+            <h6 className='m-0 text-truncate' title={title}>
+              {title}
+            </h6>
             <div
               className='btn flex-center btn-white same-20px'
               onClick={() => setShowModal(false)}
