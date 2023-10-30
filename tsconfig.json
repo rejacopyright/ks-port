@@ -59,7 +59,7 @@
         "./src/_redux/*"
       ],
       "@styles/*": [
-        "src/_styles/*"
+        "./src/_styles/*"
       ],
     },
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */

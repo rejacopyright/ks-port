@@ -21,15 +21,17 @@ const Layout: FC<any> = () => {
   const mustRedirectFromLogin = isLoginPath && user?.token
   mustRedirectFromLogin && navigate('/admin')
   useEffect(() => {
-    ReactGA.send({
-      hitType: 'pageview',
-      page: location?.pathname,
-      title: document.title,
-      // hitCallback: () => {
-      // },
-    })
+    if (process?.env?.NODE_ENV === 'production' && !location?.pathname?.startsWith('/admin')) {
+      ReactGA.send({
+        hitType: 'pageview',
+        page: location?.pathname,
+        title: document.title,
+        // hitCallback: () => {
+        // },
+      })
+    }
     // eslint-disable-next-line no-console
-    process.env.NODE_ENV === 'production' && console.clear()
+    process?.env?.NODE_ENV === 'production' && console.clear()
     const el = document.querySelector('a[href*="https://pqina.nl"]')
     el && el.remove()
   }, [location?.pathname])

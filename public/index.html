@@ -27,13 +27,18 @@
     src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
   ></script>
   <script>
-    window.dataLayer = window.dataLayer || []
-    function gtag() {
-      dataLayer.push(arguments)
-    }
-    gtag('js', new Date())
+    var isAdminPage = window?.location?.pathname?.startsWith('/admin')
+    var isLocalhost = window?.location?.hostname?.includes('localhost')
+    if (isLocalhost && !isAdminPage) {
+      console.log('object')
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
 
-    gtag('config', 'UA-243099276-1')
+      gtag('config', 'UA-243099276-1')
+    }
   </script>
   <script type="text/javascript">
     var isAdminPage = window?.location?.pathname?.startsWith('/admin')
