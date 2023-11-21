@@ -15,17 +15,22 @@ const Index: FC<any> = () => {
   const [data, setData] = useState<any>([])
   const [loading, setLoading] = useState<any>(false)
   const [detail, setDetail] = useState<any>({})
+  const [howToOrderDetail, setHowToOrderDetail] = useState<any>()
   const [showModalDetail, setShowModalDetail] = useState<any>(false)
   useEffect(() => {
     setLoading(true)
     getServices({ type: scope })
-      .then(({ data: { data } = {} }) => {
+      .then(({ data: { data } = {}, data: dataObj }) => {
+        if (scope === 'how-to-order') {
+          setHowToOrderDetail(dataObj)
+        }
         setData(data)
       })
       .finally(() => {
         setLoading(false)
       })
   }, [scope])
+
   return (
     <Provider>
       {false && <div className='fs-4 fw-500 mb-2'>{toCapitalize(scope)} Services</div>}
@@ -35,28 +40,37 @@ const Index: FC<any> = () => {
         </div>
       ) : (
         <div className='row mt-2'>
-          {data?.map((m: any, index: any) => (
-            <div key={index} className='col-md-6 col-lg-4 mb-3'>
-              <div
-                className='d-flex p-2 shadow-sm hover-md radius-10 pointer'
-                onClick={() => {
-                  setDetail(m)
-                  setShowModalDetail(true)
-                }}
-              >
+          {scope !== 'how-to-order' ? (
+            data?.map((m: any, index: any) => (
+              <div key={index} className='col-md-6 col-lg-4 mb-3'>
                 <div
-                  className='position-relative same-65px me-2 rounded'
-                  style={{
-                    background: `url(${m?.file || defaultImage}) center / cover no-repeat`,
+                  className='d-flex p-2 shadow-sm hover-md radius-10 pointer'
+                  onClick={() => {
+                    setDetail(m)
+                    setShowModalDetail(true)
                   }}
-                />
-                <div className='col overflow-hidden'>
-                  <div className='fw-500 fs-7 text-capitalize text-truncate-1'>{m?.title}</div>
-                  <div className='fs-8 text-truncate-2 text-aa'>{htmlToString(m?.description)}</div>
+                >
+                  <div
+                    className='position-relative same-65px me-2 rounded'
+                    style={{
+                      background: `url(${m?.file || defaultImage}) center / cover no-repeat`,
+                    }}
+                  />
+                  <div className='col overflow-hidden'>
+                    <div className='fw-500 fs-7 text-capitalize text-truncate-1'>{m?.title}</div>
+                    <div className='fs-8 text-truncate-2 text-aa'>
+                      {htmlToString(m?.description)}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <div
+              className='w-100 overflow-autos'
+              dangerouslySetInnerHTML={{ __html: howToOrderDetail?.description || '' }}
+            />
+          )}
         </div>
       )}
 

@@ -29,3 +29,19 @@ export const deleteServices = (id: any) => {
     url: `admin/services/${id}`,
   })
 }
+
+export const howToOrderServices = () => {
+  return axios({
+    method: 'get',
+    url: `services`,
+    params: { type: 'how-to-order' },
+  })
+}
+
+export const editHowToOrder = (data: any) => {
+  return axios({
+    method: 'put',
+    url: 'admin/services/category/how-to-order',
+    data,
+  })
+}

@@ -35,6 +35,8 @@ const Title: FC<any> = () => {
       docTitle = 'General Services'
     } else if (scope === 'marine') {
       docTitle = 'Marine Services'
+    } else if (scope === 'how-to-order') {
+      docTitle = 'How To Order'
     }
     setTitle(docTitle)
     document.title = `Service | ${docTitle}`
@@ -73,6 +75,11 @@ const Index: FC<any> = ({ children }) => {
                     to='/services/marine'
                     title='Marine Services'
                     active={scope === 'marine'}
+                  />
+                  <MenuBtn
+                    to='/services/how-to-order'
+                    title='How To Order'
+                    active={scope === 'how-to-order'}
                   />
                 </div>
               </div>

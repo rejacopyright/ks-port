@@ -87,6 +87,11 @@ const router: any = [
         path: 'services/*',
         children: [
           {
+            path: 'how-to-order',
+            index: true,
+            element: lazy(() => import('@pages/admin/services/howToOrder')),
+          },
+          {
             path: ':type',
             index: true,
             element: lazy(() => import('@pages/admin/services')),

@@ -283,6 +283,16 @@ const Index: FC<any> = () => {
                     Marine
                   </div>
                 </Link>
+                <Link to='/admin/services/how-to-order'>
+                  <div
+                    className={`flex-start dropdown-item p-2 my-1 pointer ${
+                      path?.startsWith('/admin/services/how-to-order') ? 'active' : ''
+                    }`}
+                  >
+                    <i className='las la-hashtag fs-6 me-1' />
+                    How To Order
+                  </div>
+                </Link>
               </div>
             </Accordion.Collapse>
 

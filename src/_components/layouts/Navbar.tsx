@@ -204,6 +204,9 @@ const Index: FC<any> = () => {
                   <Link to='/services/marine' className='dropdown-item radius-0 fw-500 py-2'>
                     Marine
                   </Link>
+                  <Link to='/services/how-to-order' className='dropdown-item radius-0 fw-500 py-2'>
+                    How To Order
+                  </Link>
                 </Dropdown.Menu>
               </Dropdown>
 
